@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunrise Africa Properties — Investor & Sales Portal (Demo)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B2E;
+  --ink-2:#16233C;
+  --ink-soft:#5B657C;
+  --amber:#D9822C;
+  --amber-deep:#B96A1E;
+  --amber-light:#FBEBD8;
+  --cream:#FAF8F3;
+  --card:#FFFFFF;
+  --slate:#F4F6FA;
+  --line:#E7E5DE;
+  --line-2:#E4E8F0;
+  --ok:#2E7D4F;
+  --ok-bg:#E6F4EC;
+  --warn:#B96A1E;
+  --warn-bg:#FBEBD8;
+  --sold:#8A8F98;
+  --sold-bg:#EEEFF1;
+  --radius:14px;
+  --shadow:0 10px 30px -14px rgba(15,27,46,0.18);
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;}
+a{color:inherit;text-decoration:none;}
+.hidden{display:none !important;}
+::selection{background:var(--amber-light);}
+
+/* ---------- Demo ribbon ---------- */
+.demo-ribbon{
+  background:var(--ink);
+  color:#fff;
+  font-size:12.5px;
+  letter-spacing:.02em;
+  text-align:center;
+  padding:8px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.demo-ribbon strong{color:var(--amber);}
+
+/* ---------- Top nav ---------- */
+.topnav{
+  position:sticky;top:0;z-index:40;
+  background:rgba(250,248,243,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1220px;margin:0 auto;padding:16px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-mark{
+  width:38px;height:38px;border-radius:9px;
+  background:linear-gradient(135deg,var(--ink) 0%, #24304C 100%);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.brand-mark svg{width:20px;height:20px;}
+.brand-name{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.01em;line-height:1.1;}
+.brand-name span{display:block;font-family:var(--sans);font-weight:600;font-size:10.5px;color:var(--amber-deep);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a{font-size:14.5px;font-weight:600;color:var(--ink-2);padding:6px 0;border-bottom:2px solid transparent;transition:border-color .15s;}
+.nav-links a:hover{border-color:var(--amber);}
+.nav-cta{display:flex;gap:10px;align-items:center;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 20px;border-radius:9px;border:1px solid transparent;
+  font-weight:700;font-size:14px;transition:all .15s;white-space:nowrap;
+}
+.btn-primary{background:var(--amber);color:#fff;}
+.btn-primary:hover{background:var(--amber-deep);}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink);}
+.btn-ghost:hover{border-color:var(--ink);}
+.btn-dark{background:var(--ink);color:#fff;}
+.btn-dark:hover{background:var(--ink-2);}
+.btn-sm{padding:8px 14px;font-size:13px;border-radius:8px;}
+.btn-block{width:100%;}
+.burger{display:none;background:none;border:none;padding:8px;}
+.burger svg{width:22px;height:22px;}
+
+/* ---------- Views ---------- */
+.view{display:none;}
+.view.active{display:block;}
+
+/* ================= PUBLIC SITE ================= */
+.hero{
+  max-width:1220px;margin:0 auto;padding:64px 28px 40px;
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;
+}
+.eyebrow-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber-light);color:var(--amber-deep);
+  font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:999px;
+  margin-bottom:22px;
+}
+.hero h1{
+  font-family:var(--serif);font-weight:600;font-size:46px;line-height:1.1;
+  margin:0 0 20px;color:var(--ink);letter-spacing:-0.01em;
+}
+.hero h1 em{color:var(--amber-deep);font-style:normal;}
+.hero p.lead{font-size:17px;line-height:1.65;color:var(--ink-soft);max-width:520px;margin:0 0 30px;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px;}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
+.hero-stat b{display:block;font-family:var(--serif);font-size:26px;color:var(--ink);}
+.hero-stat span{font-size:12.5px;color:var(--ink-soft);}
+.hero-art{position:relative;}
+.hero-card{
+  background:var(--card);border:1px solid var(--line-2);border-radius:18px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.hero-art-img{
+  height:230px;
+  background:
+    linear-gradient(180deg, rgba(15,27,46,0) 40%, rgba(15,27,46,.65) 100%),
+    repeating-linear-gradient(100deg, #dfe6ef 0 60px, #e9eef4 60px 120px);
+  position:relative;
+}
+.hero-art-img svg{position:absolute;inset:0;width:100%;height:100%;}
+.hero-art-tag{
+  position:absolute;bottom:14px;left:16px;color:#fff;font-weight:700;font-size:13.5px;
+}
+.hero-art-tag span{display:block;font-weight:500;font-size:11.5px;opacity:.85;}
+.hero-card-body{padding:18px 20px 20px;}
+.hero-mini-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
+.badge{
+  font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.02em;
+}
+.badge-ok{background:var(--ok-bg);color:var(--ok);}
+.badge-warn{background:var(--warn-bg);color:var(--warn);}
+.badge-sold{background:var(--sold-bg);color:var(--sold);}
+.hero-float{
+  position:absolute;background:var(--card);border:1px solid var(--line-2);border-radius:12px;
+  box-shadow:var(--shadow);padding:12px 14px;font-size:12.5px;font-weight:700;
+  display:flex;align-items:center;gap:9px;
+}
+.hero-float svg{width:16px;height:16px;color:var(--amber-deep);flex-shrink:0;}
+.hero-float.f1{top:-18px;right:-6px;}
+.hero-float.f2{bottom:-16px;left:-18px;}
+.hero-float small{display:block;font-weight:500;color:var(--ink-soft);font-size:11px;}
+
+.section{max-width:1220px;margin:0 auto;padding:64px 28px;}
+.section-tight{padding-top:0;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:34px;flex-wrap:wrap;}
+.section-head h2{font-family:var(--serif);font-weight:600;font-size:30px;margin:0 0 6px;}
+.section-head p{color:var(--ink-soft);font-size:15px;margin:0;max-width:520px;}
+.tag-line{width:44px;height:3px;background:var(--amber);border-radius:2px;margin-bottom:16px;}
+
+/* audit / trust section */
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.trust-card{background:var(--card);border:1px solid var(--line-2);border-left:4px solid var(--amber);border-radius:12px;padding:22px;}
+.trust-card svg{width:22px;height:22px;color:var(--amber-deep);margin-bottom:12px;}
+.trust-card h3{margin:0 0 8px;font-size:16px;}
+.trust-card p{margin:0;font-size:13.8px;color:var(--ink-soft);line-height:1.55;}
+
+/* filters */
+.filters-bar{
+  display:flex;gap:12px;flex-wrap:wrap;align-items:center;
+  background:var(--card);border:1px solid var(--line-2);border-radius:14px;
+  padding:16px;margin-bottom:26px;
+}
+.filters-bar select, .filters-bar input[type=text]{
+  border:1px solid var(--line-2);background:var(--slate);border-radius:9px;
+  padding:10px 12px;font-family:inherit;font-size:13.5px;color:var(--ink);min-width:150px;
+}
+.filters-count{margin-left:auto;font-size:13px;color:var(--ink-soft);font-weight:600;}
+
+/* property grid */
+.prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.prop-card{
+  background:var(--card);border:1px solid var(--line-2);border-radius:16px;overflow:hidden;
+  transition:box-shadow .2s, transform .2s;cursor:pointer;
+}
+.prop-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+.prop-thumb{height:150px;position:relative;overflow:hidden;}
+.prop-thumb svg{width:100%;height:100%;display:block;}
+.prop-thumb .badge{position:absolute;top:12px;left:12px;}
+.prop-loc-badge{
+  position:absolute;top:12px;right:12px;background:rgba(15,27,46,0.72);color:#fff;
+  font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:999px;letter-spacing:.02em;
+}
+.prop-body{padding:18px 20px 20px;}
+.prop-body h3{margin:0 0 4px;font-size:17px;font-family:var(--serif);font-weight:600;}
+.prop-meta{font-size:12.8px;color:var(--ink-soft);margin-bottom:12px;display:flex;gap:6px;align-items:center;}
+.prop-meta svg{width:13px;height:13px;}
+.prop-price{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px;}
+.prop-price span{font-weight:500;font-size:12px;color:var(--ink-soft);}
+.prop-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line-2);padding-top:14px;}
+.prop-units{font-size:12px;color:var(--ink-soft);}
+.link-arrow{font-size:13px;font-weight:700;color:var(--amber-deep);display:flex;align-items:center;gap:4px;}
+
+/* diaspora section */
+.diaspora{
+  background:var(--ink);color:#fff;border-radius:22px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;
+}
+.diaspora-copy{padding:52px 48px;}
+.diaspora-copy .tag-line{background:var(--amber);}
+.diaspora-copy h2{font-family:var(--serif);font-size:28px;margin:0 0 16px;font-weight:600;}
+.diaspora-copy p{color:#C4CADA;font-size:14.8px;line-height:1.7;margin:0 0 26px;}
+.diaspora-list{display:flex;flex-direction:column;gap:14px;margin-bottom:8px;}
+.diaspora-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#DCE0EA;}
+.diaspora-list svg{width:18px;height:18px;color:var(--amber);flex-shrink:0;margin-top:2px;}
+.diaspora-art{height:100%;min-height:340px;position:relative;background:linear-gradient(155deg,#1B2740,#0B1220);}
+.diaspora-art svg{position:absolute;inset:0;width:100%;height:100%;}
+
+/* contact */
+.contact-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:40px;}
+.contact-info h2{font-family:var(--serif);font-size:28px;margin:0 0 14px;}
+.contact-info p{color:var(--ink-soft);font-size:14.5px;line-height:1.7;margin-bottom:24px;}
+.contact-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px;}
+.contact-row svg{width:18px;height:18px;color:var(--amber-deep);margin-top:2px;flex-shrink:0;}
+.contact-row b{display:block;font-size:14px;}
+.contact-row span{font-size:13px;color:var(--ink-soft);}
+.form-card{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:30px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.field label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-2);margin-bottom:6px;}
+.field input, .field select, .field textarea{
+  width:100%;border:1px solid var(--line-2);background:var(--slate);
+  border-radius:9px;padding:11px 12px;font-family:inherit;font-size:14px;color:var(--ink);
+}
+.field textarea{resize:vertical;min-height:88px;}
+.field.full{grid-column:1/-1;}
+
+footer{background:var(--ink);color:#B9C0D2;padding:44px 28px 26px;margin-top:20px;}
+.footer-inner{max-width:1220px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;}
+.footer-brand{display:flex;gap:10px;align-items:center;margin-bottom:12px;}
+.footer-brand .brand-name{color:#fff;}
+.footer-inner p{font-size:13px;line-height:1.6;color:#8D95AC;max-width:280px;}
+.footer-inner h4{color:#fff;font-size:13px;margin:0 0 14px;}
+.footer-inner ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+.footer-inner ul a{font-size:13px;color:#B9C0D2;}
+.footer-inner ul a:hover{color:#fff;}
+.footer-bottom{max-width:1220px;margin:30px auto 0;padding-top:20px;border-top:1px solid #26314C;font-size:12px;color:#7C84A0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+/* portal role switcher (floating) */
+.portal-switch{
+  position:fixed;bottom:22px;right:22px;z-index:50;
+  background:var(--card);border:1px solid var(--line-2);border-radius:14px;box-shadow:var(--shadow);
+  padding:8px;display:flex;gap:6px;
+}
+.portal-switch button{
+  border:none;background:transparent;padding:9px 13px;border-radius:9px;font-size:12.5px;font-weight:700;color:var(--ink-soft);
+  display:flex;align-items:center;gap:6px;
+}
+.portal-switch button.active{background:var(--ink);color:#fff;}
+.portal-switch svg{width:14px;height:14px;}
+
+/* ================= MODAL: property detail ================= */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(15,27,46,0.55);backdrop-filter:blur(2px);
+  z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:34px 18px;overflow-y:auto;
+}
+.modal{
+  background:var(--cream);border-radius:18px;max-width:960px;width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.4);
+  overflow:hidden;
+}
+.modal-head{
+  padding:22px 26px;display:flex;justify-content:space-between;align-items:flex-start;
+  background:var(--card);border-bottom:1px solid var(--line-2);
+}
+.modal-head h2{font-family:var(--serif);font-size:23px;margin:0 0 4px;}
+.modal-head .prop-meta{margin:0;}
+.modal-close{border:none;background:var(--slate);border-radius:9px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.modal-close svg{width:16px;height:16px;}
+.modal-body{padding:0;}
+.modal-gallery{height:260px;position:relative;}
+.modal-gallery svg{width:100%;height:100%;}
+.modal-tabs{display:flex;gap:4px;padding:0 26px;border-bottom:1px solid var(--line-2);background:var(--card);overflow-x:auto;}
+.modal-tab{padding:14px 16px;font-size:13.5px;font-weight:700;color:var(--ink-soft);border-bottom:2px solid transparent;white-space:nowrap;}
+.modal-tab.active{color:var(--ink);border-color:var(--amber);}
+.modal-pane{padding:26px;display:none;}
+.modal-pane.active{display:block;}
+.modal-grid{display:grid;grid-template-columns:1.3fr 0.9fr;gap:28px;}
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 22px;}
+.spec-item{background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;}
+.spec-item b{display:block;font-size:15px;}
+.spec-item span{font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;}
+.amenity-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.amenity-chip{background:var(--slate);border:1px solid var(--line-2);border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px;}
+.amenity-chip svg{width:13px;height:13px;color:var(--amber-deep);}
+.side-card{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:20px;margin-bottom:16px;}
+.side-card h4{margin:0 0 12px;font-size:14px;}
+.legend{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+.legend span{font-size:11.5px;display:flex;align-items:center;gap:6px;color:var(--ink-soft);font-weight:600;}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block;}
+.unit-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;}
+.unit-cell{
+  aspect-ratio:1;border-radius:6px;border:none;font-size:10.5px;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.unit-cell.available{background:var(--ok);}
+.unit-cell.reserved{background:var(--amber);}
+.unit-cell.sold{background:var(--sold);}
+.unit-tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;padding:10px 12px;border-radius:9px;font-size:11.5px;font-weight:600;
+  white-space:nowrap;z-index:5;box-shadow:var(--shadow);
+}
+.unit-tooltip:after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink);}
+.floorplan-box{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px;text-align:center;}
+.floorplan-box svg{width:100%;max-width:320px;margin:0 auto;}
+.fp-tabs{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.fp-tab{padding:7px 13px;border-radius:999px;border:1px solid var(--line-2);font-size:12px;font-weight:700;background:var(--slate);}
+.fp-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px;}
+.cal-day{
+  aspect-ratio:1;border:1px solid var(--line-2);border-radius:8px;background:var(--slate);
+  font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+}
+.cal-day.disabled{color:#C6CAD4;background:transparent;border-color:transparent;}
+.cal-day.selectable:hover{border-color:var(--amber);cursor:pointer;}
+.cal-day.selected{background:var(--ink);color:#fff;border-color:var(--ink);}
+.slot-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.slot-chip{padding:8px 13px;border-radius:9px;border:1px solid var(--line-2);background:var(--slate);font-size:12.5px;font-weight:700;}
+.slot-chip.selected{background:var(--ink);color:#fff;border-color:var(--ink);}
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120%);
+  background:var(--ink);color:#fff;padding:14px 22px;border-radius:12px;box-shadow:var(--shadow);
+  font-size:13.5px;font-weight:600;z-index:200;display:flex;align-items:center;gap:10px;
+  transition:transform .3s ease;max-width:90vw;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast svg{width:18px;height:18px;color:#5FD98A;flex-shrink:0;}
+
+/* payment modal */
+.pay-step{text-align:center;padding:10px 0;}
+.pay-step .amt{font-family:var(--serif);font-size:34px;margin:10px 0 4px;}
+.pay-methods{display:flex;gap:10px;justify-content:center;margin:20px 0;flex-wrap:wrap;}
+.pay-method{border:1px solid var(--line-2);border-radius:10px;padding:12px 18px;font-size:12.5px;font-weight:700;background:var(--card);}
+.pay-method.selected{border-color:var(--amber);background:var(--amber-light);color:var(--amber-deep);}
+.spinner{
+  width:40px;height:40px;border:4px solid var(--line-2);border-top-color:var(--amber);border-radius:50%;
+  margin:20px auto;animation:spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.success-check{
+  width:64px;height:64px;border-radius:50%;background:var(--ok-bg);display:flex;align-items:center;justify-content:center;
+  margin:6px auto 14px;
+}
+.success-check svg{width:30px;height:30px;color:var(--ok);}
+
+/* ================= PORTAL SHELL ================= */
+.portal-shell{display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 41px);}
+.portal-sidebar{
+  background:var(--ink);color:#fff;padding:24px 18px;position:sticky;top:41px;
+  height:calc(100vh - 41px);display:flex;flex-direction:column;
+}
+.portal-brand{display:flex;gap:10px;align-items:center;padding:0 8px 22px;border-bottom:1px solid #23304C;margin-bottom:18px;}
+.portal-brand .brand-name{color:#fff;font-size:16px;}
+.portal-nav{display:flex;flex-direction:column;gap:3px;flex:1;}
+.portal-nav button{
+  display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:10px;border:none;
+  background:transparent;color:#B9C0D2;font-size:13.8px;font-weight:600;text-align:left;width:100%;
+}
+.portal-nav button svg{width:17px;height:17px;flex-shrink:0;}
+.portal-nav button:hover{background:#1B2740;color:#fff;}
+.portal-nav button.active{background:var(--amber);color:#fff;}
+.portal-user{
+  display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:#1B2740;margin-top:14px;
+}
+.avatar{
+  width:34px;height:34px;border-radius:50%;background:var(--amber);color:#fff;font-weight:800;font-size:13px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.portal-user b{display:block;font-size:12.8px;color:#fff;}
+.portal-user span{font-size:11px;color:#8D95AC;}
+.exit-portal{margin-top:10px;background:transparent;border:1px solid #2C3958;border-radius:9px;padding:9px;font-size:12px;color:#B9C0D2;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;}
+.exit-portal svg{width:14px;height:14px;}
+
+.portal-main{padding:32px 36px;}
+.portal-topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px;flex-wrap:wrap;gap:12px;}
+.portal-topbar h1{font-family:var(--serif);font-size:26px;margin:0 0 4px;}
+.portal-topbar p{margin:0;color:var(--ink-soft);font-size:13.8px;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.stat-card{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px 20px;}
+.stat-card .stat-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.stat-icon{width:34px;height:34px;border-radius:9px;background:var(--amber-light);display:flex;align-items:center;justify-content:center;}
+.stat-icon svg{width:17px;height:17px;color:var(--amber-deep);}
+.stat-card b{font-family:var(--serif);font-size:23px;display:block;}
+.stat-card span{font-size:12.5px;color:var(--ink-soft);}
+.stat-trend{font-size:11.5px;font-weight:700;color:var(--ok);}
+
+.panel{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:24px;margin-bottom:22px;}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.panel-head h3{margin:0;font-size:16.5px;font-family:var(--serif);font-weight:600;}
+.panel-head p{margin:2px 0 0;font-size:12.5px;color:var(--ink-soft);}
+
+.portfolio-row{display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line-2);}
+.portfolio-row:last-child{border-bottom:none;padding-bottom:0;}
+.portfolio-thumb{width:64px;height:56px;border-radius:9px;flex-shrink:0;overflow:hidden;}
+.portfolio-thumb svg{width:100%;height:100%;}
+.portfolio-info{flex:1;min-width:180px;}
+.portfolio-info b{display:block;font-size:14.5px;}
+.portfolio-info span{font-size:12.3px;color:var(--ink-soft);}
+.progress-track{background:var(--slate);border-radius:999px;height:8px;width:100%;overflow:hidden;margin-top:8px;}
+.progress-fill{background:var(--amber);height:100%;border-radius:999px;}
+.portfolio-amt{text-align:right;flex-shrink:0;}
+.portfolio-amt b{display:block;font-size:14.5px;}
+.portfolio-amt span{font-size:11.5px;color:var(--ink-soft);}
+
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);padding:0 12px 10px;border-bottom:1px solid var(--line-2);}
+td{padding:14px 12px;font-size:13.8px;border-bottom:1px solid var(--line-2);}
+tr:last-child td{border-bottom:none;}
+.doc-row{display:flex;align-items:center;gap:12px;}
+.doc-icon{width:34px;height:34px;border-radius:9px;background:var(--amber-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.doc-icon svg{width:16px;height:16px;color:var(--amber-deep);}
+
+.kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.kanban-col{background:var(--slate);border-radius:14px;padding:14px;}
+.kanban-col h4{font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);margin:0 0 12px;display:flex;justify-content:space-between;}
+.kanban-card{background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;margin-bottom:10px;box-shadow:0 2px 6px rgba(15,27,46,.04);}
+.kanban-card b{display:block;font-size:13.3px;margin-bottom:3px;}
+.kanban-card span{font-size:11.5px;color:var(--ink-soft);}
+.kanban-tag{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--amber-light);color:var(--amber-deep);}
+
+.progress-photo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.progress-photo{border-radius:12px;overflow:hidden;border:1px solid var(--line-2);position:relative;}
+.progress-photo svg{width:100%;height:110px;}
+.progress-photo span{position:absolute;bottom:8px;left:8px;background:rgba(15,27,46,.75);color:#fff;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;}
+
+.two-col{display:grid;grid-template-columns:1.4fr 1fr;gap:22px;align-items:start;}
+
+.login-wrap{
+  min-height:calc(100vh - 41px);display:flex;align-items:center;justify-content:center;padding:40px 20px;
+  background:radial-gradient(circle at 20% 20%, #17233d 0%, #0B1220 60%);
+}
+.login-card{background:var(--card);border-radius:18px;padding:40px 38px;max-width:400px;width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);}
+.login-card .brand{margin-bottom:22px;justify-content:center;}
+.login-card h2{font-family:var(--serif);font-size:22px;text-align:center;margin:0 0 6px;}
+.login-card p.sub{text-align:center;color:var(--ink-soft);font-size:13px;margin:0 0 26px;}
+.demo-hint{background:var(--amber-light);color:var(--amber-deep);font-size:12px;border-radius:9px;padding:10px 12px;margin-bottom:18px;font-weight:600;text-align:center;}
+.login-tabs{display:flex;background:var(--slate);border-radius:10px;padding:4px;margin-bottom:22px;}
+.login-tab{flex:1;text-align:center;padding:9px;border-radius:8px;font-size:12.8px;font-weight:700;color:var(--ink-soft);}
+.login-tab.active{background:var(--ink);color:#fff;}
+
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr;padding-top:36px;}
+  .trust-grid{grid-template-columns:1fr;}
+  .prop-grid{grid-template-columns:repeat(2,1fr);}
+  .diaspora{grid-template-columns:1fr;}
+  .diaspora-art{min-height:200px;}
+  .contact-wrap{grid-template-columns:1fr;}
+  .modal-grid{grid-template-columns:1fr;}
+  .portal-shell{grid-template-columns:1fr;}
+  .portal-sidebar{position:relative;top:0;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;}
+  .portal-nav{flex-direction:row;flex-wrap:wrap;}
+  .stat-grid{grid-template-columns:repeat(2,1fr);}
+  .kanban{grid-template-columns:1fr;}
+  .progress-photo-row{grid-template-columns:repeat(2,1fr);}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+@media (max-width: 680px){
+  .nav-links{display:none;}
+  .burger{display:block;}
+  .hero h1{font-size:32px;}
+  .prop-grid{grid-template-columns:1fr;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">
+  <span>🟠 <strong>Interactive Demo</strong> — built by Chezmuna Enterprises for Sunrise Africa Properties Limited. No real payments, listings, or data are processed.</span>
+</div>
+
+<!-- ============ TOP NAV ============ -->
+<nav class="topnav" id="mainNav">
+  <div class="nav-inner">
+    <div class="brand" style="cursor:pointer" onclick="goHome()">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+      </div>
+      <div class="brand-name">Sunrise Africa Properties<span>Investor &amp; Sales Portal</span></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#properties" onclick="showPublic()">Properties</a>
+      <a href="#diaspora" onclick="showPublic()">Diaspora Investors</a>
+      <a href="#about" onclick="showPublic()">About</a>
+      <a href="#contact" onclick="showPublic()">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost btn-sm" onclick="openLogin('agent')">Realtor Hub</button>
+      <button class="btn btn-primary btn-sm" onclick="openLogin('investor')">Portal Login</button>
+      <button class="burger" onclick="toggleMobileNav()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ PUBLIC SITE VIEW ============ -->
+<div class="view active" id="view-public">
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
+        Strategic Digital Transformation
+      </div>
+      <h1>Real estate investment,<br><em>made transparent</em> from anywhere.</h1>
+      <p class="lead">Browse verified developments across Ibeju-Lekki, Eleko, Abuja and Ikorodu, track your investment in real time, and close deals without needing to be in the room.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="scrollToId('properties')">Explore Properties</button>
+        <button class="btn btn-ghost" onclick="openLogin('investor')">View Investor Dashboard</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>4</b><span>Active locations</span></div>
+        <div class="hero-stat"><b>6</b><span>Live developments</span></div>
+        <div class="hero-stat"><b>₦2.1bn+</b><span>Assets under management</span></div>
+        <div class="hero-stat"><b>70%</b><span>Diaspora-originated sales</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-card">
+        <div class="hero-art-img">
+          <svg viewBox="0 0 400 230" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="230" fill="#DCE4EF"/>
+            <rect x="0" y="150" width="400" height="80" fill="#C7D2E3"/>
+            <rect x="40" y="70" width="90" height="90" fill="#AEBCD4"/>
+            <rect x="150" y="40" width="110" height="120" fill="#9CACC8"/>
+            <rect x="280" y="90" width="80" height="70" fill="#AEBCD4"/>
+            <rect x="150" y="40" width="110" height="10" fill="#0F1B2E"/>
+          </svg>
+          <div class="hero-art-tag">Eleko Coastal Heights <span>Beachfront residences · Eleko</span></div>
+        </div>
+        <div class="hero-card-body">
+          <div class="hero-mini-row">
+            <div>
+              <b style="font-family:var(--serif);font-size:16px;">From ₦120,000,000</b><br>
+              <span style="font-size:12px;color:var(--ink-soft);">3-Bed &amp; 4-Bed waterfront units</span>
+            </div>
+            <span class="badge badge-ok">Units Available</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float f1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Verified title<small>Governor's consent on file</small></div>
+      <div class="hero-float f2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Live payment tracking<small>Auto-generated receipts</small></div>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="audit">
+    <div class="section-head">
+      <div>
+        <div class="tag-line"></div>
+        <h2>Built for institutional-grade trust</h2>
+        <p>Every module on this portal exists to answer one question a remote investor always asks: how do I know this is real?</p>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+        <h3>Verified listings, not brochures</h3>
+        <p>Every unit shown is tied to real inventory status — available, reserved, or sold — pulled from a single source of truth instead of a static PDF.</p>
+      </div>
+      <div class="trust-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+        <h3>Self-service inspection booking</h3>
+        <p>Buyers pick a physical visit or a live video walkthrough on their own schedule — no back-and-forth over WhatsApp to find a slot.</p>
+      </div>
+      <div class="trust-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z"/></svg>
+        <h3>A logged-in home for every investor</h3>
+        <p>Once reserved, every client gets a portal account with payment schedules, allocation letters, and receipts — always accessible, never lost in an inbox.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="properties">
+    <div class="section-head">
+      <div>
+        <div class="tag-line"></div>
+        <h2>Current developments</h2>
+        <p>Filter by location, unit type or status to find inventory that matches your investment goal.</p>
+      </div>
+    </div>
+    <div class="filters-bar">
+      <select id="filterLocation" onchange="renderProperties()">
+        <option value="">All locations</option>
+        <option>Ibeju-Lekki</option>
+        <option>Eleko</option>
+        <option>Abuja</option>
+        <option>Ikorodu</option>
+      </select>
+      <select id="filterType" onchange="renderProperties()">
+        <option value="">All types</option>
+        <option>Residential</option>
+        <option>Commercial</option>
+      </select>
+      <select id="filterStatus" onchange="renderProperties()">
+        <option value="">Any availability</option>
+        <option>Units Available</option>
+        <option>Limited Units</option>
+        <option>Fully Reserved</option>
+      </select>
+      <span class="filters-count" id="filtersCount">6 developments</span>
+    </div>
+    <div class="prop-grid" id="propGrid"></div>
+  </section>
+
+  <section class="section" id="diaspora">
+    <div class="diaspora">
+      <div class="diaspora-copy">
+        <div class="tag-line"></div>
+        <h2>Building trust across borders</h2>
+        <p>Over 70% of premium off-plan investment in Ibeju-Lekki, Eleko and Abuja originates from remote investors who need complete transparency before committing capital — often without a first physical visit.</p>
+        <ul class="diaspora-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Real-time site progress photos, updated by the project team</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Digitised payment tracking with instant receipts, in Naira or USD reference</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Verified title documentation delivered directly through your portal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Live video walkthroughs booked without a phone call</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openLogin('investor')">See a sample investor dashboard</button>
+      </div>
+      <div class="diaspora-art">
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="400" fill="#0F1B2E"/>
+          <circle cx="330" cy="70" r="90" fill="#17233D"/>
+          <path d="M0 300 L100 220 L200 260 L300 190 L400 250 L400 400 L0 400 Z" fill="#1B2740"/>
+          <path d="M0 340 L120 280 L220 310 L320 260 L400 300 L400 400 L0 400 Z" fill="#23304C"/>
+          <g stroke="#D9822C" stroke-width="2" fill="none" opacity="0.85">
+            <path d="M60 320 q80 -140 260 -170" stroke-dasharray="6 6"/>
+            <circle cx="60" cy="320" r="6" fill="#D9822C" stroke="none"/>
+            <circle cx="320" cy="150" r="6" fill="#D9822C" stroke="none"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-head">
+      <div>
+        <div class="tag-line"></div>
+        <h2>About Sunrise Africa Properties</h2>
+        <p style="max-width:720px;">Sunrise Africa Properties Limited develops and manages residential and commercial real estate across Nigeria's fastest-growing corridors, serving high-net-worth individuals, diaspora investors and institutional partners who expect the same rigour they'd get from any other asset class.</p>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card" style="border-left-color:var(--ink);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M14 9h1M14 13h1"/></svg>
+        <h3>Developer &amp; asset manager</h3>
+        <p>We develop, sell and continue to manage our estates post-handover — not a one-time agency transaction.</p>
+      </div>
+      <div class="trust-card" style="border-left-color:var(--ink);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12Z"/><circle cx="12" cy="9" r="3"/></svg>
+        <h3>Strategic corridors</h3>
+        <p>Positioned in Ibeju-Lekki, Eleko, Abuja and Ikorodu — corridors defined by infrastructure growth and diaspora demand.</p>
+      </div>
+      <div class="trust-card" style="border-left-color:var(--ink);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v-1M16 4v-1"/></svg>
+        <h3>Documentation-first</h3>
+        <p>Governor's consent, approved survey plans and deeds of assignment are prepared and issued for every allocation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <div class="tag-line"></div>
+        <h2>Speak with our advisory team</h2>
+        <p>Whether you're evaluating a single unit or a portfolio allocation, our team responds to every enquiry within one business day.</p>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><b>Head Office</b><span>Lagos, Nigeria — visits by appointment</span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92Z"/></svg>
+          <div><b>WhatsApp Business Line</b><span>1-click routing to your assigned account executive</span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <div><b>Email</b><span>advisory@sunriseafricaproperties.com (demo)</span></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-row">
+          <div class="field"><label>Full name</label><input type="text" placeholder="e.g. Adaeze Okafor"></div>
+          <div class="field"><label>Phone number</label><input type="text" placeholder="+234 800 000 0000"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Email address</label><input type="text" placeholder="you@email.com"></div>
+          <div class="field"><label>Property of interest</label>
+            <select id="contactPropSelect"><option value="">Select a development</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field full"><label>Message</label><textarea placeholder="Tell us about your investment goal, timeline, or questions..."></textarea></div>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="submitEnquiry()">Send Enquiry</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+          <div class="brand-name">Sunrise Africa Properties</div>
+        </div>
+        <p>Enterprise web and PWA portal accelerating institutional trust, diaspora sales and asset management. Demo built and delivered by Chezmuna Enterprises.</p>
+      </div>
+      <div>
+        <h4>Portfolio</h4>
+        <ul>
+          <li><a href="#properties" onclick="showPublic()">Residential</a></li>
+          <li><a href="#properties" onclick="showPublic()">Commercial</a></li>
+          <li><a href="#diaspora" onclick="showPublic()">Diaspora investors</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Portal</h4>
+        <ul>
+          <li><a href="#" onclick="openLogin('investor')">Investor login</a></li>
+          <li><a href="#" onclick="openLogin('agent')">Realtor login</a></li>
+          <li><a href="#contact" onclick="showPublic()">Contact advisory</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about" onclick="showPublic()">About us</a></li>
+          <li><a href="#" onclick="return false;">Compliance (NDPA)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sunrise Africa Properties Limited — Demo environment.</span>
+      <span>Platform by Chezmuna Enterprises</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ LOGIN VIEW ============ -->
+<div class="view" id="view-login">
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="brand">
+        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-name">Sunrise Africa</div>
+      </div>
+      <div class="login-tabs">
+        <div class="login-tab" id="tabInvestor" onclick="setLoginTab('investor')">Investor Portal</div>
+        <div class="login-tab" id="tabAgent" onclick="setLoginTab('agent')">Realtor Hub</div>
+      </div>
+      <h2 id="loginTitle">Welcome back</h2>
+      <p class="sub" id="loginSub">Sign in to view your portfolio and payment schedule.</p>
+      <div class="demo-hint">Demo mode — credentials are pre-filled. Just press sign in.</div>
+      <div class="field" style="margin-bottom:14px;"><label>Email address</label><input type="text" id="loginEmail" value="adaeze.investor@example.com"></div>
+      <div class="field" style="margin-bottom:20px;"><label>Password</label><input type="password" id="loginPass" value="demo1234"></div>
+      <button class="btn btn-primary btn-block" onclick="doLogin()">Sign In</button>
+      <button class="btn btn-ghost btn-block" style="margin-top:10px;" onclick="showPublic()">← Back to website</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ INVESTOR PORTAL VIEW ============ -->
+<div class="view" id="view-investor">
+  <div class="portal-shell">
+    <aside class="portal-sidebar">
+      <div class="portal-brand">
+        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-name">Investor Portal</div>
+      </div>
+      <nav class="portal-nav">
+        <button class="active" data-pane="inv-dashboard" onclick="setInvestorPane('inv-dashboard', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Dashboard</button>
+        <button data-pane="inv-properties" onclick="setInvestorPane('inv-properties', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> My Properties</button>
+        <button data-pane="inv-payments" onclick="setInvestorPane('inv-payments', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Payments</button>
+        <button data-pane="inv-documents" onclick="setInvestorPane('inv-documents', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg> Documents</button>
+        <button data-pane="inv-progress" onclick="setInvestorPane('inv-progress', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m8 12 3 3 6-6"/></svg> Site Progress</button>
+        <button data-pane="inv-support" onclick="setInvestorPane('inv-support', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 1 4 7.5L3 21l1.5-4A9 9 0 0 1 3 12Z"/></svg> Support</button>
+      </nav>
+      <div class="portal-user">
+        <div class="avatar">AO</div>
+        <div><b>Adaeze Okafor</b><span>Diaspora Investor</span></div>
+      </div>
+      <button class="exit-portal" onclick="showPublic()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Exit to website</button>
+    </aside>
+
+    <main class="portal-main">
+
+      <!-- DASHBOARD PANE -->
+      <div class="inv-pane" id="inv-dashboard">
+        <div class="portal-topbar">
+          <div><h1>Welcome back, Adaeze</h1><p>Here's where your portfolio stands today.</p></div>
+          <button class="btn btn-primary" onclick="setInvestorPane('inv-payments', document.querySelector('[data-pane=inv-payments]'))">Make a payment</button>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><span class="stat-trend">On track</span></div>
+            <b>₦68,500,000</b><span>Total invested to date</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div></div>
+            <b>2</b><span>Properties in portfolio</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><span class="stat-trend" style="color:var(--warn);">Due in 12 days</span></div>
+            <b>₦8,200,000</b><span>Next instalment due</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></div></div>
+            <b>4</b><span>Documents on file</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div><h3>Portfolio overview</h3><p>Progress toward full payment for each unit you hold</p></div></div>
+          <div id="invPortfolioList"></div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel" style="margin-bottom:0;">
+            <div class="panel-head"><div><h3>Recent activity</h3><p>Automated updates from the platform</p></div></div>
+            <table>
+              <tbody id="invActivityTable"></tbody>
+            </table>
+          </div>
+          <div class="panel" style="margin-bottom:0;">
+            <div class="panel-head"><div><h3>Book a site visit</h3></div></div>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 14px;">Schedule a physical inspection or live video walkthrough for any property you're tracking.</p>
+            <button class="btn btn-dark btn-block" onclick="showPublic();scrollToId('properties');">Browse properties to book</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY PROPERTIES PANE -->
+      <div class="inv-pane hidden" id="inv-properties">
+        <div class="portal-topbar"><div><h1>My Properties</h1><p>Every unit currently allocated to your account.</p></div></div>
+        <div class="panel" id="invPropertiesPanel"></div>
+      </div>
+
+      <!-- PAYMENTS PANE -->
+      <div class="inv-pane hidden" id="inv-payments">
+        <div class="portal-topbar"><div><h1>Payments</h1><p>Instalment schedule across your portfolio.</p></div></div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Upcoming instalments</h3></div></div>
+          <table>
+            <thead><tr><th>Property</th><th>Milestone</th><th>Amount</th><th>Due date</th><th>Status</th><th></th></tr></thead>
+            <tbody id="invPaymentsTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DOCUMENTS PANE -->
+      <div class="inv-pane hidden" id="inv-documents">
+        <div class="portal-topbar"><div><h1>Documents</h1><p>Allocation letters, receipts and title documents.</p></div></div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>Document</th><th>Property</th><th>Date issued</th><th></th></tr></thead>
+            <tbody id="invDocsTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SITE PROGRESS PANE -->
+      <div class="inv-pane hidden" id="inv-progress">
+        <div class="portal-topbar"><div><h1>Site Progress</h1><p>Latest construction updates from the project team.</p></div></div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Eleko Coastal Heights — Block C</h3><p>Last updated 4 days ago</p></div></div>
+          <div class="progress-photo-row" id="progressPhotos"></div>
+        </div>
+      </div>
+
+      <!-- SUPPORT PANE -->
+      <div class="inv-pane hidden" id="inv-support">
+        <div class="portal-topbar"><div><h1>Support</h1><p>Reach your account executive directly.</p></div></div>
+        <div class="two-col">
+          <div class="panel">
+            <div class="panel-head"><div><h3>Send a message</h3></div></div>
+            <div class="field" style="margin-bottom:14px;"><label>Subject</label><input type="text" placeholder="e.g. Question about instalment 3"></div>
+            <div class="field" style="margin-bottom:16px;"><label>Message</label><textarea placeholder="How can we help?"></textarea></div>
+            <button class="btn btn-primary" onclick="toast('Message sent to your account executive.')">Send message</button>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><h3>Your account executive</h3></div></div>
+            <div style="display:flex;gap:12px;align-items:center;margin-bottom:16px;">
+              <div class="avatar" style="background:var(--ink);">TB</div>
+              <div><b style="display:block;font-size:14px;">Tunde Balogun</b><span style="font-size:12.5px;color:var(--ink-soft);">Senior Advisory Manager</span></div>
+            </div>
+            <button class="btn btn-dark btn-block" onclick="toast('Opening WhatsApp chat (demo)…')">Chat on WhatsApp</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============ AGENT / REALTOR HUB VIEW ============ -->
+<div class="view" id="view-agent">
+  <div class="portal-shell">
+    <aside class="portal-sidebar">
+      <div class="portal-brand">
+        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-name">Realtor Hub</div>
+      </div>
+      <nav class="portal-nav">
+        <button class="active" data-pane="ag-leads" onclick="setAgentPane('ag-leads', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Leads Pipeline</button>
+        <button data-pane="ag-commission" onclick="setAgentPane('ag-commission', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5a2.5 2.5 0 0 1 3-2.5c1.5 0 3 .8 3 2.3S13.5 12 12 12s-3 .7-3 2.3 1.5 2.7 3 2.3a2.5 2.5 0 0 0 3-2.4"/></svg> Commissions</button>
+        <button data-pane="ag-materials" onclick="setAgentPane('ag-materials', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg> Promo Materials</button>
+      </nav>
+      <div class="portal-user">
+        <div class="avatar">KE</div>
+        <div><b>Kingsley Eze</b><span>Registered Realtor</span></div>
+      </div>
+      <button class="exit-portal" onclick="showPublic()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Exit to website</button>
+    </aside>
+    <main class="portal-main">
+
+      <div class="ag-pane" id="ag-leads">
+        <div class="portal-topbar"><div><h1>Leads Pipeline</h1><p>Track every enquiry from first contact to close.</p></div><button class="btn btn-primary" onclick="toast('New lead form opened (demo).')">+ Add lead</button></div>
+        <div class="kanban" id="kanbanBoard"></div>
+      </div>
+
+      <div class="ag-pane hidden" id="ag-commission">
+        <div class="portal-topbar"><div><h1>Commissions</h1><p>Payout history and pending balances.</p></div></div>
+        <div class="stat-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat-card"><b>₦4,250,000</b><span>Paid out (2026 YTD)</span></div>
+          <div class="stat-card"><b>₦1,100,000</b><span>Pending approval</span></div>
+          <div class="stat-card"><b>6</b><span>Closed deals</span></div>
+        </div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>Client</th><th>Property</th><th>Sale value</th><th>Commission</th><th>Status</th></tr></thead>
+            <tbody id="commissionTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ag-pane hidden" id="ag-materials">
+        <div class="portal-topbar"><div><h1>Promo Materials</h1><p>Approved assets for marketing to your network.</p></div></div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>Asset</th><th>Type</th><th></th></tr></thead>
+            <tbody id="materialsTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastMsg">Done.</span>
+</div>
+
+<script>
+/* =====================================================
+   MOCK DATA
+===================================================== */
+const PALETTES = [
+  ['#DCE4EF','#AEBCD4','#9CACC8'],
+  ['#F1E3D3','#E3C6A0','#C9A06B'],
+  ['#DDEAE1','#AFCFBB','#8CB69C'],
+  ['#E6DEEF','#C6AEDD','#A98BC9'],
+  ['#F3DEDE','#E3AFAF','#C98C8C'],
+  ['#DDE9F0','#AAC9DC','#7FA9C2'],
+];
+
+function buildingSVG(seed, tall){
+  const p = PALETTES[seed % PALETTES.length];
+  const h1 = tall ? 150 : 100, h2 = tall ? 110 : 70;
+  return `<svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+    <rect width="400" height="200" fill="${p[0]}"/>
+    <rect x="0" y="150" width="400" height="50" fill="${p[1]}"/>
+    <rect x="40" y="${200-h1}" width="80" height="${h1}" fill="${p[1]}"/>
+    <rect x="140" y="${200-h1-20}" width="100" height="${h1+20}" fill="${p[2]}"/>
+    <rect x="260" y="${200-h2}" width="90" height="${h2}" fill="${p[1]}"/>
+    <rect x="140" y="${200-h1-20}" width="100" height="8" fill="#0F1B2E" opacity="0.7"/>
+  </svg>`;
+}
+
+const PROPERTIES = [
+  {
+    id:'p1', name:'Serene Waters Villas', location:'Ibeju-Lekki', type:'Residential', status:'Units Available',
+    priceFrom:85000000, unitLabel:'4-Bed Detached', totalUnits:24, seed:0, tall:false,
+    desc:'A gated enclave of contemporary detached villas minutes from the Lekki Free Trade Zone, designed for families and long-term rental investors.',
+    amenities:['24/7 Security','Estate Power','Clubhouse','Paved Roads','Drainage'],
+    specs:[['Land Size','450 sqm'],['Bedrooms','4'],['Bathrooms','5'],['Status','Off-plan']],
+    fp:'duplex'
+  },
+  {
+    id:'p2', name:'Eleko Coastal Heights', location:'Eleko', type:'Residential', status:'Limited Units',
+    priceFrom:120000000, unitLabel:'3 & 4-Bed Waterfront', totalUnits:18, seed:1, tall:true,
+    desc:'Beachfront residences on the Eleko corridor with direct ocean access, built for both lifestyle buyers and short-let investors.',
+    amenities:['Private Beach Access','Swimming Pool','Concierge','Backup Power','CCTV'],
+    specs:[['Land Size','600 sqm'],['Bedrooms','3-4'],['Bathrooms','4'],['Status','Under Construction']],
+    fp:'3bed'
+  },
+  {
+    id:'p3', name:'Capital Gardens Estate', location:'Abuja', type:'Residential', status:'Units Available',
+    priceFrom:95000000, unitLabel:'5-Bed Terrace', totalUnits:20, seed:2, tall:false,
+    desc:'A landscaped terrace-home estate in Guzape, Abuja, close to the diplomatic zone with full estate management services.',
+    amenities:['Estate Management','Landscaped Gardens','Gym','Water Treatment','Fibre Internet'],
+    specs:[['Land Size','350 sqm'],['Bedrooms','5'],['Bathrooms','6'],['Status','Ready-to-Build']],
+    fp:'duplex'
+  },
+  {
+    id:'p4', name:'Ikorodu Trade Court', location:'Ikorodu', type:'Commercial', status:'Units Available',
+    priceFrom:45000000, unitLabel:'Retail & Office Units', totalUnits:30, seed:3, tall:false,
+    desc:'A mixed-use commercial court along the Ikorodu corridor, purpose-built for retail, showroom and small office tenants.',
+    amenities:['Ample Parking','Loading Bay','24/7 Power','Fire Safety','Signage Frontage'],
+    specs:[['Unit Size','60-180 sqm'],['Floors','3'],['Parking','40 bays'],['Status','Ready-to-Build']],
+    fp:'commercial'
+  },
+  {
+    id:'p5', name:'Lekki Business Atrium', location:'Ibeju-Lekki', type:'Commercial', status:'Limited Units',
+    priceFrom:150000000, unitLabel:'Office Suites', totalUnits:16, seed:4, tall:true,
+    desc:'A Grade-A office atrium serving the industrial and logistics growth around the Lekki Free Trade Zone.',
+    amenities:['Backup Power','Fibre Ready','Conference Facility','Elevator Access','Reception Services'],
+    specs:[['Unit Size','120-400 sqm'],['Floors','6'],['Parking','60 bays'],['Status','Off-plan']],
+    fp:'commercial'
+  },
+  {
+    id:'p6', name:'Abuja Heights Residences', location:'Abuja', type:'Residential', status:'Fully Reserved',
+    priceFrom:110000000, unitLabel:'3-Bed Apartments', totalUnits:22, seed:5, tall:true,
+    desc:'A mid-rise apartment complex in Katampe Extension, popular with diplomatic and NGO tenants seeking serviced living.',
+    amenities:['Serviced Apartments','Rooftop Lounge','Gym','Concierge','Standby Generator'],
+    specs:[['Unit Size','180 sqm'],['Bedrooms','3'],['Bathrooms','3'],['Status','Under Construction']],
+    fp:'3bed'
+  },
+];
+
+function unitStatuses(total, ratio){
+  // ratio: [available, reserved, sold] weights
+  const arr=[];
+  for(let i=0;i<total;i++){
+    const r = Math.random();
+    if(r < ratio[0]) arr.push('available');
+    else if(r < ratio[0]+ratio[1]) arr.push('reserved');
+    else arr.push('sold');
+  }
+  return arr;
+}
+const UNIT_STATE = {};
+const RATIO_BY_STATUS = {'Units Available':[0.6,0.25,0.15],'Limited Units':[0.25,0.35,0.4],'Fully Reserved':[0.0,0.15,0.85]};
+PROPERTIES.forEach(p=>{ UNIT_STATE[p.id] = unitStatuses(p.totalUnits, RATIO_BY_STATUS[p.status]); });
+
+function fmtN(n){ return '₦' + n.toLocaleString('en-NG'); }
+
+/* =====================================================
+   NAV / VIEW SWITCHING
+===================================================== */
+function setActiveView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+function showPublic(){ setActiveView('view-public'); closeModal(); }
+function goHome(){ showPublic(); scrollToId('top'); window.scrollTo({top:0,behavior:'smooth'}); }
+function scrollToId(id){
+  setTimeout(()=>{ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }, 30);
+}
+function toggleMobileNav(){
+  const n = document.getElementById('navLinks');
+  n.style.display = (n.style.display === 'flex') ? 'none' : 'flex';
+  n.style.flexDirection='column'; n.style.position='absolute'; n.style.top='64px'; n.style.right='20px';
+  n.style.background='var(--card)'; n.style.padding='16px 22px'; n.style.borderRadius='12px';
+  n.style.boxShadow='var(--shadow)'; n.style.border='1px solid var(--line-2)'; n.style.gap='14px';
+}
+
+let loginRole = 'investor';
+function openLogin(role){
+  loginRole = role;
+  setLoginTab(role);
+  setActiveView('view-login');
+}
+function setLoginTab(role){
+  loginRole = role;
+  document.getElementById('tabInvestor').classList.toggle('active', role==='investor');
+  document.getElementById('tabAgent').classList.toggle('active', role==='agent');
+  if(role==='investor'){
+    document.getElementById('loginTitle').textContent = 'Welcome back';
+    document.getElementById('loginSub').textContent = "Sign in to view your portfolio and payment schedule.";
+    document.getElementById('loginEmail').value='adaeze.investor@example.com';
+  } else {
+    document.getElementById('loginTitle').textContent = 'Realtor sign in';
+    document.getElementById('loginSub').textContent = 'Access your leads pipeline and commission tracker.';
+    document.getElementById('loginEmail').value='kingsley.agent@example.com';
+  }
+}
+function doLogin(){
+  if(loginRole==='investor'){ setActiveView('view-investor'); }
+  else { setActiveView('view-agent'); }
+  toast('Signed in — demo session started.');
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
+}
+function submitEnquiry(){ toast('Enquiry received — an advisory manager will reach out within 24 hours.'); }
+
+/* =====================================================
+   PROPERTY GRID
+===================================================== */
+function renderProperties(){
+  const loc = document.getElementById('filterLocation').value;
+  const type = document.getElementById('filterType').value;
+  const status = document.getElementById('filterStatus').value;
+  const grid = document.getElementById('propGrid');
+  const filtered = PROPERTIES.filter(p =>
+    (!loc || p.location===loc) && (!type || p.type===type) && (!status || p.status===status)
+  );
+  document.getElementById('filtersCount').textContent = filtered.length + ' development' + (filtered.length===1?'':'s');
+  grid.innerHTML = filtered.map(p=>{
+    const badgeClass = p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
+    return `<div class="prop-card" onclick="openProperty('${p.id}')">
+      <div class="prop-thumb">
+        ${buildingSVG(p.seed, p.tall)}
+        <span class="badge ${badgeClass}">${p.status}</span>
+        <span class="prop-loc-badge">${p.location}</span>
+      </div>
+      <div class="prop-body">
+        <h3>${p.name}</h3>
+        <div class="prop-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> ${p.unitLabel} · ${p.type}</div>
+        <div class="prop-price">${fmtN(p.priceFrom)} <span>starting price</span></div>
+        <div class="prop-foot">
+          <span class="prop-units">${p.totalUnits} total units</span>
+          <span class="link-arrow">View details →</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('') || `<p style="color:var(--ink-soft);">No developments match those filters yet.</p>`;
+}
+
+function populateContactPropSelect(){
+  const sel = document.getElementById('contactPropSelect');
+  PROPERTIES.forEach(p=>{
+    const o=document.createElement('option'); o.value=p.id; o.textContent=p.name; sel.appendChild(o);
+  });
+}
+
+/* =====================================================
+   FLOOR PLAN SVGs
+===================================================== */
+function floorplanSVG(kind){
+  if(kind==='duplex'){
+    return `<svg viewBox="0 0 320 240" fill="none" stroke="#0F1B2E" stroke-width="2">
+      <rect x="10" y="10" width="300" height="220" fill="#F4F6FA"/>
+      <rect x="10" y="10" width="150" height="100" fill="#FFFFFF"/><text x="30" y="55" font-size="12" stroke="none" fill="#5B657C">Living Room</text>
+      <rect x="160" y="10" width="150" height="60" fill="#FFFFFF"/><text x="185" y="45" font-size="12" stroke="none" fill="#5B657C">Kitchen</text>
+      <rect x="160" y="70" width="150" height="40" fill="#FFFFFF"/><text x="195" y="94" font-size="11" stroke="none" fill="#5B657C">Dining</text>
+      <rect x="10" y="110" width="90" height="120" fill="#FFFFFF"/><text x="20" y="170" font-size="12" stroke="none" fill="#5B657C">Bedroom 1</text>
+      <rect x="100" y="110" width="90" height="120" fill="#FFFFFF"/><text x="110" y="170" font-size="12" stroke="none" fill="#5B657C">Bedroom 2</text>
+      <rect x="190" y="110" width="60" height="60" fill="#FFFFFF"/><text x="197" y="144" font-size="10" stroke="none" fill="#5B657C">Bath</text>
+      <rect x="190" y="170" width="60" height="60" fill="#FFFFFF"/><text x="197" y="204" font-size="10" stroke="none" fill="#5B657C">Bath</text>
+      <rect x="250" y="110" width="60" height="120" fill="#FFFFFF"/><text x="258" y="170" font-size="12" stroke="none" fill="#5B657C">Master</text>
+    </svg>`;
+  }
+  if(kind==='3bed'){
+    return `<svg viewBox="0 0 320 240" fill="none" stroke="#0F1B2E" stroke-width="2">
+      <rect x="10" y="10" width="300" height="220" fill="#F4F6FA"/>
+      <rect x="10" y="10" width="180" height="90" fill="#FFFFFF"/><text x="30" y="55" font-size="12" stroke="none" fill="#5B657C">Living / Dining</text>
+      <rect x="190" y="10" width="120" height="90" fill="#FFFFFF"/><text x="200" y="55" font-size="12" stroke="none" fill="#5B657C">Kitchen</text>
+      <rect x="10" y="100" width="100" height="130" fill="#FFFFFF"/><text x="20" y="165" font-size="12" stroke="none" fill="#5B657C">Master Bed</text>
+      <rect x="110" y="100" width="90" height="130" fill="#FFFFFF"/><text x="118" y="165" font-size="12" stroke="none" fill="#5B657C">Bedroom 2</text>
+      <rect x="200" y="100" width="60" height="65" fill="#FFFFFF"/><text x="210" y="132" font-size="10" stroke="none" fill="#5B657C">Bath</text>
+      <rect x="200" y="165" width="60" height="65" fill="#FFFFFF"/><text x="205" y="197" font-size="11" stroke="none" fill="#5B657C">Balcony</text>
+      <rect x="260" y="100" width="50" height="130" fill="#FFFFFF"/><text x="266" y="165" font-size="12" stroke="none" fill="#5B657C">Bedroom 3</text>
+    </svg>`;
+  }
+  return `<svg viewBox="0 0 320 240" fill="none" stroke="#0F1B2E" stroke-width="2">
+    <rect x="10" y="10" width="300" height="220" fill="#F4F6FA"/>
+    <rect x="10" y="10" width="300" height="140" fill="#FFFFFF"/><text x="120" y="85" font-size="13" stroke="none" fill="#5B657C">Open Retail / Office Floor</text>
+    <rect x="10" y="150" width="140" height="80" fill="#FFFFFF"/><text x="30" y="192" font-size="12" stroke="none" fill="#5B657C">Storage</text>
+    <rect x="150" y="150" width="80" height="80" fill="#FFFFFF"/><text x="160" y="192" font-size="12" stroke="none" fill="#5B657C">Restroom</text>
+    <rect x="230" y="150" width="80" height="80" fill="#FFFFFF"/><text x="242" y="192" font-size="12" stroke="none" fill="#5B657C">Entrance</text>
+  </svg>`;
+}
+
+/* =====================================================
+   PROPERTY MODAL
+===================================================== */
+let currentProp = null;
+let selectedUnit = null;
+let selectedDay = null;
+let selectedSlot = null;
+
+function openProperty(id){
+  currentProp = PROPERTIES.find(p=>p.id===id);
+  selectedUnit = null; selectedDay = null; selectedSlot = null;
+  renderModal();
+  document.getElementById('modalOverlay').classList.remove('hidden');
+}
+function closeModal(){
+  const o = document.getElementById('modalOverlay');
+  if(o) o.classList.add('hidden');
+}
+function renderModal(){
+  const p = currentProp;
+  const badgeClass = p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
+  const states = UNIT_STATE[p.id];
+  const counts = {available:0,reserved:0,sold:0};
+  states.forEach(s=>counts[s]++);
+
+  document.getElementById('modalRoot').innerHTML = `
+  <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <h2>${p.name}</h2>
+          <div class="prop-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${p.location} &nbsp;·&nbsp; ${p.type} &nbsp;·&nbsp; <span class="badge ${badgeClass}">${p.status}</span></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-gallery">${buildingSVG(p.seed, p.tall)}</div>
+      <div class="modal-tabs">
+        <div class="modal-tab active" data-tab="overview" onclick="setModalTab('overview')">Overview</div>
+        <div class="modal-tab" data-tab="siteplan" onclick="setModalTab('siteplan')">Interactive Site Plan</div>
+        <div class="modal-tab" data-tab="floorplan" onclick="setModalTab('floorplan')">Floor Plans</div>
+        <div class="modal-tab" data-tab="book" onclick="setModalTab('book')">Book Inspection</div>
+        <div class="modal-tab" data-tab="pay" onclick="setModalTab('pay')">Reserve &amp; Pay</div>
+      </div>
+
+      <div class="modal-pane active" data-pane="overview">
+        <div class="modal-grid">
+          <div>
+            <p style="color:var(--ink-soft);font-size:14.5px;line-height:1.7;">${p.desc}</p>
+            <div class="spec-list">
+              ${p.specs.map(s=>`<div class="spec-item"><b>${s[1]}</b><span>${s[0]}</span></div>`).join('')}
+            </div>
+            <h4 style="margin:0 0 4px;font-size:14px;">Amenities</h4>
+            <div class="amenity-list">
+              ${p.amenities.map(a=>`<div class="amenity-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>${a}</div>`).join('')}
+            </div>
+          </div>
+          <div>
+            <div class="side-card">
+              <h4>Pricing</h4>
+              <div class="prop-price" style="font-size:20px;">${fmtN(p.priceFrom)}</div>
+              <span style="font-size:12px;color:var(--ink-soft);">Starting price for ${p.unitLabel}</span>
+            </div>
+            <div class="side-card">
+              <h4>Live availability</h4>
+              <div class="legend">
+                <span><i style="background:var(--ok);"></i>${counts.available} Available</span>
+                <span><i style="background:var(--amber);"></i>${counts.reserved} Reserved</span>
+                <span><i style="background:var(--sold);"></i>${counts.sold} Sold</span>
+              </div>
+              <button class="btn btn-primary btn-block" onclick="setModalTab('siteplan')">View unit map</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-pane" data-pane="siteplan">
+        <div class="modal-grid">
+          <div>
+            <h4 style="margin:0 0 6px;font-size:15px;">Interactive Site Plan</h4>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 16px;">Click any unit to see its status and price. Layout availability reflects real-time inventory, not a static PDF.</p>
+            <div class="legend">
+              <span><i style="background:var(--ok);"></i>Available</span>
+              <span><i style="background:var(--amber);"></i>Reserved</span>
+              <span><i style="background:var(--sold);"></i>Sold Out</span>
+            </div>
+            <div class="unit-grid" id="unitGrid"></div>
+          </div>
+          <div>
+            <div class="side-card" id="unitDetailCard">
+              <h4>Unit details</h4>
+              <p style="font-size:13px;color:var(--ink-soft);">Select a unit on the plan to see its size, price and status.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-pane" data-pane="floorplan">
+        <div class="modal-grid">
+          <div class="floorplan-box">
+            <div id="fpSvgHolder">${floorplanSVG(p.fp)}</div>
+            <div class="fp-tabs">
+              <div class="fp-tab active">${p.unitLabel}</div>
+            </div>
+          </div>
+          <div>
+            <div class="side-card">
+              <h4>What's included</h4>
+              <p style="font-size:13px;color:var(--ink-soft);line-height:1.7;">Floor plans are indicative and subject to final architectural sign-off. Full dimensioned drawings are shared with the allocation letter after reservation.</p>
+            </div>
+            <div class="side-card">
+              <h4>Need a custom layout?</h4>
+              <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px;">Our design team can walk you through variant layouts on a live video call.</p>
+              <button class="btn btn-ghost btn-block" onclick="setModalTab('book')">Book a design consultation</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-pane" data-pane="book">
+        <div class="modal-grid">
+          <div>
+            <h4 style="margin:0 0 6px;font-size:15px;">Choose a date</h4>
+            <div class="calendar-grid" id="calGrid"></div>
+            <h4 style="margin:0 0 10px;font-size:15px;">Choose a time slot</h4>
+            <div class="slot-row" id="slotRow">
+              ${['9:00 AM','11:00 AM','1:00 PM','3:00 PM','5:00 PM'].map(s=>`<div class="slot-chip" data-slot="${s}" onclick="selectSlot('${s}', this)">${s}</div>`).join('')}
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Full name</label><input type="text" id="bkName" placeholder="Your name"></div>
+              <div class="field"><label>Phone / WhatsApp</label><input type="text" id="bkPhone" placeholder="+234 800 000 0000"></div>
+            </div>
+            <div class="form-row">
+              <div class="field full">
+                <label>Inspection type</label>
+                <select id="bkType"><option>Physical site visit</option><option>Live video walkthrough</option></select>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="confirmBooking()">Confirm Booking</button>
+          </div>
+          <div>
+            <div class="side-card">
+              <h4>Booking summary</h4>
+              <p style="font-size:13px;color:var(--ink-soft);">${p.name} · ${p.location}</p>
+              <p style="font-size:13px;color:var(--ink-soft);" id="bookingSummaryLine">No date or time selected yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-pane" data-pane="pay">
+        <div class="modal-grid">
+          <div>
+            <h4 style="margin:0 0 6px;font-size:15px;">Reserve this unit</h4>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 18px;">A refundable reservation fee holds your selected unit for 14 days while your allocation letter is prepared.</p>
+            <div class="spec-list">
+              <div class="spec-item"><b>${fmtN(500000)}</b><span>Reservation fee</span></div>
+              <div class="spec-item"><b>${fmtN(p.priceFrom)}</b><span>Full unit price</span></div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="openPayment(${p.priceFrom})">Pay Reservation Fee — ${fmtN(500000)}</button>
+          </div>
+          <div>
+            <div class="side-card">
+              <h4>Accepted payment methods</h4>
+              <p style="font-size:13px;color:var(--ink-soft);">Card, bank transfer and USSD via Paystack / Flutterwave. This demo simulates the flow — no live gateway is called.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>`;
+  buildUnitGrid();
+  buildCalendar();
+}
+
+function setModalTab(tab){
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===tab));
+  document.querySelectorAll('.modal-pane').forEach(p=>p.classList.toggle('active', p.dataset.pane===tab));
+}
+
+function buildUnitGrid(){
+  const p = currentProp;
+  const states = UNIT_STATE[p.id];
+  const grid = document.getElementById('unitGrid');
+  if(!grid) return;
+  grid.innerHTML = states.map((s,i)=>`<button class="unit-cell ${s}" onclick="selectUnit(${i}, this)">${String(i+1).padStart(2,'0')}</button>`).join('');
+}
+function selectUnit(i, el){
+  const p = currentProp;
+  const state = UNIT_STATE[p.id][i];
+  const card = document.getElementById('unitDetailCard');
+  const size = 60 + (i % 5) * 20;
+  const priceAdj = p.priceFrom + (i%4)*2500000;
+  const statusLabel = state==='available'?'Available':state==='reserved'?'Reserved':'Sold';
+  card.innerHTML = `<h4>Unit ${String(i+1).padStart(2,'0')}</h4>
+    <div class="spec-list" style="grid-template-columns:1fr 1fr;">
+      <div class="spec-item"><b>${size} sqm</b><span>Floor area</span></div>
+      <div class="spec-item"><b>${statusLabel}</b><span>Status</span></div>
+    </div>
+    <div class="prop-price" style="margin:14px 0 16px;">${fmtN(priceAdj)}</div>
+    ${state==='available' ? `<button class="btn btn-primary btn-block" onclick="setModalTab('pay')">Reserve Unit ${String(i+1).padStart(2,'0')}</button>` : `<button class="btn btn-ghost btn-block" disabled style="opacity:.6;">${statusLabel} — Not available</button>`}`;
+}
+
+function buildCalendar(){
+  const grid = document.getElementById('calGrid');
+  if(!grid) return;
+  const today = new Date();
+  const days = ['S','M','T','W','T','F','S'];
+  let html = days.map(d=>`<div class="cal-day disabled" style="background:transparent;">${d}</div>`).join('');
+  const startPad = today.getDay();
+  for(let i=0;i<startPad;i++) html += `<div></div>`;
+  for(let d=1; d<=28; d++){
+    const disabled = d < today.getDate();
+    html += `<div class="cal-day ${disabled?'disabled':'selectable'}" ${disabled?'':`onclick="selectDay(${d}, this)"`}>${d}</div>`;
+  }
+  grid.innerHTML = html;
+}
+function selectDay(d, el){
+  document.querySelectorAll('.cal-day.selected').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedDay = d;
+  updateBookingSummary();
+}
+function selectSlot(s, el){
+  document.querySelectorAll('.slot-chip.selected').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSlot = s;
+  updateBookingSummary();
+}
+function updateBookingSummary(){
+  const line = document.getElementById('bookingSummaryLine');
+  if(!line) return;
+  if(selectedDay && selectedSlot){
+    line.textContent = `Selected: Day ${selectedDay} at ${selectedSlot}.`;
+  } else if(selectedDay){
+    line.textContent = `Day ${selectedDay} selected — choose a time slot.`;
+  } else {
+    line.textContent = 'No date or time selected yet.';
+  }
+}
+function confirmBooking(){
+  if(!selectedDay || !selectedSlot){ toast('Please choose a date and time slot first.'); return; }
+  toast(`Inspection booked for Day ${selectedDay} at ${selectedSlot}. A confirmation has been sent by SMS &amp; email.`);
+  closeModal();
+}
+
+/* Payment simulation */
+function openPayment(price){
+  document.getElementById('paymentRoot').innerHTML = `
+  <div class="modal-overlay" onclick="if(event.target===this)closePayment()">
+    <div class="modal" style="max-width:440px;">
+      <div class="modal-head">
+        <div><h2 style="font-size:19px;">Reservation Payment</h2></div>
+        <button class="modal-close" onclick="closePayment()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-pane active" style="padding:30px;">
+        <div class="pay-step" id="payStep">
+          <span style="font-size:12.5px;color:var(--ink-soft);font-weight:700;">RESERVATION FEE</span>
+          <div class="amt">₦500,000</div>
+          <span style="font-size:12px;color:var(--ink-soft);">${currentProp.name}</span>
+          <div class="pay-methods">
+            <div class="pay-method selected" onclick="pickMethod(this)">Card</div>
+            <div class="pay-method" onclick="pickMethod(this)">Bank Transfer</div>
+            <div class="pay-method" onclick="pickMethod(this)">USSD</div>
+          </div>
+          <button class="btn btn-primary btn-block" onclick="processPayment()">Pay ₦500,000 (Demo)</button>
+          <p style="font-size:11.5px;color:var(--ink-soft);margin-top:14px;">Powered by Paystack / Flutterwave · simulated for this demo</p>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+function pickMethod(el){
+  document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function processPayment(){
+  document.getElementById('payStep').innerHTML = `<div class="spinner"></div><p style="font-size:13.5px;color:var(--ink-soft);">Processing payment securely…</p>`;
+  setTimeout(()=>{
+    document.getElementById('payStep').innerHTML = `
+      <div class="success-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3 style="margin:0 0 6px;font-family:var(--serif);">Payment Successful</h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin:0 0 20px;">₦500,000 reservation fee received for ${currentProp.name}. A receipt and allocation letter have been generated in your investor portal.</p>
+      <button class="btn btn-dark btn-block" onclick="closePayment();closeModal();openLogin('investor');">View in Investor Portal</button>
+      <button class="btn btn-ghost btn-block" style="margin-top:10px;" onclick="closePayment()">Close</button>
+    `;
+  }, 1600);
+}
+function closePayment(){ document.getElementById('paymentRoot').innerHTML=''; }
+
+/* =====================================================
+   INVESTOR PORTAL DATA
+===================================================== */
+const MY_PROPERTIES = [
+  {name:'Eleko Coastal Heights — Unit 14B', seed:1, tall:true, total:120000000, paid:78000000},
+  {name:'Serene Waters Villas — Unit 07', seed:0, tall:false, total:85000000, paid:85000000},
+];
+function renderInvestorPortfolio(){
+  document.getElementById('invPortfolioList').innerHTML = MY_PROPERTIES.map(p=>{
+    const pct = Math.round((p.paid/p.total)*100);
+    return `<div class="portfolio-row">
+      <div class="portfolio-thumb">${buildingSVG(p.seed, p.tall)}</div>
+      <div class="portfolio-info">
+        <b>${p.name}</b><span>${pct}% paid · ${fmtN(p.total-p.paid)} remaining</span>
+        <div class="progress-track"><div class="progress-fill" style="width:${pct}%;"></div></div>
+      </div>
+      <div class="portfolio-amt"><b>${fmtN(p.paid)}</b><span>of ${fmtN(p.total)}</span></div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('invPropertiesPanel').innerHTML = `<table>
+    <thead><tr><th>Property</th><th>Paid</th><th>Total price</th><th>Progress</th><th>Status</th></tr></thead>
+    <tbody>${MY_PROPERTIES.map(p=>{
+      const pct = Math.round((p.paid/p.total)*100);
+      return `<tr><td><b>${p.name}</b></td><td>${fmtN(p.paid)}</td><td>${fmtN(p.total)}</td><td style="min-width:140px;"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;"></div></div></td><td><span class="badge ${pct===100?'badge-ok':'badge-warn'}">${pct===100?'Fully Paid':'In Progress'}</span></td></tr>`;
+    }).join('')}</tbody>`;
+
+  document.getElementById('invActivityTable').innerHTML = [
+    ['Payment received','₦8,000,000 toward Eleko Coastal Heights','2 days ago'],
+    ['Site progress update','Block C roofing completed','4 days ago'],
+    ['Document issued','Allocation Letter — Serene Waters Villas','1 week ago'],
+    ['Inspection completed','Live video walkthrough — Unit 14B','2 weeks ago'],
+  ].map(r=>`<tr><td><b>${r[0]}</b></td><td style="color:var(--ink-soft);">${r[1]}</td><td style="color:var(--ink-soft);text-align:right;">${r[2]}</td></tr>`).join('');
+
+  document.getElementById('invPaymentsTable').innerHTML = [
+    ['Eleko Coastal Heights','Instalment 4 of 6','₦8,200,000','18 Sep 2026','Due Soon'],
+    ['Eleko Coastal Heights','Instalment 5 of 6','₦8,200,000','18 Dec 2026','Upcoming'],
+    ['Serene Waters Villas','Final Instalment','—','Paid in full','Complete'],
+  ].map(r=>{
+    const badge = r[4]==='Due Soon'?'badge-warn':r[4]==='Complete'?'badge-ok':'badge-sold';
+    const action = r[4]==='Due Soon' ? `<button class="btn btn-primary btn-sm" onclick="openPayment(0)">Pay now</button>` : `<button class="btn btn-ghost btn-sm" disabled style="opacity:.5;">—</button>`;
+    return `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="badge ${badge}">${r[4]}</span></td><td>${action}</td></tr>`;
+  }).join('');
+
+  document.getElementById('invDocsTable').innerHTML = [
+    ['Allocation Letter.pdf','Serene Waters Villas','12 Jun 2026'],
+    ['Payment Receipt #0042.pdf','Eleko Coastal Heights','2 days ago'],
+    ['Deed of Assignment.pdf','Serene Waters Villas','30 Jun 2026'],
+    ['Survey Plan.pdf','Eleko Coastal Heights','15 Mar 2026'],
+  ].map(d=>`<tr><td><div class="doc-row"><div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></div><b>${d[0]}</b></div></td><td style="color:var(--ink-soft);">${d[1]}</td><td style="color:var(--ink-soft);">${d[2]}</td><td><button class="btn btn-ghost btn-sm" onclick="toast('Downloading ${d[0]} (demo)…')">Download</button></td></tr>`).join('');
+
+  document.getElementById('progressPhotos').innerHTML = ['Foundation','Structural Frame','Roofing','Finishing'].map((label,i)=>`
+    <div class="progress-photo">${buildingSVG(i+1, i%2===0)}<span>${label}</span></div>
+  `).join('');
+}
+
+function setInvestorPane(id, btn){
+  document.querySelectorAll('.portal-nav button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.inv-pane').forEach(p=>p.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+/* =====================================================
+   AGENT HUB DATA
+===================================================== */
+const LEADS = {
+  'New': [
+    {name:'Chinedu Obi', prop:'Eleko Coastal Heights', tag:'Website enquiry'},
+    {name:'Grace Effiong', prop:'Capital Gardens Estate', tag:'Referral'},
+  ],
+  'Contacted': [
+    {name:'Michael Adesanya', prop:'Serene Waters Villas', tag:'Follow-up due'},
+  ],
+  'Site Visit Booked': [
+    {name:'Funmi Lawal', prop:'Lekki Business Atrium', tag:'Sat, 10:00 AM'},
+    {name:'James Okonkwo', prop:'Abuja Heights Residences', tag:'Wed, 3:00 PM'},
+  ],
+  'Closed': [
+    {name:'Ifeoma Nwachukwu', prop:'Ikorodu Trade Court', tag:'₦2,250,000 commission'},
+  ],
+};
+function renderKanban(){
+  document.getElementById('kanbanBoard').innerHTML = Object.keys(LEADS).map(col=>`
+    <div class="kanban-col">
+      <h4>${col} <span>${LEADS[col].length}</span></h4>
+      ${LEADS[col].map(l=>`<div class="kanban-card"><b>${l.name}</b><span>${l.prop}</span><div class="kanban-tag">${l.tag}</div></div>`).join('')}
+    </div>
+  `).join('');
+}
+function renderCommission(){
+  document.getElementById('commissionTable').innerHTML = [
+    ['Ifeoma Nwachukwu','Ikorodu Trade Court','₦45,000,000','₦2,250,000','Paid'],
+    ['Funmi Lawal','Lekki Business Atrium','₦150,000,000','₦4,500,000','Pending Approval'],
+    ['James Okonkwo','Abuja Heights Residences','₦110,000,000','₦3,300,000','Awaiting Closure'],
+  ].map(r=>{
+    const badge = r[4]==='Paid'?'badge-ok':r[4]==='Pending Approval'?'badge-warn':'badge-sold';
+    return `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="badge ${badge}">${r[4]}</span></td></tr>`;
+  }).join('');
+}
+function renderMaterials(){
+  document.getElementById('materialsTable').innerHTML = [
+    ['Eleko Coastal Heights — Brochure','PDF'],
+    ['Serene Waters Villas — Price List','XLSX'],
+    ['Sunrise Africa — Company Profile','PDF'],
+    ['Social Media Pack — Q3 2026','ZIP'],
+  ].map(m=>`<tr><td><b>${m[0]}</b></td><td style="color:var(--ink-soft);">${m[1]}</td><td><button class="btn btn-ghost btn-sm" onclick="toast('Downloading ${m[0]} (demo)…')">Download</button></td></tr>`).join('');
+}
+function setAgentPane(id, btn){
+  document.querySelectorAll('#view-agent .portal-nav button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.ag-pane').forEach(p=>p.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+/* =====================================================
+   INIT
+===================================================== */
+document.body.insertAdjacentHTML('beforeend', '<div id="modalRoot"></div><div id="paymentRoot"></div>');
+renderProperties();
+populateContactPropSelect();
+renderInvestorPortfolio();
+renderKanban();
+renderCommission();
+renderMaterials();
+</script>
+</body>
+</html>
