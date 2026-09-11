@@ -531,6 +531,9 @@ tr:last-child td{border-bottom:none;}
 .login-card h2{font-family:var(--serif);font-size:22px;text-align:center;margin:0 0 6px;}
 .login-card p.sub{text-align:center;color:var(--ink-soft);font-size:13px;margin:0 0 26px;}
 .demo-hint{background:var(--amber-light);color:var(--amber-deep);font-size:12px;border-radius:9px;padding:10px 12px;margin-bottom:18px;font-weight:600;text-align:center;}
+.auth-switch{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;}
+.auth-switch a{color:var(--amber-deep);font-weight:700;cursor:pointer;}
+.auth-switch a:hover{text-decoration:underline;}
 .login-tabs{display:flex;background:var(--slate);border-radius:10px;padding:4px;margin-bottom:22px;}
 .login-tab{flex:1;text-align:center;padding:9px;border-radius:8px;font-size:12.8px;font-weight:700;color:var(--ink-soft);}
 .login-tab.active{background:var(--ink);color:#fff;}
@@ -894,10 +897,27 @@ tr:last-child td{border-bottom:none;}
       </div>
       <h2 id="loginTitle">Welcome back</h2>
       <p class="sub" id="loginSub">Sign in to view your portfolio and payment schedule.</p>
-      <div class="demo-hint">Demo mode — credentials are pre-filled. Just press sign in.</div>
-      <div class="field" style="margin-bottom:14px;"><label>Email address</label><input type="text" id="loginEmail" value="adaeze.investor@example.com"></div>
-      <div class="field" style="margin-bottom:20px;"><label>Password</label><input type="password" id="loginPass" value="demo1234"></div>
-      <button class="btn btn-primary btn-block" onclick="doLogin()">Sign In</button>
+      <div class="demo-hint" id="loginDemoHint">Demo mode — credentials are pre-filled. Just press sign in.</div>
+
+      <!-- Sign-in fields -->
+      <div id="signinFields">
+        <div class="field" style="margin-bottom:14px;"><label>Email address</label><input type="text" id="loginEmail" value="adaeze.investor@example.com"></div>
+        <div class="field" style="margin-bottom:16px;"><label>Password</label><input type="password" id="loginPass" value="demo1234"></div>
+        <button class="btn btn-primary btn-block" id="signinBtn" onclick="doLogin()">Sign In</button>
+        <p class="auth-switch" id="authSwitch"></p>
+      </div>
+
+      <!-- Investor signup fields (hidden unless toggled) -->
+      <div id="signupFields" class="hidden">
+        <div class="field" style="margin-bottom:14px;"><label>Full name</label><input type="text" id="signupName" placeholder="e.g. Adaeze Okafor"></div>
+        <div class="field" style="margin-bottom:14px;"><label>Email address</label><input type="text" id="signupEmail" placeholder="you@email.com"></div>
+        <div class="field" style="margin-bottom:14px;"><label>Phone / WhatsApp</label><input type="text" id="signupPhone" placeholder="+234 800 000 0000"></div>
+        <div class="field" style="margin-bottom:16px;"><label>Create password</label><input type="password" id="signupPass" placeholder="Minimum 8 characters"></div>
+        <p style="font-size:11.5px;color:var(--ink-soft);margin:0 0 16px;">You'll be asked to verify your identity (NIN + a valid ID) before an allocation letter can be issued — usually when you reserve your first unit.</p>
+        <button class="btn btn-primary btn-block" onclick="doSignup()">Create Account</button>
+        <p class="auth-switch"><a onclick="toggleAuthMode(false)">Already have an account? Sign in</a></p>
+      </div>
+
       <button class="btn btn-ghost btn-block" style="margin-top:10px;" onclick="showPublic()">← Back to website</button>
     </div>
   </div>
@@ -1338,34 +1358,123 @@ function toggleMobileNav(){
 let loginRole = 'investor';
 function openLogin(role){
   loginRole = role;
+  toggleAuthMode(false);
   setLoginTab(role);
   setActiveView('view-login');
 }
 function setLoginTab(role){
   loginRole = role;
+  toggleAuthMode(false);
   document.getElementById('tabInvestor').classList.toggle('active', role==='investor');
   document.getElementById('tabAgent').classList.toggle('active', role==='agent');
   document.getElementById('tabDeveloper').classList.toggle('active', role==='developer');
+  const hint = document.getElementById('loginDemoHint');
+  const authSwitch = document.getElementById('authSwitch');
+  const signinBtn = document.getElementById('signinBtn');
   if(role==='investor'){
     document.getElementById('loginTitle').textContent = 'Welcome back';
     document.getElementById('loginSub').textContent = "Sign in to view your portfolio and payment schedule.";
     document.getElementById('loginEmail').value='adaeze.investor@example.com';
+    hint.textContent = 'Demo mode — credentials are pre-filled. Just press sign in.';
+    hint.classList.remove('hidden');
+    signinBtn.textContent = 'Sign In';
+    authSwitch.innerHTML = 'New investor? <a onclick="toggleAuthMode(true)">Create an account</a>';
+    authSwitch.classList.remove('hidden');
   } else if(role==='agent'){
     document.getElementById('loginTitle').textContent = 'Realtor sign in';
     document.getElementById('loginSub').textContent = 'Access your leads pipeline and commission tracker.';
     document.getElementById('loginEmail').value='kingsley.agent@example.com';
+    hint.textContent = 'Demo mode — credentials are pre-filled. Just press sign in.';
+    hint.classList.remove('hidden');
+    signinBtn.textContent = 'Sign In';
+    authSwitch.innerHTML = 'New realtor? <a onclick="openRealtorApplication()">Apply to join our network</a>';
+    authSwitch.classList.remove('hidden');
   } else {
     document.getElementById('loginTitle').textContent = 'Command Centre sign in';
     document.getElementById('loginSub').textContent = 'Portfolio, sales and investor oversight across every development.';
     document.getElementById('loginEmail').value='management@sunriseafricaproperties.com';
+    hint.textContent = 'Demo mode — credentials are pre-filled. Just press sign in.';
+    hint.classList.remove('hidden');
+    signinBtn.textContent = 'Sign In';
+    authSwitch.innerHTML = 'Command Centre accounts are provisioned internally by a Super Admin — not self-service.';
+    authSwitch.classList.remove('hidden');
   }
 }
+function toggleAuthMode(showSignup){
+  document.getElementById('signinFields').classList.toggle('hidden', showSignup);
+  document.getElementById('signupFields').classList.toggle('hidden', !showSignup);
+  if(showSignup){
+    document.getElementById('loginTitle').textContent = 'Create your investor account';
+    document.getElementById('loginSub').textContent = 'Browse and save developments before you reserve — or sign up now, reserve later.';
+    document.getElementById('loginDemoHint').classList.add('hidden');
+  } else if(loginRole==='investor'){
+    document.getElementById('loginTitle').textContent = 'Welcome back';
+    document.getElementById('loginSub').textContent = 'Sign in to view your portfolio and payment schedule.';
+    document.getElementById('loginDemoHint').classList.remove('hidden');
+  }
+}
+function doSignup(){
+  const name = document.getElementById('signupName').value.trim();
+  if(!name){ toast('Please enter your full name to continue.'); return; }
+  isAuthed = true;
+  authedName = name;
+  authedEmail = document.getElementById('signupEmail').value.trim() || 'you@example.com';
+  toast(`Account created — welcome, ${name.split(' ')[0]}. Redirecting to your dashboard…`);
+  setActiveView('view-investor');
+}
 function doLogin(){
-  if(loginRole==='investor'){ setActiveView('view-investor'); }
+  if(loginRole==='investor'){
+    isAuthed = true;
+    authedName = 'Adaeze Okafor';
+    authedEmail = document.getElementById('loginEmail').value.trim() || 'adaeze.investor@example.com';
+    setActiveView('view-investor');
+  }
   else if(loginRole==='agent'){ setActiveView('view-agent'); }
   else { setActiveView('view-developer'); }
   toast('Signed in — demo session started.');
 }
+
+function openRealtorApplication(){
+  document.getElementById('paymentRoot').innerHTML = `
+  <div class="modal-overlay" onclick="if(event.target===this)closeRealtorApplication()">
+    <div class="modal" style="max-width:480px;">
+      <div class="modal-head">
+        <div><h2 style="font-size:19px;">Apply to Join Our Realtor Network</h2><p class="prop-meta" style="margin:4px 0 0;">Applications are reviewed by our advisory team before an account is issued.</p></div>
+        <button class="modal-close" onclick="closeRealtorApplication()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-pane active" style="padding:28px;">
+        <div id="realtorAppStep">
+          <div class="form-row">
+            <div class="field"><label>Full name</label><input type="text" id="raName" placeholder="Your name"></div>
+            <div class="field"><label>Phone / WhatsApp</label><input type="text" placeholder="+234 800 000 0000"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Email address</label><input type="text" placeholder="you@email.com"></div>
+            <div class="field"><label>Agency (if any)</label><input type="text" placeholder="Independent, or agency name"></div>
+          </div>
+          <div class="form-row">
+            <div class="field full">
+              <label>Primary coverage area</label>
+              <select><option>Ibeju-Lekki</option><option>Eleko</option><option>Abuja</option><option>Ikorodu</option><option>Multiple locations</option></select>
+            </div>
+          </div>
+          <p style="font-size:11.5px;color:var(--ink-soft);margin:4px 0 18px;">On approval, you'll receive Realtor Hub login details by email, and a 60-day exclusive attribution window on every lead you register.</p>
+          <button class="btn btn-primary btn-block" onclick="submitRealtorApplication()">Submit Application</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+function submitRealtorApplication(){
+  const name = document.getElementById('raName').value.trim() || 'there';
+  document.getElementById('realtorAppStep').innerHTML = `
+    <div class="success-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></div>
+    <h3 style="margin:0 0 6px;font-family:var(--serif);text-align:center;">Application Received</h3>
+    <p style="font-size:13px;color:var(--ink-soft);margin:0 0 20px;text-align:center;">Thanks, ${name.split(' ')[0]} — our advisory team typically reviews applications within 2 business days. You'll receive your Realtor Hub login by email once approved.</p>
+    <button class="btn btn-dark btn-block" onclick="closeRealtorApplication();showPublic();">Back to website</button>
+  `;
+}
+function closeRealtorApplication(){ document.getElementById('paymentRoot').innerHTML=''; }
 
 /* =====================================================
    TOAST
@@ -1465,6 +1574,9 @@ let currentProp = null;
 let selectedUnit = null;
 let selectedDay = null;
 let selectedSlot = null;
+let isAuthed = false;
+let authedName = '';
+let authedEmail = '';
 
 function openProperty(id){
   currentProp = PROPERTIES.find(p=>p.id===id);
@@ -1701,6 +1813,7 @@ function renderModal(){
               <div class="spec-item"><b>${fmtN(500000)}</b><span>Reservation fee</span></div>
               <div class="spec-item"><b>${fmtN(p.priceFrom)}</b><span>Full unit price</span></div>
             </div>
+            <div id="payAccountBlock"></div>
             <button class="btn btn-primary btn-block" onclick="openPayment(${p.priceFrom})">Pay Reservation Fee — ${fmtN(500000)}</button>
           </div>
           <div>
@@ -1716,6 +1829,30 @@ function renderModal(){
   </div>`;
   buildUnitGrid();
   buildCalendar();
+  renderPayAccountBlock();
+}
+
+function renderPayAccountBlock(){
+  const el = document.getElementById('payAccountBlock');
+  if(!el) return;
+  if(isAuthed){
+    el.innerHTML = `<div class="side-card" style="background:var(--slate);margin-bottom:16px;">
+      <span style="font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;">Reserving as</span>
+      <div style="font-weight:700;font-size:14px;margin-top:2px;">${authedName} · ${authedEmail}</div>
+      <a style="font-size:12px;color:var(--amber-deep);font-weight:700;cursor:pointer;" onclick="isAuthed=false;renderPayAccountBlock();">Not you? Use a different account</a>
+    </div>`;
+  } else {
+    el.innerHTML = `<div class="side-card" style="border-left:3px solid var(--amber);margin-bottom:16px;">
+      <h4 style="margin:0 0 4px;">Your investor account</h4>
+      <p style="font-size:12px;color:var(--ink-soft);margin:0 0 12px;">These details create your Investor Portal account, where this reservation, its payment schedule and documents will appear.</p>
+      <div class="form-row">
+        <div class="field"><label>Full name</label><input type="text" id="payAcctName" placeholder="Your name"></div>
+        <div class="field"><label>Phone</label><input type="text" id="payAcctPhone" placeholder="+234 800 000 0000"></div>
+      </div>
+      <div class="field" style="margin-bottom:4px;"><label>Email address</label><input type="text" id="payAcctEmail" placeholder="you@email.com"></div>
+      <p style="font-size:11px;color:var(--ink-soft);margin:8px 0 0;">Already have an account? <a style="color:var(--amber-deep);font-weight:700;cursor:pointer;" onclick="closeModal();openLogin('investor');">Sign in first</a></p>
+    </div>`;
+  }
 }
 
 function setModalTab(tab){
@@ -1791,6 +1928,20 @@ function confirmBooking(){
 
 /* Payment simulation */
 function openPayment(price){
+  if(!isAuthed){
+    const nameEl = document.getElementById('payAcctName');
+    const emailEl = document.getElementById('payAcctEmail');
+    const name = nameEl ? nameEl.value.trim() : '';
+    const email = emailEl ? emailEl.value.trim() : '';
+    if(!name || !email){
+      toast('Please enter your name and email to create your investor account first.');
+      return;
+    }
+    isAuthed = true;
+    authedName = name;
+    authedEmail = email;
+    renderPayAccountBlock();
+  }
   document.getElementById('paymentRoot').innerHTML = `
   <div class="modal-overlay" onclick="if(event.target===this)closePayment()">
     <div class="modal" style="max-width:440px;">
@@ -1802,7 +1953,7 @@ function openPayment(price){
         <div class="pay-step" id="payStep">
           <span style="font-size:12.5px;color:var(--ink-soft);font-weight:700;">RESERVATION FEE</span>
           <div class="amt">₦500,000</div>
-          <span style="font-size:12px;color:var(--ink-soft);">${currentProp.name}</span>
+          <span style="font-size:12px;color:var(--ink-soft);">${currentProp.name} · ${authedName}</span>
           <div class="pay-methods">
             <div class="pay-method selected" onclick="pickMethod(this)">Card</div>
             <div class="pay-method" onclick="pickMethod(this)">Bank Transfer</div>
@@ -1825,13 +1976,17 @@ function processPayment(){
     document.getElementById('payStep').innerHTML = `
       <div class="success-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></div>
       <h3 style="margin:0 0 6px;font-family:var(--serif);">Payment Successful</h3>
-      <p style="font-size:13px;color:var(--ink-soft);margin:0 0 20px;">₦500,000 reservation fee received for ${currentProp.name}. A receipt and allocation letter have been generated in your investor portal.</p>
-      <button class="btn btn-dark btn-block" onclick="closePayment();closeModal();openLogin('investor');">View in Investor Portal</button>
+      <p style="font-size:13px;color:var(--ink-soft);margin:0 0 20px;">₦500,000 reservation fee received for ${currentProp.name}. Your investor account (${authedEmail}) now has this reservation, a receipt and allocation letter waiting in the portal.</p>
+      <button class="btn btn-dark btn-block" onclick="closePayment();closeModal();enterInvestorPortal();">View in Investor Portal</button>
       <button class="btn btn-ghost btn-block" style="margin-top:10px;" onclick="closePayment()">Close</button>
     `;
   }, 1600);
 }
 function closePayment(){ document.getElementById('paymentRoot').innerHTML=''; }
+function enterInvestorPortal(){
+  setActiveView('view-investor');
+  toast(`Welcome, ${authedName.split(' ')[0]} — this reservation now appears in My Properties.`);
+}
 
 /* =====================================================
    INVESTOR PORTAL DATA
