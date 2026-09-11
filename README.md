@@ -7,16 +7,24 @@ deployed as-is.
 
 ## What's inside
 - **Public site** — hero, trust/audit section, filterable property catalogue
-  (Ibeju-Lekki, Eleko, Abuja, Ikorodu), diaspora-investor section, about, and
-  a contact/enquiry form.
-- **Property detail modal** — overview, an interactive site plan (click a unit
-  to see live status/price), floor plans, inspection booking (date + time
-  slot), and a simulated reservation payment flow (Paystack/Flutterwave-style).
+  (Ibeju-Lekki, Eleko, Abuja, Ikorodu), a "Digital Operating Layer"
+  architecture section (Public → Sales → Transaction → Investor → Trust →
+  Management), diaspora-investor section, about, and a contact/enquiry form.
+- **Property detail modal** — Overview, **Transparency Centre** (completion
+  ring, verified milestone-by-milestone progress table, latest GPS-tagged
+  site update with photo/video counts), **Project Passport** (developer,
+  legal checklist, financial summary, one-pager style), an interactive site
+  plan (click a unit to see live status/price), floor plans, inspection
+  booking (date + time slot), and a simulated reservation payment flow
+  (Paystack/Flutterwave-style).
 - **Investor Portal** (demo login, credentials pre-filled) — dashboard,
   portfolio, payment schedule, documents (allocation letters/receipts),
   site-progress photos, support.
 - **Realtor Hub** (demo login) — leads pipeline (kanban), commission tracker,
   promo materials.
+- **Developer Command Centre** (demo login via "Command Centre") — portfolio,
+  sales and investor stats across every development, a per-project
+  completion table, and a sales pipeline funnel.
 
 All data is mock/in-memory JavaScript — refreshing the page resets it.
 

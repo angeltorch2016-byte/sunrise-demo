@@ -172,6 +172,21 @@ a{color:inherit;text-decoration:none;}
 
 /* audit / trust section */
 .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+/* Platform layers */
+.layer-stack{max-width:720px;}
+.layer-row{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:16px 20px;}
+.layer-row-final{border-color:var(--ink);background:var(--ink);}
+.layer-row-final .layer-body b, .layer-row-final .layer-body span{color:#fff;}
+.layer-row-final .layer-body span{color:#B9C0D2;}
+.layer-badge{
+  width:36px;height:36px;border-radius:50%;background:var(--amber-light);color:var(--amber-deep);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;
+}
+.layer-row-final .layer-badge{background:var(--amber);color:#fff;}
+.layer-body b{display:block;font-size:15px;}
+.layer-body span{font-size:12.5px;color:var(--ink-soft);}
+.layer-connector{width:2px;height:18px;background:var(--line-2);margin-left:36px;}
 .trust-card{background:var(--card);border:1px solid var(--line-2);border-left:4px solid var(--amber);border-radius:12px;padding:22px;}
 .trust-card svg{width:22px;height:22px;color:var(--amber-deep);margin-bottom:12px;}
 .trust-card h3{margin:0 0 8px;font-size:16px;}
@@ -305,6 +320,54 @@ footer{background:var(--ink);color:#B9C0D2;padding:44px 28px 26px;margin-top:20p
 .amenity-chip svg{width:13px;height:13px;color:var(--amber-deep);}
 .side-card{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:20px;margin-bottom:16px;}
 .side-card h4{margin:0 0 12px;font-size:14px;}
+
+/* Transparency Centre */
+.completion-ring-row{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px;margin-bottom:6px;}
+.completion-ring{
+  --pct:0; width:84px;height:84px;border-radius:50%;flex-shrink:0;
+  background:conic-gradient(var(--amber) calc(var(--pct)*1%), var(--slate) 0);
+  display:flex;align-items:center;justify-content:center;
+}
+.completion-ring-inner{width:64px;height:64px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.completion-ring-inner b{font-family:var(--serif);font-size:17px;line-height:1;}
+.completion-ring-inner span{font-size:9.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;}
+.completion-ring-label b{display:block;font-size:15px;}
+.completion-ring-label span{font-size:12.5px;color:var(--ink-soft);}
+.milestone-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line-2);border-radius:12px;overflow:hidden;}
+.milestone-table td{padding:11px 14px;font-size:13px;border-bottom:1px solid var(--line-2);}
+.milestone-table tr:last-child td{border-bottom:none;}
+.milestone-table td:first-child{font-weight:600;color:var(--ink);width:42%;}
+.ms-status{color:var(--ink-soft);}
+.ms-done{color:var(--ok);font-weight:700;display:flex;align-items:center;gap:6px;}
+.ms-scheduled{color:var(--amber-deep);font-weight:700;}
+.ms-bar-row{display:flex;align-items:center;gap:10px;}
+.ms-bar-track{flex:1;height:7px;background:var(--slate);border-radius:999px;overflow:hidden;}
+.ms-bar-fill{height:100%;background:var(--amber);border-radius:999px;}
+.ms-done-text{font-weight:700;color:var(--ok);font-size:12px;width:36px;}
+.ms-progress-text{font-weight:700;color:var(--amber-deep);font-size:12px;width:36px;}
+.ms-pending-text{font-weight:700;color:var(--sold);font-size:12px;width:36px;}
+.update-card .update-row{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-2);font-weight:600;padding:7px 0;border-bottom:1px solid var(--line-2);}
+.update-card .update-row:last-of-type{border-bottom:none;}
+.update-card .update-row svg{color:var(--amber-deep);flex-shrink:0;}
+
+/* Project Passport */
+.passport-sheet{background:var(--card);border:1.5px solid var(--ink);border-radius:16px;padding:28px;max-width:640px;margin:0 auto;}
+.passport-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:18px;}
+.passport-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--amber-deep);}
+.passport-head h3{font-family:var(--serif);font-size:22px;margin:4px 0 0;}
+.passport-sheet h4{font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);margin:20px 0 10px;border-top:1px solid var(--line-2);padding-top:16px;}
+.passport-sheet h4:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+.passport-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.passport-field{background:var(--slate);border-radius:10px;padding:10px 12px;}
+.passport-field span{display:block;font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;}
+.passport-field b{font-size:14px;}
+.legal-checklist{display:flex;flex-direction:column;gap:8px;}
+.legal-item{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;padding:8px 12px;border-radius:9px;}
+.legal-item svg{flex-shrink:0;}
+.legal-done{background:var(--ok-bg);color:var(--ok);}
+.legal-pending{background:var(--warn-bg);color:var(--warn);}
+.passport-footer{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-2);font-size:11.5px;color:var(--ink-soft);text-align:center;}
+
 .legend{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
 .legend span{font-size:11.5px;display:flex;align-items:center;gap:6px;color:var(--ink-soft);font-weight:600;}
 .legend i{width:11px;height:11px;border-radius:3px;display:inline-block;}
@@ -398,6 +461,18 @@ footer{background:var(--ink);color:#B9C0D2;padding:44px 28px 26px;margin-top:20p
 .portal-topbar p{margin:0;color:var(--ink-soft);font-size:13.8px;}
 
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.cc-section-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line-2);}
+.cc-project-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-2);}
+.cc-project-row:last-child{border-bottom:none;padding-bottom:0;}
+.cc-project-row .cc-name{width:220px;flex-shrink:0;}
+.cc-project-row .cc-name b{display:block;font-size:14px;}
+.cc-project-row .cc-name span{font-size:12px;color:var(--ink-soft);}
+.cc-project-row .progress-track{flex:1;}
+.cc-project-row .cc-pct{width:44px;text-align:right;font-weight:800;font-size:13.5px;flex-shrink:0;}
+.funnel-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.funnel-label{width:130px;flex-shrink:0;font-size:13px;font-weight:700;color:var(--ink-2);}
+.funnel-bar-track{flex:1;background:var(--slate);border-radius:8px;height:34px;overflow:hidden;}
+.funnel-bar-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--amber-deep));border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;color:#fff;font-weight:800;font-size:13px;min-width:44px;}
 .stat-card{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px 20px;}
 .stat-card .stat-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
 .stat-icon{width:34px;height:34px;border-radius:9px;background:var(--amber-light);display:flex;align-items:center;justify-content:center;}
@@ -479,6 +554,7 @@ tr:last-child td{border-bottom:none;}
 @media (max-width: 680px){
   .nav-links{display:none;}
   .burger{display:block;}
+  .nav-hide-sm{display:none;}
   .hero h1{font-size:32px;}
   .prop-grid{grid-template-columns:1fr;}
   .stat-grid{grid-template-columns:1fr 1fr;}
@@ -509,6 +585,7 @@ tr:last-child td{border-bottom:none;}
       <a href="#contact" onclick="showPublic()">Contact</a>
     </div>
     <div class="nav-cta">
+      <button class="btn btn-ghost btn-sm nav-hide-sm" onclick="openLogin('developer')">Command Centre</button>
       <button class="btn btn-ghost btn-sm" onclick="openLogin('agent')">Realtor Hub</button>
       <button class="btn btn-primary btn-sm" onclick="openLogin('investor')">Portal Login</button>
       <button class="burger" onclick="toggleMobileNav()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
@@ -655,6 +732,48 @@ tr:last-child td{border-bottom:none;}
     </div>
   </section>
 
+  <section class="section" id="platform-layers">
+    <div class="section-head">
+      <div>
+        <div class="tag-line"></div>
+        <h2>More than an investor portal</h2>
+        <p style="max-width:640px;">This is a digital operating layer for the entire sales and investor relationship — from the first website visit to the final handover.</p>
+      </div>
+    </div>
+    <div class="layer-stack">
+      <div class="layer-row">
+        <div class="layer-badge">1</div>
+        <div class="layer-body"><b>Public Layer</b><span>Website &amp; property marketplace</span></div>
+      </div>
+      <div class="layer-connector"></div>
+      <div class="layer-row">
+        <div class="layer-badge">2</div>
+        <div class="layer-body"><b>Sales Layer</b><span>CRM, Realtor Hub &amp; live inventory</span></div>
+      </div>
+      <div class="layer-connector"></div>
+      <div class="layer-row">
+        <div class="layer-badge">3</div>
+        <div class="layer-body"><b>Transaction Layer</b><span>Reservation, payment &amp; receipts</span></div>
+      </div>
+      <div class="layer-connector"></div>
+      <div class="layer-row">
+        <div class="layer-badge">4</div>
+        <div class="layer-body"><b>Investor Layer</b><span>Investor dashboard &amp; portfolio tracking</span></div>
+      </div>
+      <div class="layer-connector"></div>
+      <div class="layer-row">
+        <div class="layer-badge">5</div>
+        <div class="layer-body"><b>Trust Layer</b><span>Documents, Project Passport &amp; verified construction updates</span></div>
+      </div>
+      <div class="layer-connector"></div>
+      <div class="layer-row layer-row-final">
+        <div class="layer-badge">6</div>
+        <div class="layer-body"><b>Management Layer</b><span>Developer Command Centre — portfolio, sales &amp; pipeline in one view</span></div>
+        <button class="btn btn-dark btn-sm" style="margin-left:auto;" onclick="openLogin('developer')">View Command Centre</button>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="about">
     <div class="section-head">
       <div>
@@ -771,6 +890,7 @@ tr:last-child td{border-bottom:none;}
       <div class="login-tabs">
         <div class="login-tab" id="tabInvestor" onclick="setLoginTab('investor')">Investor Portal</div>
         <div class="login-tab" id="tabAgent" onclick="setLoginTab('agent')">Realtor Hub</div>
+        <div class="login-tab" id="tabDeveloper" onclick="setLoginTab('developer')">Command Centre</div>
       </div>
       <h2 id="loginTitle">Welcome back</h2>
       <p class="sub" id="loginSub">Sign in to view your portfolio and payment schedule.</p>
@@ -971,6 +1091,84 @@ tr:last-child td{border-bottom:none;}
   </div>
 </div>
 
+<!-- ============ DEVELOPER COMMAND CENTRE VIEW ============ -->
+<div class="view" id="view-developer">
+  <div class="portal-shell">
+    <aside class="portal-sidebar">
+      <div class="portal-brand">
+        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-name">Command Centre</div>
+      </div>
+      <nav class="portal-nav">
+        <button class="active" data-pane="dev-overview" onclick="setDeveloperPane('dev-overview', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Overview</button>
+        <button data-pane="dev-projects" onclick="setDeveloperPane('dev-projects', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> Projects</button>
+        <button data-pane="dev-pipeline" onclick="setDeveloperPane('dev-pipeline', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18l-7 9v6l-4 2v-8L3 4Z"/></svg> Sales Pipeline</button>
+      </nav>
+      <div class="portal-user">
+        <div class="avatar" style="background:var(--ink);">MD</div>
+        <div><b>Management</b><span>Sunrise Africa Properties</span></div>
+      </div>
+      <button class="exit-portal" onclick="showPublic()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Exit to website</button>
+    </aside>
+    <main class="portal-main">
+
+      <div class="dev-pane" id="dev-overview">
+        <div class="portal-topbar"><div><h1>Developer Command Centre</h1><p>A single operating view across every development, sale and investor relationship.</p></div></div>
+
+        <div class="cc-section-label">Portfolio</div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div></div><b>6</b><span>Active developments</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/></svg></div></div><b>428</b><span>Total units</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div></div><b>276</b><span>Units sold</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div></div><b>91</b><span>Units available</span></div>
+        </div>
+
+        <div class="cc-section-label">Sales</div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div></div><b>₦8.4bn</b><span>Total booked</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><span class="stat-trend">On track</span></div><b>₦6.1bn</b><span>Collected to date</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><span class="stat-trend" style="color:var(--warn);">Follow-up</span></div><b>₦2.3bn</b><span>Outstanding</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z"/></svg></div></div><b>73%</b><span>Collection rate</span></div>
+        </div>
+
+        <div class="cc-section-label">Investors</div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg></div></div><b>1,284</b><span>Registered investors</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div></div><b>436</b><span>Diaspora investors</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div></div><b>187</b><span>Active payment plans</span></div>
+          <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z"/></svg></div></div><b>34%</b><span>Share of investors diaspora-based</span></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div><h3>Portfolio completion at a glance</h3><p>Verified construction progress across all active developments</p></div></div>
+          <div id="devProjectMini"></div>
+        </div>
+      </div>
+
+      <div class="dev-pane hidden" id="dev-projects">
+        <div class="portal-topbar"><div><h1>Projects</h1><p>Every active development, with live sales and construction status.</p></div></div>
+        <div class="panel" id="devProjectsPanel"></div>
+      </div>
+
+      <div class="dev-pane hidden" id="dev-pipeline">
+        <div class="portal-topbar"><div><h1>Sales Pipeline</h1><p>Lead flow across the entire realtor network, from first contact to payment.</p></div></div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Funnel — last 90 days</h3></div></div>
+          <div id="pipelineFunnel"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Pipeline by stage</h3></div></div>
+          <table>
+            <thead><tr><th>Stage</th><th>Count</th><th>Conversion from previous</th></tr></thead>
+            <tbody id="pipelineTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
 <!-- ============ TOAST ============ -->
 <div class="toast" id="toast">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>
@@ -1010,7 +1208,11 @@ const PROPERTIES = [
     desc:'A gated enclave of contemporary detached villas minutes from the Lekki Free Trade Zone, designed for families and long-term rental investors.',
     amenities:['24/7 Security','Estate Power','Clubhouse','Paved Roads','Drainage'],
     specs:[['Land Size','450 sqm'],['Bedrooms','4'],['Bathrooms','5'],['Status','Off-plan']],
-    fp:'duplex'
+    fp:'duplex',
+    completionPct:58,
+    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',90],['Foundation',100],['Structural Works',65],['Roofing',20],['Finishing',0],['Handover','scheduled']],
+    lastUpdate:{date:'5 September 2026', pm:'Chidi Okafor', photos:14, videos:2, gps:true},
+    legal:{title:true, survey:true, planning:true, building:true, deed:false}
   },
   {
     id:'p2', name:'Eleko Coastal Heights', location:'Eleko', type:'Residential', status:'Limited Units',
@@ -1018,7 +1220,11 @@ const PROPERTIES = [
     desc:'Beachfront residences on the Eleko corridor with direct ocean access, built for both lifestyle buyers and short-let investors.',
     amenities:['Private Beach Access','Swimming Pool','Concierge','Backup Power','CCTV'],
     specs:[['Land Size','600 sqm'],['Bedrooms','3-4'],['Bathrooms','4'],['Status','Under Construction']],
-    fp:'3bed'
+    fp:'3bed',
+    completionPct:74,
+    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',82],['Foundation',100],['Structural Works',76],['Roofing',48],['Finishing',31],['Handover','scheduled']],
+    lastUpdate:{date:'8 September 2026', pm:'Funke Adeyemi', photos:18, videos:3, gps:true},
+    legal:{title:true, survey:true, planning:true, building:true, deed:false}
   },
   {
     id:'p3', name:'Capital Gardens Estate', location:'Abuja', type:'Residential', status:'Units Available',
@@ -1026,7 +1232,11 @@ const PROPERTIES = [
     desc:'A landscaped terrace-home estate in Guzape, Abuja, close to the diplomatic zone with full estate management services.',
     amenities:['Estate Management','Landscaped Gardens','Gym','Water Treatment','Fibre Internet'],
     specs:[['Land Size','350 sqm'],['Bedrooms','5'],['Bathrooms','6'],['Status','Ready-to-Build']],
-    fp:'duplex'
+    fp:'duplex',
+    completionPct:35,
+    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',40],['Foundation',20],['Structural Works',0],['Roofing',0],['Finishing',0],['Handover','scheduled']],
+    lastUpdate:{date:'2 September 2026', pm:'Ibrahim Sule', photos:9, videos:1, gps:true},
+    legal:{title:true, survey:true, planning:true, building:false, deed:false}
   },
   {
     id:'p4', name:'Ikorodu Trade Court', location:'Ikorodu', type:'Commercial', status:'Units Available',
@@ -1034,7 +1244,11 @@ const PROPERTIES = [
     desc:'A mixed-use commercial court along the Ikorodu corridor, purpose-built for retail, showroom and small office tenants.',
     amenities:['Ample Parking','Loading Bay','24/7 Power','Fire Safety','Signage Frontage'],
     specs:[['Unit Size','60-180 sqm'],['Floors','3'],['Parking','40 bays'],['Status','Ready-to-Build']],
-    fp:'commercial'
+    fp:'commercial',
+    completionPct:95,
+    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',100],['Foundation',100],['Structural Works',100],['Roofing',100],['Finishing',85],['Handover','scheduled']],
+    lastUpdate:{date:'9 September 2026', pm:'Ngozi Eze', photos:22, videos:4, gps:true},
+    legal:{title:true, survey:true, planning:true, building:true, deed:true}
   },
   {
     id:'p5', name:'Lekki Business Atrium', location:'Ibeju-Lekki', type:'Commercial', status:'Limited Units',
@@ -1042,7 +1256,11 @@ const PROPERTIES = [
     desc:'A Grade-A office atrium serving the industrial and logistics growth around the Lekki Free Trade Zone.',
     amenities:['Backup Power','Fibre Ready','Conference Facility','Elevator Access','Reception Services'],
     specs:[['Unit Size','120-400 sqm'],['Floors','6'],['Parking','60 bays'],['Status','Off-plan']],
-    fp:'commercial'
+    fp:'commercial',
+    completionPct:22,
+    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',25],['Foundation',0],['Structural Works',0],['Roofing',0],['Finishing',0],['Handover','scheduled']],
+    lastUpdate:{date:'30 August 2026', pm:'Tunde Balogun', photos:6, videos:1, gps:true},
+    legal:{title:true, survey:true, planning:true, building:false, deed:false}
   },
   {
     id:'p6', name:'Abuja Heights Residences', location:'Abuja', type:'Residential', status:'Fully Reserved',
@@ -1050,7 +1268,11 @@ const PROPERTIES = [
     desc:'A mid-rise apartment complex in Katampe Extension, popular with diplomatic and NGO tenants seeking serviced living.',
     amenities:['Serviced Apartments','Rooftop Lounge','Gym','Concierge','Standby Generator'],
     specs:[['Unit Size','180 sqm'],['Bedrooms','3'],['Bathrooms','3'],['Status','Under Construction']],
-    fp:'3bed'
+    fp:'3bed',
+    completionPct:67,
+    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',88],['Foundation',100],['Structural Works',70],['Roofing',40],['Finishing',15],['Handover','scheduled']],
+    lastUpdate:{date:'6 September 2026', pm:'Grace Nwosu', photos:16, videos:2, gps:true},
+    legal:{title:true, survey:true, planning:true, building:true, deed:true}
   },
 ];
 
@@ -1070,6 +1292,27 @@ const RATIO_BY_STATUS = {'Units Available':[0.6,0.25,0.15],'Limited Units':[0.25
 PROPERTIES.forEach(p=>{ UNIT_STATE[p.id] = unitStatuses(p.totalUnits, RATIO_BY_STATUS[p.status]); });
 
 function fmtN(n){ return '₦' + n.toLocaleString('en-NG'); }
+
+function milestoneRow(m){
+  const [label, val] = m;
+  if(val === 'done'){
+    return `<tr><td>${label}</td><td class="ms-status ms-done"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Completed</td></tr>`;
+  }
+  if(val === 'scheduled'){
+    return `<tr><td>${label}</td><td class="ms-status ms-scheduled">Scheduled</td></tr>`;
+  }
+  const pct = val;
+  const cls = pct>=100?'ms-done-text':pct>0?'ms-progress-text':'ms-pending-text';
+  return `<tr><td>${label}</td><td class="ms-status">
+    <div class="ms-bar-row"><div class="ms-bar-track"><div class="ms-bar-fill" style="width:${pct}%;"></div></div><span class="${cls}">${pct}%</span></div>
+  </td></tr>`;
+}
+function legalItem(label, done){
+  const icon = done
+    ? `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>`
+    : `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-width="2.5"/></svg>`;
+  return `<div class="legal-item ${done?'legal-done':'legal-pending'}">${icon}${label}</div>`;
+}
 
 /* =====================================================
    NAV / VIEW SWITCHING
@@ -1102,19 +1345,25 @@ function setLoginTab(role){
   loginRole = role;
   document.getElementById('tabInvestor').classList.toggle('active', role==='investor');
   document.getElementById('tabAgent').classList.toggle('active', role==='agent');
+  document.getElementById('tabDeveloper').classList.toggle('active', role==='developer');
   if(role==='investor'){
     document.getElementById('loginTitle').textContent = 'Welcome back';
     document.getElementById('loginSub').textContent = "Sign in to view your portfolio and payment schedule.";
     document.getElementById('loginEmail').value='adaeze.investor@example.com';
-  } else {
+  } else if(role==='agent'){
     document.getElementById('loginTitle').textContent = 'Realtor sign in';
     document.getElementById('loginSub').textContent = 'Access your leads pipeline and commission tracker.';
     document.getElementById('loginEmail').value='kingsley.agent@example.com';
+  } else {
+    document.getElementById('loginTitle').textContent = 'Command Centre sign in';
+    document.getElementById('loginSub').textContent = 'Portfolio, sales and investor oversight across every development.';
+    document.getElementById('loginEmail').value='management@sunriseafricaproperties.com';
   }
 }
 function doLogin(){
   if(loginRole==='investor'){ setActiveView('view-investor'); }
-  else { setActiveView('view-agent'); }
+  else if(loginRole==='agent'){ setActiveView('view-agent'); }
+  else { setActiveView('view-developer'); }
   toast('Signed in — demo session started.');
 }
 
@@ -1247,6 +1496,8 @@ function renderModal(){
       <div class="modal-gallery">${buildingSVG(p.seed, p.tall)}</div>
       <div class="modal-tabs">
         <div class="modal-tab active" data-tab="overview" onclick="setModalTab('overview')">Overview</div>
+        <div class="modal-tab" data-tab="transparency" onclick="setModalTab('transparency')">Transparency Centre</div>
+        <div class="modal-tab" data-tab="passport" onclick="setModalTab('passport')">Project Passport</div>
         <div class="modal-tab" data-tab="siteplan" onclick="setModalTab('siteplan')">Interactive Site Plan</div>
         <div class="modal-tab" data-tab="floorplan" onclick="setModalTab('floorplan')">Floor Plans</div>
         <div class="modal-tab" data-tab="book" onclick="setModalTab('book')">Book Inspection</div>
@@ -1280,7 +1531,90 @@ function renderModal(){
               </div>
               <button class="btn btn-primary btn-block" onclick="setModalTab('siteplan')">View unit map</button>
             </div>
+            <div class="side-card" style="border-left:3px solid var(--amber);">
+              <h4 style="display:flex;align-items:center;gap:6px;"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--amber-deep);"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z"/><path d="M12 7v5l3 3"/></svg> How do I know this is real?</h4>
+              <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 12px;">Site progress verified by GPS, dated, and signed off by a named project manager — not a marketing render.</p>
+              <button class="btn btn-dark btn-block" onclick="setModalTab('transparency')">Open Transparency Centre</button>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div class="modal-pane" data-pane="transparency">
+        <div class="modal-grid">
+          <div>
+            <h4 style="margin:0 0 4px;font-size:15px;">Development Overview</h4>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 18px;">Verified construction progress, updated directly by the project team on site — not a projected or marketing timeline.</p>
+            <div class="completion-ring-row">
+              <div class="completion-ring" style="--pct:${p.completionPct}">
+                <div class="completion-ring-inner"><b>${p.completionPct}%</b><span>Overall</span></div>
+              </div>
+              <div class="completion-ring-label">
+                <b>${p.name}</b>
+                <span>${p.location} · ${p.status}</span>
+              </div>
+            </div>
+            <h4 style="margin:20px 0 10px;font-size:14px;">Development Milestones</h4>
+            <table class="milestone-table">
+              <tbody>
+                ${p.milestones.map(m=>milestoneRow(m)).join('')}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="side-card update-card">
+              <h4>Latest Site Update</h4>
+              <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> GPS Verified</div>
+              <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> ${p.lastUpdate.date}</div>
+              <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> Project Manager: ${p.lastUpdate.pm}</div>
+              <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg> ${p.lastUpdate.photos} photographs</div>
+              <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 9 4-2v10l-4-2"/></svg> ${p.lastUpdate.videos} videos</div>
+              <button class="btn btn-primary btn-block" style="margin-top:14px;" onclick="toast('Opening latest site gallery (demo)…')">View Photos &amp; Videos</button>
+            </div>
+            <div class="side-card">
+              <h4>Why this matters</h4>
+              <p style="font-size:12.5px;color:var(--ink-soft);">Remote and diaspora investors can verify real construction progress without a physical visit — the same update your project manager logs on site appears here automatically.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-pane" data-pane="passport">
+        <div class="passport-sheet">
+          <div class="passport-head">
+            <div>
+              <span class="passport-kicker">PROJECT PASSPORT</span>
+              <h3>${p.name}</h3>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="toast('Project Passport PDF generated (demo)…')">Download PDF</button>
+          </div>
+          <div class="passport-grid">
+            <div class="passport-field"><span>Developer</span><b>Sunrise Africa Properties</b></div>
+            <div class="passport-field"><span>Location</span><b>${p.location}, Lagos${p.location==='Abuja'?' (Abuja)':''}</b></div>
+            <div class="passport-field"><span>Project Status</span><b>${p.status==='Fully Reserved' ? 'Fully Reserved' : 'Active'}</b></div>
+            <div class="passport-field"><span>Total Units</span><b>${p.totalUnits}</b></div>
+            <div class="passport-field"><span>Units Sold</span><b>${counts.sold}</b></div>
+            <div class="passport-field"><span>Units Available</span><b>${counts.available}</b></div>
+          </div>
+          <h4>Legal</h4>
+          <div class="legal-checklist">
+            ${legalItem('Title Documentation', p.legal.title)}
+            ${legalItem('Survey Plan', p.legal.survey)}
+            ${legalItem('Development Approval', p.legal.planning)}
+            ${legalItem('Building Approval', p.legal.building)}
+            ${legalItem('Deed Documentation', p.legal.deed)}
+          </div>
+          <h4>Financial</h4>
+          <div class="passport-grid">
+            <div class="passport-field"><span>Project Value</span><b>${fmtN(p.priceFrom * p.totalUnits)}</b></div>
+            <div class="passport-field"><span>Sales to Date</span><b>${fmtN(p.priceFrom * (counts.sold + counts.reserved))}</b></div>
+            <div class="passport-field"><span>Units Reserved</span><b>${counts.reserved}</b></div>
+            <div class="passport-field"><span>Units Sold</span><b>${counts.sold}</b></div>
+          </div>
+          <h4>Development</h4>
+          <div class="progress-track" style="height:10px;margin-bottom:6px;"><div class="progress-fill" style="width:${p.completionPct}%;"></div></div>
+          <span style="font-size:12px;color:var(--ink-soft);">${p.completionPct}% complete</span>
+          <div class="passport-footer">Last verified update: ${p.lastUpdate.date} · GPS verified on site</div>
         </div>
       </div>
 
@@ -1615,6 +1949,69 @@ function setAgentPane(id, btn){
 }
 
 /* =====================================================
+   DEVELOPER COMMAND CENTRE
+===================================================== */
+function setDeveloperPane(id, btn){
+  document.querySelectorAll('#view-developer .portal-nav button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.dev-pane').forEach(p=>p.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function renderDeveloperCommandCentre(){
+  const miniRows = PROPERTIES.map(p=>`
+    <div class="cc-project-row">
+      <div class="cc-name"><b>${p.name}</b><span>${p.location}</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:${p.completionPct}%;"></div></div>
+      <div class="cc-pct">${p.completionPct}%</div>
+    </div>
+  `).join('');
+  document.getElementById('devProjectMini').innerHTML = miniRows;
+
+  document.getElementById('devProjectsPanel').innerHTML = `<table>
+    <thead><tr><th>Development</th><th>Location</th><th>Units</th><th>Sold / Reserved</th><th>Completion</th><th>Status</th></tr></thead>
+    <tbody>
+      ${PROPERTIES.map(p=>{
+        const states = UNIT_STATE[p.id];
+        const counts = {available:0,reserved:0,sold:0};
+        states.forEach(s=>counts[s]++);
+        const badgeClass = p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
+        return `<tr>
+          <td><b>${p.name}</b></td>
+          <td style="color:var(--ink-soft);">${p.location}</td>
+          <td>${p.totalUnits}</td>
+          <td>${counts.sold} / ${counts.reserved}</td>
+          <td style="min-width:140px;"><div class="progress-track"><div class="progress-fill" style="width:${p.completionPct}%;"></div></div></td>
+          <td><span class="badge ${badgeClass}">${p.status}</span></td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table>`;
+
+  const funnel = [
+    ['Leads', 184],
+    ['Qualified', 43],
+    ['Reservations', 19],
+    ['Pending Payments', 11],
+  ];
+  const max = funnel[0][1];
+  document.getElementById('pipelineFunnel').innerHTML = funnel.map(f=>`
+    <div class="funnel-row">
+      <div class="funnel-label">${f[0]}</div>
+      <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:${Math.round((f[1]/max)*100)}%;">${f[1]}</div></div>
+    </div>
+  `).join('');
+
+  const stages = [
+    ['Leads Captured','184','—'],
+    ['Qualified','43','23%'],
+    ['Site Visit / Reservation','19','44%'],
+    ['Pending Payment Completion','11','58%'],
+  ];
+  document.getElementById('pipelineTable').innerHTML = stages.map(s=>`<tr><td><b>${s[0]}</b></td><td>${s[1]}</td><td style="color:var(--ink-soft);">${s[2]}</td></tr>`).join('');
+}
+
+/* =====================================================
    INIT
 ===================================================== */
 document.body.insertAdjacentHTML('beforeend', '<div id="modalRoot"></div><div id="paymentRoot"></div>');
@@ -1624,6 +2021,7 @@ renderInvestorPortfolio();
 renderKanban();
 renderCommission();
 renderMaterials();
+renderDeveloperCommandCentre();
 </script>
 </body>
 </html>
