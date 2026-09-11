@@ -902,8 +902,12 @@ tr:last-child td{border-bottom:none;}
       <!-- Sign-in fields -->
       <div id="signinFields">
         <div class="field" style="margin-bottom:14px;"><label>Email address</label><input type="text" id="loginEmail" value="adaeze.investor@example.com"></div>
-        <div class="field" style="margin-bottom:16px;"><label>Password</label><input type="password" id="loginPass" value="demo1234"></div>
-        <button class="btn btn-primary btn-block" id="signinBtn" onclick="doLogin()">Sign In</button>
+        <div class="field hidden" id="loginOtpWrap" style="margin-bottom:16px;">
+          <label>Enter 6-digit OTP</label>
+          <input type="text" id="loginOtp" maxlength="6" value="123456">
+        </div>
+        <button class="btn btn-primary btn-block" id="signinBtn" onclick="handleSigninClick()">Send OTP</button>
+        <p class="auth-switch hidden" id="resendOtpLine"><a onclick="sendLoginOtp()">Resend OTP</a> · <a onclick="editLoginEmail()">Change email</a></p>
         <p class="auth-switch" id="authSwitch"></p>
       </div>
 
@@ -912,9 +916,13 @@ tr:last-child td{border-bottom:none;}
         <div class="field" style="margin-bottom:14px;"><label>Full name</label><input type="text" id="signupName" placeholder="e.g. Adaeze Okafor"></div>
         <div class="field" style="margin-bottom:14px;"><label>Email address</label><input type="text" id="signupEmail" placeholder="you@email.com"></div>
         <div class="field" style="margin-bottom:14px;"><label>Phone / WhatsApp</label><input type="text" id="signupPhone" placeholder="+234 800 000 0000"></div>
-        <div class="field" style="margin-bottom:16px;"><label>Create password</label><input type="password" id="signupPass" placeholder="Minimum 8 characters"></div>
+        <div class="field hidden" id="signupOtpWrap" style="margin-bottom:14px;">
+          <label>Enter 6-digit OTP</label>
+          <input type="text" id="signupOtp" maxlength="6" value="123456">
+        </div>
         <p style="font-size:11.5px;color:var(--ink-soft);margin:0 0 16px;">You'll be asked to verify your identity (NIN + a valid ID) before an allocation letter can be issued — usually when you reserve your first unit.</p>
-        <button class="btn btn-primary btn-block" onclick="doSignup()">Create Account</button>
+        <button class="btn btn-primary btn-block" id="signupBtn" onclick="handleSignupClick()">Send OTP</button>
+        <p class="auth-switch hidden" id="resendSignupOtpLine"><a onclick="sendSignupOtp()">Resend OTP</a></p>
         <p class="auth-switch"><a onclick="toggleAuthMode(false)">Already have an account? Sign in</a></p>
       </div>
 
@@ -1356,6 +1364,10 @@ function toggleMobileNav(){
 }
 
 let loginRole = 'investor';
+let loginOtpSent = false;
+let signupOtpSent = false;
+const DEMO_OTP = '123456';
+
 function openLogin(role){
   loginRole = role;
   toggleAuthMode(false);
@@ -1365,44 +1377,84 @@ function openLogin(role){
 function setLoginTab(role){
   loginRole = role;
   toggleAuthMode(false);
+  resetLoginOtp();
   document.getElementById('tabInvestor').classList.toggle('active', role==='investor');
   document.getElementById('tabAgent').classList.toggle('active', role==='agent');
   document.getElementById('tabDeveloper').classList.toggle('active', role==='developer');
   const hint = document.getElementById('loginDemoHint');
   const authSwitch = document.getElementById('authSwitch');
-  const signinBtn = document.getElementById('signinBtn');
   if(role==='investor'){
     document.getElementById('loginTitle').textContent = 'Welcome back';
     document.getElementById('loginSub').textContent = "Sign in to view your portfolio and payment schedule.";
     document.getElementById('loginEmail').value='adaeze.investor@example.com';
-    hint.textContent = 'Demo mode — credentials are pre-filled. Just press sign in.';
+    hint.textContent = 'Demo mode — we\'ll text/email a one-time code. Use 123456 to continue.';
     hint.classList.remove('hidden');
-    signinBtn.textContent = 'Sign In';
     authSwitch.innerHTML = 'New investor? <a onclick="toggleAuthMode(true)">Create an account</a>';
     authSwitch.classList.remove('hidden');
   } else if(role==='agent'){
     document.getElementById('loginTitle').textContent = 'Realtor sign in';
     document.getElementById('loginSub').textContent = 'Access your leads pipeline and commission tracker.';
     document.getElementById('loginEmail').value='kingsley.agent@example.com';
-    hint.textContent = 'Demo mode — credentials are pre-filled. Just press sign in.';
+    hint.textContent = 'Demo mode — we\'ll text/email a one-time code. Use 123456 to continue.';
     hint.classList.remove('hidden');
-    signinBtn.textContent = 'Sign In';
     authSwitch.innerHTML = 'New realtor? <a onclick="openRealtorApplication()">Apply to join our network</a>';
     authSwitch.classList.remove('hidden');
   } else {
     document.getElementById('loginTitle').textContent = 'Command Centre sign in';
     document.getElementById('loginSub').textContent = 'Portfolio, sales and investor oversight across every development.';
     document.getElementById('loginEmail').value='management@sunriseafricaproperties.com';
-    hint.textContent = 'Demo mode — credentials are pre-filled. Just press sign in.';
+    hint.textContent = 'Demo mode — we\'ll text/email a one-time code. Use 123456 to continue.';
     hint.classList.remove('hidden');
-    signinBtn.textContent = 'Sign In';
     authSwitch.innerHTML = 'Command Centre accounts are provisioned internally by a Super Admin — not self-service.';
     authSwitch.classList.remove('hidden');
   }
 }
+function resetLoginOtp(){
+  loginOtpSent = false;
+  document.getElementById('loginOtpWrap').classList.add('hidden');
+  document.getElementById('resendOtpLine').classList.add('hidden');
+  document.getElementById('signinBtn').textContent = 'Send OTP';
+  document.getElementById('loginEmail').disabled = false;
+}
+function editLoginEmail(){ resetLoginOtp(); }
+function handleSigninClick(){
+  if(!loginOtpSent){ sendLoginOtp(); } else { doLogin(); }
+}
+function sendLoginOtp(){
+  const email = document.getElementById('loginEmail').value.trim();
+  if(!email){ toast('Please enter your email address.'); return; }
+  loginOtpSent = true;
+  document.getElementById('loginEmail').disabled = true;
+  document.getElementById('loginOtpWrap').classList.remove('hidden');
+  document.getElementById('resendOtpLine').classList.remove('hidden');
+  document.getElementById('signinBtn').textContent = 'Verify & Sign In';
+  toast(`OTP sent to ${email} (demo code: ${DEMO_OTP})`);
+}
+function resetSignupOtp(){
+  signupOtpSent = false;
+  document.getElementById('signupOtpWrap').classList.add('hidden');
+  document.getElementById('resendSignupOtpLine').classList.add('hidden');
+  document.getElementById('signupBtn').textContent = 'Send OTP';
+}
+function handleSignupClick(){
+  if(!signupOtpSent){ sendSignupOtp(); } else { doSignup(); }
+}
+function sendSignupOtp(){
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const phone = document.getElementById('signupPhone').value.trim();
+  if(!name || !email || !phone){ toast('Please fill in your name, email and phone first.'); return; }
+  signupOtpSent = true;
+  document.getElementById('signupOtpWrap').classList.remove('hidden');
+  document.getElementById('resendSignupOtpLine').classList.remove('hidden');
+  document.getElementById('signupBtn').textContent = 'Verify & Create Account';
+  toast(`OTP sent to ${phone} (demo code: ${DEMO_OTP})`);
+}
 function toggleAuthMode(showSignup){
   document.getElementById('signinFields').classList.toggle('hidden', showSignup);
   document.getElementById('signupFields').classList.toggle('hidden', !showSignup);
+  resetLoginOtp();
+  resetSignupOtp();
   if(showSignup){
     document.getElementById('loginTitle').textContent = 'Create your investor account';
     document.getElementById('loginSub').textContent = 'Browse and save developments before you reserve — or sign up now, reserve later.';
@@ -1414,15 +1466,18 @@ function toggleAuthMode(showSignup){
   }
 }
 function doSignup(){
+  const otp = document.getElementById('signupOtp').value.trim();
+  if(otp !== DEMO_OTP){ toast(`That code didn't match. Demo code is ${DEMO_OTP}.`); return; }
   const name = document.getElementById('signupName').value.trim();
-  if(!name){ toast('Please enter your full name to continue.'); return; }
   isAuthed = true;
   authedName = name;
   authedEmail = document.getElementById('signupEmail').value.trim() || 'you@example.com';
-  toast(`Account created — welcome, ${name.split(' ')[0]}. Redirecting to your dashboard…`);
+  toast(`Phone verified — welcome, ${name.split(' ')[0]}. Redirecting to your dashboard…`);
   setActiveView('view-investor');
 }
 function doLogin(){
+  const otp = document.getElementById('loginOtp').value.trim();
+  if(otp !== DEMO_OTP){ toast(`That code didn't match. Demo code is ${DEMO_OTP}.`); return; }
   if(loginRole==='investor'){
     isAuthed = true;
     authedName = 'Adaeze Okafor';
@@ -1431,7 +1486,7 @@ function doLogin(){
   }
   else if(loginRole==='agent'){ setActiveView('view-agent'); }
   else { setActiveView('view-developer'); }
-  toast('Signed in — demo session started.');
+  toast('Verified — demo session started.');
 }
 
 function openRealtorApplication(){
@@ -1577,6 +1632,8 @@ let selectedSlot = null;
 let isAuthed = false;
 let authedName = '';
 let authedEmail = '';
+let payOtpSent = false;
+let payOtpVerified = false;
 
 function openProperty(id){
   currentProp = PROPERTIES.find(p=>p.id===id);
@@ -1835,6 +1892,8 @@ function renderModal(){
 function renderPayAccountBlock(){
   const el = document.getElementById('payAccountBlock');
   if(!el) return;
+  payOtpSent = false;
+  payOtpVerified = false;
   if(isAuthed){
     el.innerHTML = `<div class="side-card" style="background:var(--slate);margin-bottom:16px;">
       <span style="font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;">Reserving as</span>
@@ -1849,10 +1908,31 @@ function renderPayAccountBlock(){
         <div class="field"><label>Full name</label><input type="text" id="payAcctName" placeholder="Your name"></div>
         <div class="field"><label>Phone</label><input type="text" id="payAcctPhone" placeholder="+234 800 000 0000"></div>
       </div>
-      <div class="field" style="margin-bottom:4px;"><label>Email address</label><input type="text" id="payAcctEmail" placeholder="you@email.com"></div>
-      <p style="font-size:11px;color:var(--ink-soft);margin:8px 0 0;">Already have an account? <a style="color:var(--amber-deep);font-weight:700;cursor:pointer;" onclick="closeModal();openLogin('investor');">Sign in first</a></p>
+      <div class="field" style="margin-bottom:10px;"><label>Email address</label><input type="text" id="payAcctEmail" placeholder="you@email.com"></div>
+      <div id="payOtpArea"><button class="btn btn-dark btn-sm btn-block" onclick="sendPayOtp()">Send OTP to Verify Phone</button></div>
+      <p style="font-size:11px;color:var(--ink-soft);margin:10px 0 0;">Already have an account? <a style="color:var(--amber-deep);font-weight:700;cursor:pointer;" onclick="closeModal();openLogin('investor');">Sign in first</a></p>
     </div>`;
   }
+}
+function sendPayOtp(){
+  const name = document.getElementById('payAcctName').value.trim();
+  const phone = document.getElementById('payAcctPhone').value.trim();
+  const email = document.getElementById('payAcctEmail').value.trim();
+  if(!name || !phone || !email){ toast('Please fill in your name, phone and email first.'); return; }
+  payOtpSent = true;
+  document.getElementById('payOtpArea').innerHTML = `
+    <div class="field" style="margin-bottom:8px;"><label>Enter 6-digit OTP</label><input type="text" id="payOtp" maxlength="6" value="123456"></div>
+    <button class="btn btn-primary btn-sm btn-block" onclick="verifyPayOtp()">Verify Phone Number</button>
+    <p class="auth-switch" style="margin-top:8px;"><a onclick="sendPayOtp()">Resend OTP</a></p>
+  `;
+  toast(`OTP sent to ${phone} (demo code: ${DEMO_OTP})`);
+}
+function verifyPayOtp(){
+  const otp = document.getElementById('payOtp').value.trim();
+  if(otp !== DEMO_OTP){ toast(`That code didn't match. Demo code is ${DEMO_OTP}.`); return; }
+  payOtpVerified = true;
+  document.getElementById('payOtpArea').innerHTML = `<div class="legal-item legal-done" style="justify-content:center;"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Phone verified</div>`;
+  toast('Phone verified.');
 }
 
 function setModalTab(tab){
@@ -1934,7 +2014,11 @@ function openPayment(price){
     const name = nameEl ? nameEl.value.trim() : '';
     const email = emailEl ? emailEl.value.trim() : '';
     if(!name || !email){
-      toast('Please enter your name and email to create your investor account first.');
+      toast('Please enter your name, phone and email to create your investor account first.');
+      return;
+    }
+    if(!payOtpVerified){
+      toast('Please verify your phone number with the OTP sent to it before reserving.');
       return;
     }
     isAuthed = true;
