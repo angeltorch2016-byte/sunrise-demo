@@ -588,7 +588,6 @@ tr:last-child td{border-bottom:none;}
       <a href="#contact" onclick="showPublic()">Contact</a>
     </div>
     <div class="nav-cta">
-      <button class="btn btn-ghost btn-sm nav-hide-sm" onclick="openLogin('developer')">Command Centre</button>
       <button class="btn btn-ghost btn-sm" onclick="openLogin('agent')">Realtor Hub</button>
       <button class="btn btn-primary btn-sm" onclick="openLogin('investor')">Portal Login</button>
       <button class="burger" onclick="toggleMobileNav()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
@@ -772,7 +771,7 @@ tr:last-child td{border-bottom:none;}
       <div class="layer-row layer-row-final">
         <div class="layer-badge">6</div>
         <div class="layer-body"><b>Management Layer</b><span>Developer Command Centre — portfolio, sales &amp; pipeline in one view</span></div>
-        <button class="btn btn-dark btn-sm" style="margin-left:auto;" onclick="openLogin('developer')">View Command Centre</button>
+        <button class="btn btn-dark btn-sm" style="margin-left:auto;display:flex;align-items:center;gap:6px;" onclick="openLogin('developer')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Staff Access (Demo)</button>
       </div>
     </div>
   </section>
@@ -1405,7 +1404,7 @@ function setLoginTab(role){
     document.getElementById('loginEmail').value='management@sunriseafricaproperties.com';
     hint.textContent = 'Demo mode — we\'ll text/email a one-time code. Use 123456 to continue.';
     hint.classList.remove('hidden');
-    authSwitch.innerHTML = 'Command Centre accounts are provisioned internally by a Super Admin — not self-service.';
+    authSwitch.innerHTML = '🔒 In production, Command Centre access is IP-restricted to your office network, requires hardware-key MFA in addition to OTP, and every session is logged. Accounts are provisioned only by a Super Admin — never self-service.';
     authSwitch.classList.remove('hidden');
   }
 }
