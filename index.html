@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sunrise Africa Properties — Investor & Sales Portal (Demo)</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -75,12 +76,12 @@ a{color:inherit;text-decoration:none;}
 }
 .brand{display:flex;align-items:center;gap:10px;}
 .brand-mark{
-  width:38px;height:38px;border-radius:9px;
-  background:linear-gradient(135deg,var(--ink) 0%, #24304C 100%);
+  width:40px;height:40px;border-radius:9px;
+  background:#FFFFFF;border:1px solid var(--line-2);
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
+  flex-shrink:0;padding:4px;box-sizing:border-box;
 }
-.brand-mark svg{width:20px;height:20px;}
+.brand-mark img{width:100%;height:100%;object-fit:contain;}
 .brand-name{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.01em;line-height:1.1;}
 .brand-name span{display:block;font-family:var(--sans);font-weight:600;font-size:10.5px;color:var(--amber-deep);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;}
 .nav-links{display:flex;align-items:center;gap:30px;}
@@ -606,9 +607,7 @@ tr:last-child td{border-bottom:none;}
 <nav class="topnav" id="mainNav">
   <div class="nav-inner">
     <div class="brand" style="cursor:pointer" onclick="goHome()">
-      <div class="brand-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
-      </div>
+      <div class="brand-mark"><img src="assets/logo.png" alt="Sunrise Africa Properties"></div>
       <div class="brand-name">Sunrise Africa Properties<span>Investor &amp; Sales Portal</span></div>
     </div>
     <div class="nav-links" id="navLinks">
@@ -651,14 +650,8 @@ tr:last-child td{border-bottom:none;}
     <div class="hero-art">
       <div class="hero-card">
         <div class="hero-art-img">
-          <svg viewBox="0 0 400 230" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="230" fill="#DCE4EF"/>
-            <rect x="0" y="150" width="400" height="80" fill="#C7D2E3"/>
-            <rect x="40" y="70" width="90" height="90" fill="#AEBCD4"/>
-            <rect x="150" y="40" width="110" height="120" fill="#9CACC8"/>
-            <rect x="280" y="90" width="80" height="70" fill="#AEBCD4"/>
-            <rect x="150" y="40" width="110" height="10" fill="#0F1B2E"/>
-          </svg>
+          <img src="assets/monarch-court.jpg" alt="Monarch Court" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(15,27,46,0) 45%, rgba(15,27,46,.7) 100%);"></div>
           <div class="hero-art-tag">Monarch Court <span>Registered plots · Kaiyetoro Village, Eleko</span></div>
         </div>
         <div class="hero-card-body">
@@ -718,6 +711,8 @@ tr:last-child td{border-bottom:none;}
         <option>Eleko</option>
         <option>Abuja</option>
         <option>Ikorodu</option>
+        <option>Akwa Ibom</option>
+        <option>Imo</option>
       </select>
       <select id="filterType" onchange="renderProperties()">
         <option value="">All types</option>
@@ -731,6 +726,7 @@ tr:last-child td{border-bottom:none;}
         <option>Units Available</option>
         <option>Limited Units</option>
         <option>Fully Reserved</option>
+        <option>Coming Soon</option>
       </select>
       <span class="filters-count" id="filtersCount">6 developments</span>
     </div>
@@ -805,17 +801,8 @@ tr:last-child td{border-bottom:none;}
         <button class="btn btn-primary" onclick="openLogin('investor')">See a sample investor dashboard</button>
       </div>
       <div class="diaspora-art">
-        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="400" fill="#0F1B2E"/>
-          <circle cx="330" cy="70" r="90" fill="#17233D"/>
-          <path d="M0 300 L100 220 L200 260 L300 190 L400 250 L400 400 L0 400 Z" fill="#1B2740"/>
-          <path d="M0 340 L120 280 L220 310 L320 260 L400 300 L400 400 L0 400 Z" fill="#23304C"/>
-          <g stroke="#D9822C" stroke-width="2" fill="none" opacity="0.85">
-            <path d="M60 320 q80 -140 260 -170" stroke-dasharray="6 6"/>
-            <circle cx="60" cy="320" r="6" fill="#D9822C" stroke="none"/>
-            <circle cx="320" cy="150" r="6" fill="#D9822C" stroke="none"/>
-          </g>
-        </svg>
+        <img src="assets/location-graphic.jpg" alt="Verified plot location" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <div style="position:absolute;inset:0;background:linear-gradient(155deg, rgba(15,27,46,.55), rgba(11,18,32,.75));"></div>
       </div>
     </div>
   </section>
@@ -931,7 +918,7 @@ tr:last-child td{border-bottom:none;}
     <div class="footer-inner">
       <div>
         <div class="footer-brand">
-          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+          <div class="brand-mark"><img src="assets/logo.png" alt="Sunrise Africa Properties"></div>
           <div class="brand-name">Sunrise Africa Properties</div>
         </div>
         <p>Enterprise web and PWA portal accelerating institutional trust, diaspora sales and asset management. Demo built and delivered by Chezmuna Enterprises.</p>
@@ -972,7 +959,7 @@ tr:last-child td{border-bottom:none;}
   <div class="login-wrap">
     <div class="login-card">
       <div class="brand">
-        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-mark"><img src="assets/logo.png" alt="Sunrise Africa Properties"></div>
         <div class="brand-name">Sunrise Africa</div>
       </div>
       <div class="login-tabs">
@@ -1021,7 +1008,7 @@ tr:last-child td{border-bottom:none;}
   <div class="portal-shell">
     <aside class="portal-sidebar">
       <div class="portal-brand">
-        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-mark"><img src="assets/logo.png" alt="Sunrise Africa Properties"></div>
         <div class="brand-name">Investor Portal</div>
       </div>
       <nav class="portal-nav">
@@ -1154,7 +1141,7 @@ tr:last-child td{border-bottom:none;}
   <div class="portal-shell">
     <aside class="portal-sidebar">
       <div class="portal-brand">
-        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-mark"><img src="assets/logo.png" alt="Sunrise Africa Properties"></div>
         <div class="brand-name">Realtor Hub</div>
       </div>
       <nav class="portal-nav">
@@ -1209,7 +1196,7 @@ tr:last-child td{border-bottom:none;}
   <div class="portal-shell">
     <aside class="portal-sidebar">
       <div class="portal-brand">
-        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#D9822C" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <div class="brand-mark"><img src="assets/logo.png" alt="Sunrise Africa Properties"></div>
         <div class="brand-name">Command Centre</div>
       </div>
       <nav class="portal-nav">
@@ -1313,22 +1300,32 @@ function buildingSVG(seed, tall){
     <rect x="140" y="${200-h1-20}" width="100" height="8" fill="#0F1B2E" opacity="0.7"/>
   </svg>`;
 }
+function propertyVisual(p){
+  if(p.heroImage){
+    return `<img src="${p.heroImage}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+  }
+  return buildingSVG(p.seed, p.tall);
+}
 
 const PROPERTIES = [
   {
-    id:'p1', name:'Serene Waters Villas', location:'Ibeju-Lekki', type:'Residential', status:'Units Available', live:false,
-    priceFrom:85000000, unitLabel:'4-Bed Detached', totalUnits:24, seed:0, tall:false,
-    desc:'A gated enclave of contemporary detached villas minutes from the Lekki Free Trade Zone, designed for families and long-term rental investors.',
-    amenities:['24/7 Security','Estate Power','Clubhouse','Paved Roads','Drainage'],
-    specs:[['Land Size','450 sqm'],['Bedrooms','4'],['Bathrooms','5'],['Status','Off-plan']],
-    fp:'duplex',
-    completionPct:58,
-    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',90],['Foundation',100],['Structural Works',65],['Roofing',20],['Finishing',0],['Handover','scheduled']],
-    lastUpdate:{date:'5 September 2026', pm:'Chidi Okafor', photos:14, videos:2, gps:true},
-    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',true],['Deed Documentation',false]]
+    id:'p1', name:'Grace Home', location:'Ibeju-Lekki', type:'Land', status:'Coming Soon', live:false,
+    priceFrom:null, unitLabel:'300 & 500 sqm Plots', seed:0, tall:false,
+    heroImage:'assets/grace-home.jpg',
+    plots:[{size:300, price:null},{size:500, price:null}],
+    desc:'A registered land development in Ibeju-Lekki, offered in 300 and 500 sqm plots. Confirmed as an upcoming Sunrise Africa Properties project — pricing and launch timing have not yet been published.',
+    amenities:['Plot sizes confirmed — pricing pending'],
+    specs:[['Location','Ibeju-Lekki'],['Plot Sizes','300 sqm / 500 sqm'],['Status','Upcoming — not yet on active sales']],
+    fp:null,
+    completionPct:null,
+    inventoryPending:true,
+    milestones:[['Listing Published','done'],['Pricing & Terms','pending'],['Government Allocation','pending']],
+    statusNote:'Grace Home is a confirmed upcoming project. Pricing, legal documentation status and launch timing are pending confirmation from Sunrise Africa Properties.',
+    legalItems:[]
   },
   {
     id:'p2', name:'Monarch Court', location:'Eleko', type:'Land', status:'Now Selling', live:true,
+    heroImage:'assets/monarch-court.jpg',
     priceFrom:20000000, unitLabel:'300 & 500 sqm Plots', seed:1, tall:true,
     plots:[{size:300, price:20000000},{size:500, price:35000000}],
     paymentPlans:[
@@ -1424,7 +1421,7 @@ function getCounts(p){
   return counts;
 }
 
-function fmtN(n){ return '₦' + n.toLocaleString('en-NG'); }
+function fmtN(n){ return (n===null || n===undefined) ? 'Price TBA' : '₦' + n.toLocaleString('en-NG'); }
 
 function milestoneRow(m){
   const [label, val] = m;
@@ -1673,14 +1670,14 @@ function renderProperties(){
     const unitsLine = p.inventoryPending ? 'Inventory pending confirmation' : `${p.totalUnits} total units`;
     return `<div class="prop-card ${!p.live?'prop-card-upcoming':''}" onclick="openProperty('${p.id}')">
       <div class="prop-thumb">
-        ${buildingSVG(p.seed, p.tall)}
+        ${propertyVisual(p)}
         <span class="badge ${badgeClass}">${badgeLabel}</span>
         <span class="prop-loc-badge">${p.location}</span>
       </div>
       <div class="prop-body">
         <h3>${p.name}</h3>
         <div class="prop-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> ${p.unitLabel} · ${p.type}</div>
-        <div class="prop-price">${p.live ? 'From ' + fmtN(p.priceFrom) : fmtN(p.priceFrom) + ' (indicative)'} <span>${p.live?'':'pre-launch estimate'}</span></div>
+        <div class="prop-price">${p.priceFrom===null ? fmtN(null) : (p.live ? 'From ' + fmtN(p.priceFrom) : fmtN(p.priceFrom) + ' (indicative)')} <span>${p.priceFrom===null ? 'to be announced' : (p.live?'':'pre-launch estimate')}</span></div>
         <div class="prop-foot">
           <span class="prop-units">${unitsLine}</span>
           <span class="link-arrow">View details →</span>
@@ -1809,7 +1806,7 @@ function renderModal(){
         </div>
         <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
-      <div class="modal-gallery">${buildingSVG(p.seed, p.tall)}</div>
+      <div class="modal-gallery">${propertyVisual(p)}</div>
       <div class="modal-tabs">
         <div class="modal-tab active" data-tab="overview" onclick="setModalTab('overview')">Overview</div>
         <div class="modal-tab" data-tab="transparency" onclick="setModalTab('transparency')">Transparency Centre</div>
@@ -1941,7 +1938,7 @@ function renderModal(){
           </div>
           <h4>Legal</h4>
           <div class="legal-checklist">
-            ${p.legalItems.map(li=>legalItem(li[0], li[1])).join('')}
+            ${p.legalItems.length ? p.legalItems.map(li=>legalItem(li[0], li[1])).join('') : `<p style="font-size:12.5px;color:var(--ink-soft);margin:0;">No legal documentation status has been published for this project yet.</p>`}
           </div>
           <h4>Financial</h4>
           <div class="passport-grid">

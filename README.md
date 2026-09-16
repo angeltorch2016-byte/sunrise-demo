@@ -1,6 +1,6 @@
 # Sunrise Africa Properties — Investor & Sales Portal (Demo)
 
-A single-file, static, interactive demo built to pitch Sunrise Africa Properties
+A static, interactive demo built to pitch Sunrise Africa Properties
 Limited on a full property sales, investor and realtor platform. No build step,
 no backend, no real payments — everything runs client-side so it can be
 deployed as-is.
@@ -26,9 +26,21 @@ deployed as-is.
   sales and investor stats across every development, a per-project
   completion table, and a sales pipeline funnel.
 
+- **Real branding** — the actual Sunrise Africa Properties logo (nav, footer,
+  login screens, favicon), and real photos for the two confirmed listings:
+  Monarch Court (official estate graphic) and Grace Home (the same stock photo
+  currently used on sunriseafricaproperties.com, since no dedicated photography
+  exists for it yet). The four fictional "upcoming" listings still use abstract
+  placeholder art, deliberately, to visually distinguish confirmed data from
+  demo filler.
+
 All data is mock/in-memory JavaScript — refreshing the page resets it.
 
 ## Deploy to Vercel
+**Important:** deploy the whole `sunrise-demo/` folder, not just `index.html` —
+the `assets/` folder holds the real Sunrise Africa Properties logo and property
+photos that `index.html` now references by relative path.
+
 **Option A — Vercel dashboard (no CLI needed)**
 1. Go to vercel.com → New Project → Deploy without a Git repo ("Upload" /
    drag-and-drop option), or push this folder to a new GitHub repo and
