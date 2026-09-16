@@ -211,6 +211,8 @@ a{color:inherit;text-decoration:none;}
   transition:box-shadow .2s, transform .2s;cursor:pointer;
 }
 .prop-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+.prop-card-upcoming .prop-thumb{filter:grayscale(35%) opacity(0.82);}
+.prop-card-upcoming{border-style:dashed;}
 .prop-thumb{height:150px;position:relative;overflow:hidden;}
 .prop-thumb svg{width:100%;height:100%;display:block;}
 .prop-thumb .badge{position:absolute;top:12px;left:12px;}
@@ -320,6 +322,32 @@ footer{background:var(--ink);color:#B9C0D2;padding:44px 28px 26px;margin-top:20p
 .amenity-chip svg{width:13px;height:13px;color:var(--amber-deep);}
 .side-card{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:20px;margin-bottom:16px;}
 .side-card h4{margin:0 0 12px;font-size:14px;}
+.upcoming-banner{
+  display:flex;align-items:center;gap:9px;background:var(--warn-bg);color:var(--warn);
+  font-size:12.5px;font-weight:700;padding:11px 14px;border-radius:10px;margin-bottom:16px;
+}
+.upcoming-banner svg{flex-shrink:0;}
+.plot-price-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line-2);}
+.plot-price-row:last-child{border-bottom:none;}
+.plot-price-row span{font-size:13px;color:var(--ink-soft);font-weight:600;}
+.plot-price-row b{font-size:16px;color:var(--ink);}
+
+/* Buy Back Investment */
+.buyback-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start;}
+.buyback-calc{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:26px;}
+.buyback-amounts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.buyback-amt-chip{padding:9px 15px;border-radius:9px;border:1px solid var(--line-2);background:var(--slate);font-size:13px;font-weight:700;}
+.buyback-amt-chip.selected{background:var(--ink);color:#fff;border-color:var(--ink);}
+.buyback-custom{margin-bottom:18px;}
+.buyback-custom label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-2);margin-bottom:6px;}
+.buyback-custom input{width:100%;border:1px solid var(--line-2);background:var(--slate);border-radius:9px;padding:11px 12px;font-family:inherit;font-size:14px;}
+.buyback-results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.buyback-result-card{background:var(--slate);border-radius:12px;padding:14px 16px;}
+.buyback-result-card span{display:block;font-size:11.5px;color:var(--ink-soft);margin-bottom:6px;}
+.buyback-result-card span em{font-style:normal;color:var(--amber-deep);font-weight:700;}
+.buyback-result-card b{font-size:17px;color:var(--ink);}
+.buyback-result-highlight{background:var(--amber-light);}
+.buyback-result-highlight b{color:var(--amber-deep);}
 
 /* Transparency Centre */
 .completion-ring-row{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px;margin-bottom:6px;}
@@ -553,6 +581,8 @@ tr:last-child td{border-bottom:none;}
   .kanban{grid-template-columns:1fr;}
   .progress-photo-row{grid-template-columns:repeat(2,1fr);}
   .footer-inner{grid-template-columns:1fr 1fr;}
+  .buyback-wrap{grid-template-columns:1fr;}
+  .buyback-results{grid-template-columns:1fr;}
 }
 @media (max-width: 680px){
   .nav-links{display:none;}
@@ -583,6 +613,7 @@ tr:last-child td{border-bottom:none;}
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#properties" onclick="showPublic()">Properties</a>
+      <a href="#buyback" onclick="showPublic()">Buy Back Investment</a>
       <a href="#diaspora" onclick="showPublic()">Diaspora Investors</a>
       <a href="#about" onclick="showPublic()">About</a>
       <a href="#contact" onclick="showPublic()">Contact</a>
@@ -628,19 +659,19 @@ tr:last-child td{border-bottom:none;}
             <rect x="280" y="90" width="80" height="70" fill="#AEBCD4"/>
             <rect x="150" y="40" width="110" height="10" fill="#0F1B2E"/>
           </svg>
-          <div class="hero-art-tag">Eleko Coastal Heights <span>Beachfront residences · Eleko</span></div>
+          <div class="hero-art-tag">Monarch Court <span>Registered plots · Kaiyetoro Village, Eleko</span></div>
         </div>
         <div class="hero-card-body">
           <div class="hero-mini-row">
             <div>
-              <b style="font-family:var(--serif);font-size:16px;">From ₦120,000,000</b><br>
-              <span style="font-size:12px;color:var(--ink-soft);">3-Bed &amp; 4-Bed waterfront units</span>
+              <b style="font-family:var(--serif);font-size:16px;">From ₦20,000,000</b><br>
+              <span style="font-size:12px;color:var(--ink-soft);">300 sqm &amp; 500 sqm plots</span>
             </div>
-            <span class="badge badge-ok">Units Available</span>
+            <span class="badge badge-ok">Now Selling</span>
           </div>
         </div>
       </div>
-      <div class="hero-float f1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Verified title<small>Governor's consent on file</small></div>
+      <div class="hero-float f1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Registered survey<small>In Sunrise Africa Properties' name</small></div>
       <div class="hero-float f2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Live payment tracking<small>Auto-generated receipts</small></div>
     </div>
   </section>
@@ -692,9 +723,11 @@ tr:last-child td{border-bottom:none;}
         <option value="">All types</option>
         <option>Residential</option>
         <option>Commercial</option>
+        <option>Land</option>
       </select>
       <select id="filterStatus" onchange="renderProperties()">
         <option value="">Any availability</option>
+        <option>Now Selling</option>
         <option>Units Available</option>
         <option>Limited Units</option>
         <option>Fully Reserved</option>
@@ -702,6 +735,59 @@ tr:last-child td{border-bottom:none;}
       <span class="filters-count" id="filtersCount">6 developments</span>
     </div>
     <div class="prop-grid" id="propGrid"></div>
+  </section>
+
+  <section class="section" id="buyback">
+    <div class="section-head">
+      <div>
+        <div class="tag-line"></div>
+        <h2>SAP Buy Back Investment</h2>
+        <p>Invest confidently with assured returns — choose a 6 or 12-month term and see your buy-back amount instantly.</p>
+      </div>
+    </div>
+    <div class="buyback-wrap">
+      <div class="buyback-calc">
+        <h4 style="margin:0 0 14px;font-size:14px;">Choose an investment amount</h4>
+        <div class="buyback-amounts" id="buybackAmounts"></div>
+        <div class="buyback-custom">
+          <label>Or enter a custom amount (₦1,000,000 – ₦100,000,000)</label>
+          <input type="number" id="buybackCustom" min="1000000" max="100000000" step="500000" placeholder="e.g. 7500000" oninput="selectBuybackCustom()">
+        </div>
+        <div class="buyback-results">
+          <div class="buyback-result-card">
+            <span>Your investment</span>
+            <b id="bbPrincipal">₦1,000,000</b>
+          </div>
+          <div class="buyback-result-card buyback-result-highlight">
+            <span>Buy back after 6 months <em>(15%)</em></span>
+            <b id="bb6">₦1,150,000</b>
+          </div>
+          <div class="buyback-result-card buyback-result-highlight">
+            <span>Buy back after 12 months <em>(35%)</em></span>
+            <b id="bb12">₦1,350,000</b>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:18px;">
+          <div class="field"><label>Full name</label><input type="text" id="bbName" placeholder="Your name"></div>
+          <div class="field"><label>Email or phone</label><input type="text" id="bbContact" placeholder="you@email.com or +234..."></div>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="submitBuyback()">Register Interest in This Investment</button>
+        <p style="font-size:11px;color:var(--ink-soft);margin-top:12px;">Deliverables: a Post Dated Cheque and a Deed of Buy Back are issued as part of the transaction. Full eligibility rules, onboarding requirements and any additional terms are pending final confirmation from Sunrise Africa Properties and are not represented here.</p>
+      </div>
+      <div class="buyback-side">
+        <div class="side-card">
+          <h4>How it works</h4>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.7;">Invest any amount from ₦1,000,000 to ₦100,000,000. Choose to receive your buy-back amount after 6 months (15% return) or 12 months (35% return) — the same terms published on Sunrise's official SAP Investment materials.</p>
+        </div>
+        <div class="side-card">
+          <h4>Deliverables</h4>
+          <div class="amenity-list">
+            <div class="amenity-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Post Dated Cheque</div>
+            <div class="amenity-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Deed of Buy Back</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section" id="diaspora">
@@ -1033,7 +1119,7 @@ tr:last-child td{border-bottom:none;}
       <div class="inv-pane hidden" id="inv-progress">
         <div class="portal-topbar"><div><h1>Site Progress</h1><p>Latest construction updates from the project team.</p></div></div>
         <div class="panel">
-          <div class="panel-head"><div><h3>Eleko Coastal Heights — Block C</h3><p>Last updated 4 days ago</p></div></div>
+          <div class="panel-head"><div><h3>Monarch Court — Kaiyetoro Village</h3><p>Last updated 4 days ago</p></div></div>
           <div class="progress-photo-row" id="progressPhotos"></div>
         </div>
       </div>
@@ -1230,7 +1316,7 @@ function buildingSVG(seed, tall){
 
 const PROPERTIES = [
   {
-    id:'p1', name:'Serene Waters Villas', location:'Ibeju-Lekki', type:'Residential', status:'Units Available',
+    id:'p1', name:'Serene Waters Villas', location:'Ibeju-Lekki', type:'Residential', status:'Units Available', live:false,
     priceFrom:85000000, unitLabel:'4-Bed Detached', totalUnits:24, seed:0, tall:false,
     desc:'A gated enclave of contemporary detached villas minutes from the Lekki Free Trade Zone, designed for families and long-term rental investors.',
     amenities:['24/7 Security','Estate Power','Clubhouse','Paved Roads','Drainage'],
@@ -1239,22 +1325,35 @@ const PROPERTIES = [
     completionPct:58,
     milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',90],['Foundation',100],['Structural Works',65],['Roofing',20],['Finishing',0],['Handover','scheduled']],
     lastUpdate:{date:'5 September 2026', pm:'Chidi Okafor', photos:14, videos:2, gps:true},
-    legal:{title:true, survey:true, planning:true, building:true, deed:false}
+    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',true],['Deed Documentation',false]]
   },
   {
-    id:'p2', name:'Eleko Coastal Heights', location:'Eleko', type:'Residential', status:'Limited Units',
-    priceFrom:120000000, unitLabel:'3 & 4-Bed Waterfront', totalUnits:18, seed:1, tall:true,
-    desc:'Beachfront residences on the Eleko corridor with direct ocean access, built for both lifestyle buyers and short-let investors.',
-    amenities:['Private Beach Access','Swimming Pool','Concierge','Backup Power','CCTV'],
-    specs:[['Land Size','600 sqm'],['Bedrooms','3-4'],['Bathrooms','4'],['Status','Under Construction']],
-    fp:'3bed',
-    completionPct:74,
-    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',82],['Foundation',100],['Structural Works',76],['Roofing',48],['Finishing',31],['Handover','scheduled']],
-    lastUpdate:{date:'8 September 2026', pm:'Funke Adeyemi', photos:18, videos:3, gps:true},
-    legal:{title:true, survey:true, planning:true, building:true, deed:false}
+    id:'p2', name:'Monarch Court', location:'Eleko', type:'Land', status:'Now Selling', live:true,
+    priceFrom:20000000, unitLabel:'300 & 500 sqm Plots', seed:1, tall:true,
+    plots:[{size:300, price:20000000},{size:500, price:35000000}],
+    paymentPlans:[
+      {key:'outright', label:'Outright Payment', note:'Full payment, no extra charge.', markup:0},
+      {key:'m6', label:'1–6 Months', note:'Spread up to 6 months — no extra charge.', markup:0},
+      {key:'m12', label:'1–12 Months', note:'Spread up to 12 months — 10% extra charge applies.', markup:0.10},
+    ],
+    desc:'A registered land development in Kaiyetoro Village, Eleko, Ibeju-Lekki, offered in 300 and 500 sqm plots. Currently the only Sunrise Africa Properties development on active sales — all other listings on this platform are upcoming projects.',
+    amenities:['Registered Survey','Deed of Assignment (at development stage)','Estate Restrictive Covenant (at development stage)'],
+    specs:[['Location','Kaiyetoro Village, Eleko'],['Plot Sizes','300 sqm / 500 sqm'],['Survey Status','Registered — in Sunrise Africa Properties Ltd name'],['Govt. Allocation','In progress']],
+    fp:null,
+    completionPct:null,
+    inventoryPending:true,
+    milestones:[['Registered Survey','done'],['Government Allocation','pending'],['Full Payment & Starter Documentation','ongoing'],['Physical Allocation (0–6 months post full payment)','scheduled'],['Development-Stage Documents','scheduled']],
+    statusNote:'Government allocation is in progress. Exact timing, allocation fee and plot inventory counts are pending confirmation from Sunrise Africa Properties before publication.',
+    legalItems:[['Registered Survey',true],['Government Allocation Approval',false],['Deed of Assignment',false],['Estate Restrictive Covenant',false]],
+    documentLifecycle:[
+      {stage:'Starter Kit (at transaction start)', docs:['Letter of Subscription','Receipt of Payment','Invoice']},
+      {stage:'Upon Full Payment', docs:['Letter of Completion','Legal Documentation / Contract of Sale']},
+      {stage:'Physical Allocation (0–6 months, subject to review)', docs:['Allocation Letter']},
+      {stage:'Development Stage', docs:['Survey Plan','Deed of Assignment','Estate Restrictive Covenant']},
+    ]
   },
   {
-    id:'p3', name:'Capital Gardens Estate', location:'Abuja', type:'Residential', status:'Units Available',
+    id:'p3', name:'Capital Gardens Estate', location:'Abuja', type:'Residential', status:'Units Available', live:false,
     priceFrom:95000000, unitLabel:'5-Bed Terrace', totalUnits:20, seed:2, tall:false,
     desc:'A landscaped terrace-home estate in Guzape, Abuja, close to the diplomatic zone with full estate management services.',
     amenities:['Estate Management','Landscaped Gardens','Gym','Water Treatment','Fibre Internet'],
@@ -1263,10 +1362,10 @@ const PROPERTIES = [
     completionPct:35,
     milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',40],['Foundation',20],['Structural Works',0],['Roofing',0],['Finishing',0],['Handover','scheduled']],
     lastUpdate:{date:'2 September 2026', pm:'Ibrahim Sule', photos:9, videos:1, gps:true},
-    legal:{title:true, survey:true, planning:true, building:false, deed:false}
+    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',false],['Deed Documentation',false]]
   },
   {
-    id:'p4', name:'Ikorodu Trade Court', location:'Ikorodu', type:'Commercial', status:'Units Available',
+    id:'p4', name:'Ikorodu Trade Court', location:'Ikorodu', type:'Commercial', status:'Units Available', live:false,
     priceFrom:45000000, unitLabel:'Retail & Office Units', totalUnits:30, seed:3, tall:false,
     desc:'A mixed-use commercial court along the Ikorodu corridor, purpose-built for retail, showroom and small office tenants.',
     amenities:['Ample Parking','Loading Bay','24/7 Power','Fire Safety','Signage Frontage'],
@@ -1275,10 +1374,10 @@ const PROPERTIES = [
     completionPct:95,
     milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',100],['Foundation',100],['Structural Works',100],['Roofing',100],['Finishing',85],['Handover','scheduled']],
     lastUpdate:{date:'9 September 2026', pm:'Ngozi Eze', photos:22, videos:4, gps:true},
-    legal:{title:true, survey:true, planning:true, building:true, deed:true}
+    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',true],['Deed Documentation',true]]
   },
   {
-    id:'p5', name:'Lekki Business Atrium', location:'Ibeju-Lekki', type:'Commercial', status:'Limited Units',
+    id:'p5', name:'Lekki Business Atrium', location:'Ibeju-Lekki', type:'Commercial', status:'Limited Units', live:false,
     priceFrom:150000000, unitLabel:'Office Suites', totalUnits:16, seed:4, tall:true,
     desc:'A Grade-A office atrium serving the industrial and logistics growth around the Lekki Free Trade Zone.',
     amenities:['Backup Power','Fibre Ready','Conference Facility','Elevator Access','Reception Services'],
@@ -1287,10 +1386,10 @@ const PROPERTIES = [
     completionPct:22,
     milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',25],['Foundation',0],['Structural Works',0],['Roofing',0],['Finishing',0],['Handover','scheduled']],
     lastUpdate:{date:'30 August 2026', pm:'Tunde Balogun', photos:6, videos:1, gps:true},
-    legal:{title:true, survey:true, planning:true, building:false, deed:false}
+    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',false],['Deed Documentation',false]]
   },
   {
-    id:'p6', name:'Abuja Heights Residences', location:'Abuja', type:'Residential', status:'Fully Reserved',
+    id:'p6', name:'Abuja Heights Residences', location:'Abuja', type:'Residential', status:'Fully Reserved', live:false,
     priceFrom:110000000, unitLabel:'3-Bed Apartments', totalUnits:22, seed:5, tall:true,
     desc:'A mid-rise apartment complex in Katampe Extension, popular with diplomatic and NGO tenants seeking serviced living.',
     amenities:['Serviced Apartments','Rooftop Lounge','Gym','Concierge','Standby Generator'],
@@ -1299,7 +1398,7 @@ const PROPERTIES = [
     completionPct:67,
     milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',88],['Foundation',100],['Structural Works',70],['Roofing',40],['Finishing',15],['Handover','scheduled']],
     lastUpdate:{date:'6 September 2026', pm:'Grace Nwosu', photos:16, videos:2, gps:true},
-    legal:{title:true, survey:true, planning:true, building:true, deed:true}
+    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',true],['Deed Documentation',true]]
   },
 ];
 
@@ -1315,8 +1414,15 @@ function unitStatuses(total, ratio){
   return arr;
 }
 const UNIT_STATE = {};
-const RATIO_BY_STATUS = {'Units Available':[0.6,0.25,0.15],'Limited Units':[0.25,0.35,0.4],'Fully Reserved':[0.0,0.15,0.85]};
-PROPERTIES.forEach(p=>{ UNIT_STATE[p.id] = unitStatuses(p.totalUnits, RATIO_BY_STATUS[p.status]); });
+const RATIO_BY_STATUS = {'Units Available':[0.6,0.25,0.15],'Limited Units':[0.25,0.35,0.4],'Fully Reserved':[0.0,0.15,0.85],'Now Selling':[0.6,0.25,0.15]};
+PROPERTIES.forEach(p=>{ if(!p.inventoryPending){ UNIT_STATE[p.id] = unitStatuses(p.totalUnits, RATIO_BY_STATUS[p.status]); } });
+function getCounts(p){
+  const states = UNIT_STATE[p.id];
+  if(!states) return null;
+  const counts = {available:0,reserved:0,sold:0};
+  states.forEach(s=>counts[s]++);
+  return counts;
+}
 
 function fmtN(n){ return '₦' + n.toLocaleString('en-NG'); }
 
@@ -1327,6 +1433,12 @@ function milestoneRow(m){
   }
   if(val === 'scheduled'){
     return `<tr><td>${label}</td><td class="ms-status ms-scheduled">Scheduled</td></tr>`;
+  }
+  if(val === 'ongoing'){
+    return `<tr><td>${label}</td><td class="ms-status ms-scheduled">Ongoing per customer</td></tr>`;
+  }
+  if(val === 'pending'){
+    return `<tr><td>${label}</td><td class="ms-status" style="color:var(--amber-deep);font-weight:700;">In Progress <span style="font-weight:500;color:var(--ink-soft);">(timing pending confirmation)</span></td></tr>`;
   }
   const pct = val;
   const cls = pct>=100?'ms-done-text':pct>0?'ms-progress-text':'ms-pending-text';
@@ -1556,19 +1668,21 @@ function renderProperties(){
   );
   document.getElementById('filtersCount').textContent = filtered.length + ' development' + (filtered.length===1?'':'s');
   grid.innerHTML = filtered.map(p=>{
-    const badgeClass = p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
-    return `<div class="prop-card" onclick="openProperty('${p.id}')">
+    const badgeClass = !p.live ? 'badge-sold' : p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
+    const badgeLabel = !p.live ? 'Upcoming' : p.status;
+    const unitsLine = p.inventoryPending ? 'Inventory pending confirmation' : `${p.totalUnits} total units`;
+    return `<div class="prop-card ${!p.live?'prop-card-upcoming':''}" onclick="openProperty('${p.id}')">
       <div class="prop-thumb">
         ${buildingSVG(p.seed, p.tall)}
-        <span class="badge ${badgeClass}">${p.status}</span>
+        <span class="badge ${badgeClass}">${badgeLabel}</span>
         <span class="prop-loc-badge">${p.location}</span>
       </div>
       <div class="prop-body">
         <h3>${p.name}</h3>
         <div class="prop-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> ${p.unitLabel} · ${p.type}</div>
-        <div class="prop-price">${fmtN(p.priceFrom)} <span>starting price</span></div>
+        <div class="prop-price">${p.live ? 'From ' + fmtN(p.priceFrom) : fmtN(p.priceFrom) + ' (indicative)'} <span>${p.live?'':'pre-launch estimate'}</span></div>
         <div class="prop-foot">
-          <span class="prop-units">${p.totalUnits} total units</span>
+          <span class="prop-units">${unitsLine}</span>
           <span class="link-arrow">View details →</span>
         </div>
       </div>
@@ -1581,6 +1695,41 @@ function populateContactPropSelect(){
   PROPERTIES.forEach(p=>{
     const o=document.createElement('option'); o.value=p.id; o.textContent=p.name; sel.appendChild(o);
   });
+}
+
+/* =====================================================
+   BUY BACK INVESTMENT CALCULATOR
+===================================================== */
+const BUYBACK_AMOUNTS = [1000000,2000000,5000000,10000000,15000000,20000000,30000000,50000000,100000000];
+let selectedBuybackAmount = 1000000;
+function renderBuybackAmounts(){
+  const el = document.getElementById('buybackAmounts');
+  el.innerHTML = BUYBACK_AMOUNTS.map(a=>`<div class="buyback-amt-chip ${a===selectedBuybackAmount?'selected':''}" onclick="selectBuyback(${a}, this)">${a>=1000000?(a/1000000)+'M':fmtN(a)}</div>`).join('');
+}
+function selectBuyback(amount, el){
+  selectedBuybackAmount = amount;
+  document.getElementById('buybackCustom').value = '';
+  document.querySelectorAll('.buyback-amt-chip').forEach(c=>c.classList.remove('selected'));
+  if(el) el.classList.add('selected');
+  updateBuybackResults(amount);
+}
+function selectBuybackCustom(){
+  const val = Number(document.getElementById('buybackCustom').value);
+  document.querySelectorAll('.buyback-amt-chip').forEach(c=>c.classList.remove('selected'));
+  if(val >= 1000000 && val <= 100000000){
+    selectedBuybackAmount = val;
+    updateBuybackResults(val);
+  }
+}
+function updateBuybackResults(amount){
+  document.getElementById('bbPrincipal').textContent = fmtN(amount);
+  document.getElementById('bb6').textContent = fmtN(Math.round(amount * 1.15));
+  document.getElementById('bb12').textContent = fmtN(Math.round(amount * 1.35));
+}
+function submitBuyback(){
+  const nameEl = document.getElementById('bbName');
+  const name = nameEl && nameEl.value.trim() ? nameEl.value.trim() : 'there';
+  toast(`Thanks, ${name.split(' ')[0]} — our advisory team will contact you to confirm eligibility and next steps for your ${fmtN(selectedBuybackAmount)} Buy Back Investment.`);
 }
 
 /* =====================================================
@@ -1646,10 +1795,9 @@ function closeModal(){
 }
 function renderModal(){
   const p = currentProp;
-  const badgeClass = p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
-  const states = UNIT_STATE[p.id];
-  const counts = {available:0,reserved:0,sold:0};
-  states.forEach(s=>counts[s]++);
+  const badgeClass = !p.live ? 'badge-sold' : p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
+  const badgeLabel = !p.live ? 'Upcoming' : p.status;
+  const counts = getCounts(p);
 
   document.getElementById('modalRoot').innerHTML = `
   <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
@@ -1657,7 +1805,7 @@ function renderModal(){
       <div class="modal-head">
         <div>
           <h2>${p.name}</h2>
-          <div class="prop-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${p.location} &nbsp;·&nbsp; ${p.type} &nbsp;·&nbsp; <span class="badge ${badgeClass}">${p.status}</span></div>
+          <div class="prop-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${p.location} &nbsp;·&nbsp; ${p.type} &nbsp;·&nbsp; <span class="badge ${badgeClass}">${badgeLabel}</span></div>
         </div>
         <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
@@ -1667,7 +1815,7 @@ function renderModal(){
         <div class="modal-tab" data-tab="transparency" onclick="setModalTab('transparency')">Transparency Centre</div>
         <div class="modal-tab" data-tab="passport" onclick="setModalTab('passport')">Project Passport</div>
         <div class="modal-tab" data-tab="siteplan" onclick="setModalTab('siteplan')">Interactive Site Plan</div>
-        <div class="modal-tab" data-tab="floorplan" onclick="setModalTab('floorplan')">Floor Plans</div>
+        <div class="modal-tab" data-tab="floorplan" onclick="setModalTab('floorplan')">${p.plots ? 'Plot Sizes' : 'Floor Plans'}</div>
         <div class="modal-tab" data-tab="book" onclick="setModalTab('book')">Book Inspection</div>
         <div class="modal-tab" data-tab="pay" onclick="setModalTab('pay')">Reserve &amp; Pay</div>
       </div>
@@ -1675,11 +1823,12 @@ function renderModal(){
       <div class="modal-pane active" data-pane="overview">
         <div class="modal-grid">
           <div>
+            ${!p.live ? `<div class="upcoming-banner"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Upcoming project — not yet on active sales. Figures below are indicative and subject to change before launch.</div>` : ''}
             <p style="color:var(--ink-soft);font-size:14.5px;line-height:1.7;">${p.desc}</p>
             <div class="spec-list">
               ${p.specs.map(s=>`<div class="spec-item"><b>${s[1]}</b><span>${s[0]}</span></div>`).join('')}
             </div>
-            <h4 style="margin:0 0 4px;font-size:14px;">Amenities</h4>
+            <h4 style="margin:0 0 4px;font-size:14px;">${p.plots ? 'Plot Inclusions' : 'Amenities'}</h4>
             <div class="amenity-list">
               ${p.amenities.map(a=>`<div class="amenity-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>${a}</div>`).join('')}
             </div>
@@ -1687,21 +1836,27 @@ function renderModal(){
           <div>
             <div class="side-card">
               <h4>Pricing</h4>
-              <div class="prop-price" style="font-size:20px;">${fmtN(p.priceFrom)}</div>
-              <span style="font-size:12px;color:var(--ink-soft);">Starting price for ${p.unitLabel}</span>
+              ${p.plots ? p.plots.map(pl=>`<div class="plot-price-row"><span>${pl.size} sqm</span><b>${fmtN(pl.price)}</b></div>`).join('') : `
+                <div class="prop-price" style="font-size:20px;">${p.live ? 'From ' : ''}${fmtN(p.priceFrom)}</div>
+                <span style="font-size:12px;color:var(--ink-soft);">${p.live ? 'Starting price for' : 'Indicative price for'} ${p.unitLabel}</span>
+              `}
             </div>
             <div class="side-card">
-              <h4>Live availability</h4>
-              <div class="legend">
-                <span><i style="background:var(--ok);"></i>${counts.available} Available</span>
-                <span><i style="background:var(--amber);"></i>${counts.reserved} Reserved</span>
-                <span><i style="background:var(--sold);"></i>${counts.sold} Sold</span>
-              </div>
-              <button class="btn btn-primary btn-block" onclick="setModalTab('siteplan')">View unit map</button>
+              <h4>Availability</h4>
+              ${counts ? `
+                <div class="legend">
+                  <span><i style="background:var(--ok);"></i>${counts.available} Available</span>
+                  <span><i style="background:var(--amber);"></i>${counts.reserved} Reserved</span>
+                  <span><i style="background:var(--sold);"></i>${counts.sold} Sold</span>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="setModalTab('siteplan')">View unit map</button>
+              ` : `
+                <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 12px;">${p.inventoryPending ? 'Plot inventory and numbering are pending confirmation from Sunrise Africa Properties before publication.' : 'Availability will be published closer to launch.'}</p>
+              `}
             </div>
             <div class="side-card" style="border-left:3px solid var(--amber);">
               <h4 style="display:flex;align-items:center;gap:6px;"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--amber-deep);"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z"/><path d="M12 7v5l3 3"/></svg> How do I know this is real?</h4>
-              <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 12px;">Site progress verified by GPS, dated, and signed off by a named project manager — not a marketing render.</p>
+              <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 12px;">${p.live ? 'Site progress verified by GPS, dated, and signed off by a named project manager — not a marketing render.' : 'This project is not on active sales yet — the Transparency Centre will populate with verified updates once it launches.'}</p>
               <button class="btn btn-dark btn-block" onclick="setModalTab('transparency')">Open Transparency Centre</button>
             </div>
           </div>
@@ -1712,24 +1867,40 @@ function renderModal(){
         <div class="modal-grid">
           <div>
             <h4 style="margin:0 0 4px;font-size:15px;">Development Overview</h4>
-            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 18px;">Verified construction progress, updated directly by the project team on site — not a projected or marketing timeline.</p>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 18px;">${p.live ? 'Verified progress, updated directly by the project/admin team — not a projected or marketing timeline.' : 'Indicative pre-launch milestones. This project is not yet on active sales.'}</p>
+            ${p.completionPct!==null ? `
             <div class="completion-ring-row">
               <div class="completion-ring" style="--pct:${p.completionPct}">
                 <div class="completion-ring-inner"><b>${p.completionPct}%</b><span>Overall</span></div>
               </div>
               <div class="completion-ring-label">
                 <b>${p.name}</b>
-                <span>${p.location} · ${p.status}</span>
+                <span>${p.location} · ${badgeLabel}</span>
               </div>
-            </div>
-            <h4 style="margin:20px 0 10px;font-size:14px;">Development Milestones</h4>
+            </div>` : `
+            <div class="completion-ring-row" style="align-items:flex-start;">
+              <div class="completion-ring-label">
+                <b>${p.name}</b>
+                <span>${p.location} · ${badgeLabel}</span>
+                <p style="font-size:12px;color:var(--ink-soft);margin:8px 0 0;">${p.statusNote || 'A single completion percentage is not published for this project.'}</p>
+              </div>
+            </div>`}
+            <h4 style="margin:20px 0 10px;font-size:14px;">Project Milestones</h4>
             <table class="milestone-table">
               <tbody>
                 ${p.milestones.map(m=>milestoneRow(m)).join('')}
               </tbody>
             </table>
+            ${p.documentLifecycle ? `
+            <h4 style="margin:20px 0 10px;font-size:14px;">Document Lifecycle</h4>
+            <table class="milestone-table">
+              <tbody>
+                ${p.documentLifecycle.map(d=>`<tr><td>${d.stage}</td><td class="ms-status" style="color:var(--ink-2);">${d.docs.join(', ')}</td></tr>`).join('')}
+              </tbody>
+            </table>` : ''}
           </div>
           <div>
+            ${p.lastUpdate ? `
             <div class="side-card update-card">
               <h4>Latest Site Update</h4>
               <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> GPS Verified</div>
@@ -1738,10 +1909,14 @@ function renderModal(){
               <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg> ${p.lastUpdate.photos} photographs</div>
               <div class="update-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 9 4-2v10l-4-2"/></svg> ${p.lastUpdate.videos} videos</div>
               <button class="btn btn-primary btn-block" style="margin-top:14px;" onclick="toast('Opening latest site gallery (demo)…')">View Photos &amp; Videos</button>
-            </div>
+            </div>` : `
+            <div class="side-card update-card">
+              <h4>Latest Status Update</h4>
+              <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 4px;">${p.statusNote || 'No dated site update has been published for this project yet.'}</p>
+            </div>`}
             <div class="side-card">
               <h4>Why this matters</h4>
-              <p style="font-size:12.5px;color:var(--ink-soft);">Remote and diaspora investors can verify real construction progress without a physical visit — the same update your project manager logs on site appears here automatically.</p>
+              <p style="font-size:12.5px;color:var(--ink-soft);">Remote and diaspora investors can verify real progress without a physical visit — updates logged by Sunrise's team appear here directly, instead of a static brochure.</p>
             </div>
           </div>
         </div>
@@ -1758,35 +1933,34 @@ function renderModal(){
           </div>
           <div class="passport-grid">
             <div class="passport-field"><span>Developer</span><b>Sunrise Africa Properties</b></div>
-            <div class="passport-field"><span>Location</span><b>${p.location}, Lagos${p.location==='Abuja'?' (Abuja)':''}</b></div>
-            <div class="passport-field"><span>Project Status</span><b>${p.status==='Fully Reserved' ? 'Fully Reserved' : 'Active'}</b></div>
-            <div class="passport-field"><span>Total Units</span><b>${p.totalUnits}</b></div>
-            <div class="passport-field"><span>Units Sold</span><b>${counts.sold}</b></div>
-            <div class="passport-field"><span>Units Available</span><b>${counts.available}</b></div>
+            <div class="passport-field"><span>Location</span><b>${p.location}</b></div>
+            <div class="passport-field"><span>Project Status</span><b>${badgeLabel}</b></div>
+            <div class="passport-field"><span>${p.plots ? 'Plot Sizes' : 'Total Units'}</span><b>${p.plots ? p.plots.map(pl=>pl.size+' sqm').join(' / ') : p.totalUnits}</b></div>
+            <div class="passport-field"><span>${p.plots?'Plots':'Units'} Sold</span><b>${counts ? counts.sold : 'Pending'}</b></div>
+            <div class="passport-field"><span>${p.plots?'Plots':'Units'} Available</span><b>${counts ? counts.available : 'Pending'}</b></div>
           </div>
           <h4>Legal</h4>
           <div class="legal-checklist">
-            ${legalItem('Title Documentation', p.legal.title)}
-            ${legalItem('Survey Plan', p.legal.survey)}
-            ${legalItem('Development Approval', p.legal.planning)}
-            ${legalItem('Building Approval', p.legal.building)}
-            ${legalItem('Deed Documentation', p.legal.deed)}
+            ${p.legalItems.map(li=>legalItem(li[0], li[1])).join('')}
           </div>
           <h4>Financial</h4>
           <div class="passport-grid">
-            <div class="passport-field"><span>Project Value</span><b>${fmtN(p.priceFrom * p.totalUnits)}</b></div>
-            <div class="passport-field"><span>Sales to Date</span><b>${fmtN(p.priceFrom * (counts.sold + counts.reserved))}</b></div>
-            <div class="passport-field"><span>Units Reserved</span><b>${counts.reserved}</b></div>
-            <div class="passport-field"><span>Units Sold</span><b>${counts.sold}</b></div>
+            <div class="passport-field"><span>Project Value</span><b>${p.totalUnits ? fmtN(p.priceFrom * p.totalUnits) : 'Pending inventory confirmation'}</b></div>
+            <div class="passport-field"><span>Sales to Date</span><b>${counts ? fmtN(p.priceFrom * (counts.sold + counts.reserved)) : 'Pending'}</b></div>
+            <div class="passport-field"><span>${p.plots?'Plots':'Units'} Reserved</span><b>${counts ? counts.reserved : 'Pending'}</b></div>
+            <div class="passport-field"><span>${p.plots?'Plots':'Units'} Sold</span><b>${counts ? counts.sold : 'Pending'}</b></div>
           </div>
           <h4>Development</h4>
+          ${p.completionPct!==null ? `
           <div class="progress-track" style="height:10px;margin-bottom:6px;"><div class="progress-fill" style="width:${p.completionPct}%;"></div></div>
           <span style="font-size:12px;color:var(--ink-soft);">${p.completionPct}% complete</span>
-          <div class="passport-footer">Last verified update: ${p.lastUpdate.date} · GPS verified on site</div>
+          ` : `<p style="font-size:12.5px;color:var(--ink-soft);margin:0;">${p.statusNote || 'Completion percentage not yet published.'}</p>`}
+          <div class="passport-footer">${p.lastUpdate ? `Last verified update: ${p.lastUpdate.date} · GPS verified on site` : 'Last verified: pending next status update from Sunrise Africa Properties'}</div>
         </div>
       </div>
 
       <div class="modal-pane" data-pane="siteplan">
+        ${counts ? `
         <div class="modal-grid">
           <div>
             <h4 style="margin:0 0 6px;font-size:15px;">Interactive Site Plan</h4>
@@ -1804,10 +1978,36 @@ function renderModal(){
               <p style="font-size:13px;color:var(--ink-soft);">Select a unit on the plan to see its size, price and status.</p>
             </div>
           </div>
-        </div>
+        </div>` : `
+        <div class="side-card" style="max-width:480px;margin:0 auto;text-align:center;">
+          <h4>Site plan pending</h4>
+          <p style="font-size:13px;color:var(--ink-soft);">${p.inventoryPending ? 'Plot inventory and individual plot numbers are pending confirmation from Sunrise Africa Properties before this map can be published.' : 'This project is not yet on active sales, so a live site plan is not published.'}</p>
+        </div>`}
       </div>
 
       <div class="modal-pane" data-pane="floorplan">
+        ${p.plots ? `
+        <div class="modal-grid">
+          <div>
+            <h4 style="margin:0 0 6px;font-size:15px;">Plot Sizes &amp; Survey</h4>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 16px;">${p.name} is offered in two registered plot sizes. Individual plot numbering is pending confirmation from Sunrise Africa Properties.</p>
+            ${p.plots.map(pl=>`<div class="side-card" style="display:flex;justify-content:space-between;align-items:center;">
+              <div><b style="font-size:16px;">${pl.size} sqm</b><br><span style="font-size:12px;color:var(--ink-soft);">Registered plot</span></div>
+              <div class="prop-price" style="font-size:17px;margin:0;">${fmtN(pl.price)}</div>
+            </div>`).join('')}
+          </div>
+          <div>
+            <div class="side-card">
+              <h4>Survey status</h4>
+              <p style="font-size:13px;color:var(--ink-soft);line-height:1.7;">Registered survey in the name of Sunrise Africa Properties Limited. Government allocation is in progress.</p>
+            </div>
+            <div class="side-card">
+              <h4>Questions about plot layout?</h4>
+              <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px;">Our advisory team can walk you through the estate layout on a live video call.</p>
+              <button class="btn btn-ghost btn-block" onclick="setModalTab('book')">Book a consultation</button>
+            </div>
+          </div>
+        </div>` : `
         <div class="modal-grid">
           <div class="floorplan-box">
             <div id="fpSvgHolder">${floorplanSVG(p.fp)}</div>
@@ -1826,10 +2026,18 @@ function renderModal(){
               <button class="btn btn-ghost btn-block" onclick="setModalTab('book')">Book a design consultation</button>
             </div>
           </div>
-        </div>
+        </div>`}
       </div>
 
       <div class="modal-pane" data-pane="book">
+        ${!p.live ? `
+        <div class="side-card" style="max-width:480px;margin:0 auto;text-align:center;">
+          <h4>Coming Soon</h4>
+          <p style="font-size:13px;color:var(--ink-soft);margin:0 0 16px;">${p.name} is an upcoming project and is not yet open for inspection bookings. Register your interest and we'll notify you at launch.</p>
+          <div class="field" style="margin-bottom:10px;"><label>Full name</label><input type="text" id="interestName" placeholder="Your name"></div>
+          <div class="field" style="margin-bottom:14px;"><label>Email or phone</label><input type="text" id="interestContact" placeholder="you@email.com or +234..."></div>
+          <button class="btn btn-primary btn-block" onclick="submitInterest('${p.name}')">Register Interest</button>
+        </div>` : `
         <div class="modal-grid">
           <div>
             <h4 style="margin:0 0 6px;font-size:15px;">Choose a date</h4>
@@ -1857,10 +2065,52 @@ function renderModal(){
               <p style="font-size:13px;color:var(--ink-soft);" id="bookingSummaryLine">No date or time selected yet.</p>
             </div>
           </div>
-        </div>
+        </div>`}
       </div>
 
       <div class="modal-pane" data-pane="pay">
+        ${!p.live ? `
+        <div class="side-card" style="max-width:480px;margin:0 auto;text-align:center;">
+          <h4>Coming Soon</h4>
+          <p style="font-size:13px;color:var(--ink-soft);margin:0 0 16px;">${p.name} is not yet on active sales. Register your interest and our advisory team will reach out as soon as it launches.</p>
+          <div class="field" style="margin-bottom:10px;"><label>Full name</label><input type="text" id="interestName2" placeholder="Your name"></div>
+          <div class="field" style="margin-bottom:14px;"><label>Email or phone</label><input type="text" id="interestContact2" placeholder="you@email.com or +234..."></div>
+          <button class="btn btn-primary btn-block" onclick="submitInterest('${p.name}')">Register Interest</button>
+        </div>` : p.plots ? `
+        <div class="modal-grid">
+          <div>
+            <h4 style="margin:0 0 6px;font-size:15px;">Purchase this plot</h4>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 16px;">Select a plot size and payment structure. Submitting creates your Starter Kit (Letter of Subscription, Receipt and Invoice) once payment begins.</p>
+            <div class="form-row">
+              <div class="field">
+                <label>Plot size</label>
+                <select id="plotSizeSelect" onchange="updateMonarchTotal()">
+                  ${p.plots.map(pl=>`<option value="${pl.price}">${pl.size} sqm — ${fmtN(pl.price)}</option>`).join('')}
+                </select>
+              </div>
+              <div class="field">
+                <label>Payment structure</label>
+                <select id="paymentPlanSelect" onchange="updateMonarchTotal()">
+                  ${p.paymentPlans.map(pp=>`<option value="${pp.markup}">${pp.label}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+            <p style="font-size:11.5px;color:var(--ink-soft);margin:-6px 0 14px;" id="paymentPlanNote">${p.paymentPlans[0].note}</p>
+            <div class="spec-list">
+              <div class="spec-item"><b id="monarchBasePrice">${fmtN(p.plots[0].price)}</b><span>Plot price</span></div>
+              <div class="spec-item"><b id="monarchTotalPrice">${fmtN(p.plots[0].price)}</b><span>Total payable</span></div>
+            </div>
+            <div id="payAccountBlock"></div>
+            <button class="btn btn-primary btn-block" onclick="submitMonarchPurchase()">Submit Purchase Request</button>
+            <p style="font-size:11px;color:var(--ink-soft);margin-top:10px;">Allocation fee, exact payment channels and consent requirements are pending confirmation from Sunrise Africa Properties — your advisory contact will confirm these before your first payment is taken.</p>
+          </div>
+          <div>
+            <div class="side-card">
+              <h4>What happens next</h4>
+              ${p.documentLifecycle.map(d=>`<div class="update-row" style="border-bottom:1px solid var(--line-2);"><b style="font-weight:700;">${d.stage}:</b>&nbsp;${d.docs.join(', ')}</div>`).join('')}
+            </div>
+          </div>
+        </div>` : `
         <div class="modal-grid">
           <div>
             <h4 style="margin:0 0 6px;font-size:15px;">Reserve this unit</h4>
@@ -1878,15 +2128,47 @@ function renderModal(){
               <p style="font-size:13px;color:var(--ink-soft);">Card, bank transfer and USSD via Paystack / Flutterwave. This demo simulates the flow — no live gateway is called.</p>
             </div>
           </div>
-        </div>
+        </div>`}
       </div>
 
     </div>
   </div>`;
   buildUnitGrid();
   buildCalendar();
-  renderPayAccountBlock();
+  if(p.live) renderPayAccountBlock();
 }
+
+function updateMonarchTotal(){
+  const base = Number(document.getElementById('plotSizeSelect').value);
+  const markup = Number(document.getElementById('paymentPlanSelect').value);
+  const total = Math.round(base * (1+markup));
+  document.getElementById('monarchBasePrice').textContent = fmtN(base);
+  document.getElementById('monarchTotalPrice').textContent = fmtN(total);
+  const plan = currentProp.paymentPlans[[...document.getElementById('paymentPlanSelect').options].findIndex(o=>Number(o.value)===markup)];
+  document.getElementById('paymentPlanNote').textContent = plan ? plan.note : '';
+}
+function submitMonarchPurchase(){
+  if(!isAuthed){
+    const nameEl = document.getElementById('payAcctName');
+    const emailEl = document.getElementById('payAcctEmail');
+    const name = nameEl ? nameEl.value.trim() : '';
+    const email = emailEl ? emailEl.value.trim() : '';
+    if(!name || !email){ toast('Please enter your name, phone and email first.'); return; }
+    if(!payOtpVerified){ toast('Please verify your phone number with the OTP sent to it first.'); return; }
+    isAuthed = true; authedName = name; authedEmail = email;
+    renderPayAccountBlock();
+  }
+  toast(`Purchase request submitted for ${currentProp.name}. Your Starter Kit (Letter of Subscription, Receipt & Invoice) will be issued to ${authedEmail} once payment is confirmed.`);
+  closeModal();
+}
+function submitInterest(propName){
+  const nameEl = document.getElementById('interestName') || document.getElementById('interestName2');
+  const name = nameEl && nameEl.value.trim() ? nameEl.value.trim() : 'there';
+  toast(`Thanks, ${name.split(' ')[0]} — we'll notify you as soon as ${propName} launches.`);
+  closeModal();
+}
+
+
 
 function renderPayAccountBlock(){
   const el = document.getElementById('payAccountBlock');
@@ -2075,7 +2357,7 @@ function enterInvestorPortal(){
    INVESTOR PORTAL DATA
 ===================================================== */
 const MY_PROPERTIES = [
-  {name:'Eleko Coastal Heights — Unit 14B', seed:1, tall:true, total:120000000, paid:78000000},
+  {name:'Monarch Court — 500 sqm Plot', seed:1, tall:true, total:35000000, paid:22750000},
   {name:'Serene Waters Villas — Unit 07', seed:0, tall:false, total:85000000, paid:85000000},
 ];
 function renderInvestorPortfolio(){
@@ -2099,15 +2381,15 @@ function renderInvestorPortfolio(){
     }).join('')}</tbody>`;
 
   document.getElementById('invActivityTable').innerHTML = [
-    ['Payment received','₦8,000,000 toward Eleko Coastal Heights','2 days ago'],
+    ['Payment received','₦8,000,000 toward Monarch Court','2 days ago'],
     ['Site progress update','Block C roofing completed','4 days ago'],
     ['Document issued','Allocation Letter — Serene Waters Villas','1 week ago'],
     ['Inspection completed','Live video walkthrough — Unit 14B','2 weeks ago'],
   ].map(r=>`<tr><td><b>${r[0]}</b></td><td style="color:var(--ink-soft);">${r[1]}</td><td style="color:var(--ink-soft);text-align:right;">${r[2]}</td></tr>`).join('');
 
   document.getElementById('invPaymentsTable').innerHTML = [
-    ['Eleko Coastal Heights','Instalment 4 of 6','₦8,200,000','18 Sep 2026','Due Soon'],
-    ['Eleko Coastal Heights','Instalment 5 of 6','₦8,200,000','18 Dec 2026','Upcoming'],
+    ['Monarch Court','Instalment 4 of 6','₦8,200,000','18 Sep 2026','Due Soon'],
+    ['Monarch Court','Instalment 5 of 6','₦8,200,000','18 Dec 2026','Upcoming'],
     ['Serene Waters Villas','Final Instalment','—','Paid in full','Complete'],
   ].map(r=>{
     const badge = r[4]==='Due Soon'?'badge-warn':r[4]==='Complete'?'badge-ok':'badge-sold';
@@ -2117,9 +2399,9 @@ function renderInvestorPortfolio(){
 
   document.getElementById('invDocsTable').innerHTML = [
     ['Allocation Letter.pdf','Serene Waters Villas','12 Jun 2026'],
-    ['Payment Receipt #0042.pdf','Eleko Coastal Heights','2 days ago'],
+    ['Payment Receipt #0042.pdf','Monarch Court','2 days ago'],
     ['Deed of Assignment.pdf','Serene Waters Villas','30 Jun 2026'],
-    ['Survey Plan.pdf','Eleko Coastal Heights','15 Mar 2026'],
+    ['Survey Plan.pdf','Monarch Court','15 Mar 2026'],
   ].map(d=>`<tr><td><div class="doc-row"><div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></div><b>${d[0]}</b></div></td><td style="color:var(--ink-soft);">${d[1]}</td><td style="color:var(--ink-soft);">${d[2]}</td><td><button class="btn btn-ghost btn-sm" onclick="toast('Downloading ${d[0]} (demo)…')">Download</button></td></tr>`).join('');
 
   document.getElementById('progressPhotos').innerHTML = ['Foundation','Structural Frame','Roofing','Finishing'].map((label,i)=>`
@@ -2139,7 +2421,7 @@ function setInvestorPane(id, btn){
 ===================================================== */
 const LEADS = {
   'New': [
-    {name:'Chinedu Obi', prop:'Eleko Coastal Heights', tag:'Website enquiry'},
+    {name:'Chinedu Obi', prop:'Monarch Court', tag:'Website enquiry'},
     {name:'Grace Effiong', prop:'Capital Gardens Estate', tag:'Referral'},
   ],
   'Contacted': [
@@ -2173,7 +2455,7 @@ function renderCommission(){
 }
 function renderMaterials(){
   document.getElementById('materialsTable').innerHTML = [
-    ['Eleko Coastal Heights — Brochure','PDF'],
+    ['Monarch Court — Brochure','PDF'],
     ['Serene Waters Villas — Price List','XLSX'],
     ['Sunrise Africa — Company Profile','PDF'],
     ['Social Media Pack — Q3 2026','ZIP'],
@@ -2199,9 +2481,9 @@ function setDeveloperPane(id, btn){
 function renderDeveloperCommandCentre(){
   const miniRows = PROPERTIES.map(p=>`
     <div class="cc-project-row">
-      <div class="cc-name"><b>${p.name}</b><span>${p.location}</span></div>
-      <div class="progress-track"><div class="progress-fill" style="width:${p.completionPct}%;"></div></div>
-      <div class="cc-pct">${p.completionPct}%</div>
+      <div class="cc-name"><b>${p.name}</b><span>${p.location} · ${p.live?'Live':'Upcoming'}</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:${p.completionPct!==null && p.completionPct!==undefined ? p.completionPct : 0}%;"></div></div>
+      <div class="cc-pct">${p.completionPct!==null && p.completionPct!==undefined ? p.completionPct+'%' : 'Pending'}</div>
     </div>
   `).join('');
   document.getElementById('devProjectMini').innerHTML = miniRows;
@@ -2210,17 +2492,18 @@ function renderDeveloperCommandCentre(){
     <thead><tr><th>Development</th><th>Location</th><th>Units</th><th>Sold / Reserved</th><th>Completion</th><th>Status</th></tr></thead>
     <tbody>
       ${PROPERTIES.map(p=>{
-        const states = UNIT_STATE[p.id];
-        const counts = {available:0,reserved:0,sold:0};
-        states.forEach(s=>counts[s]++);
-        const badgeClass = p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
+        const counts = getCounts(p);
+        const badgeClass = !p.live ? 'badge-sold' : p.status==='Units Available'?'badge-ok': p.status==='Limited Units'?'badge-warn':'badge-sold';
+        const badgeLabel = !p.live ? 'Upcoming' : p.status;
+        const pct = (p.completionPct!==null && p.completionPct!==undefined) ? p.completionPct : 0;
+        const pctLabel = (p.completionPct!==null && p.completionPct!==undefined) ? p.completionPct+'%' : 'Pending';
         return `<tr>
           <td><b>${p.name}</b></td>
           <td style="color:var(--ink-soft);">${p.location}</td>
-          <td>${p.totalUnits}</td>
-          <td>${counts.sold} / ${counts.reserved}</td>
-          <td style="min-width:140px;"><div class="progress-track"><div class="progress-fill" style="width:${p.completionPct}%;"></div></div></td>
-          <td><span class="badge ${badgeClass}">${p.status}</span></td>
+          <td>${p.totalUnits || 'Pending'}</td>
+          <td>${counts ? counts.sold+' / '+counts.reserved : 'Pending'}</td>
+          <td style="min-width:140px;"><div class="progress-track"><div class="progress-fill" style="width:${pct}%;"></div></div><span style="font-size:11px;color:var(--ink-soft);">${pctLabel}</span></td>
+          <td><span class="badge ${badgeClass}">${badgeLabel}</span></td>
         </tr>`;
       }).join('')}
     </tbody>
@@ -2260,6 +2543,7 @@ renderKanban();
 renderCommission();
 renderMaterials();
 renderDeveloperCommandCentre();
+renderBuybackAmounts();
 </script>
 </body>
 </html>
