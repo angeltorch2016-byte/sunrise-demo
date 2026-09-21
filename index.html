@@ -349,6 +349,9 @@ footer{background:var(--ink);color:#B9C0D2;padding:44px 28px 26px;margin-top:20p
 .buyback-result-card b{font-size:17px;color:var(--ink);}
 .buyback-result-highlight{background:var(--amber-light);}
 .buyback-result-highlight b{color:var(--amber-deep);}
+.buyback-term-card{cursor:pointer;border:2px solid transparent;transition:border-color .15s;}
+.buyback-term-card.selected{border-color:var(--ink);}
+.buyback-term-card.selected::after{content:"✓ Selected";display:block;font-size:10.5px;font-weight:800;color:var(--ink);margin-top:6px;}
 
 /* Transparency Centre */
 .completion-ring-row{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px;margin-bottom:6px;}
@@ -642,7 +645,7 @@ tr:last-child td{border-bottom:none;}
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><b>4</b><span>Active locations</span></div>
-        <div class="hero-stat"><b>6</b><span>Live developments</span></div>
+        <div class="hero-stat"><b>2</b><span>Live developments</span></div>
         <div class="hero-stat"><b>₦2.1bn+</b><span>Assets under management</span></div>
         <div class="hero-stat"><b>70%</b><span>Diaspora-originated sales</span></div>
       </div>
@@ -728,7 +731,7 @@ tr:last-child td{border-bottom:none;}
         <option>Fully Reserved</option>
         <option>Coming Soon</option>
       </select>
-      <span class="filters-count" id="filtersCount">6 developments</span>
+      <span class="filters-count" id="filtersCount">2 developments</span>
     </div>
     <div class="prop-grid" id="propGrid"></div>
   </section>
@@ -754,21 +757,22 @@ tr:last-child td{border-bottom:none;}
             <span>Your investment</span>
             <b id="bbPrincipal">₦1,000,000</b>
           </div>
-          <div class="buyback-result-card buyback-result-highlight">
+          <div class="buyback-result-card buyback-result-highlight buyback-term-card selected" id="bbTerm6Card" onclick="selectBuybackTerm(6)">
             <span>Buy back after 6 months <em>(15%)</em></span>
             <b id="bb6">₦1,150,000</b>
           </div>
-          <div class="buyback-result-card buyback-result-highlight">
+          <div class="buyback-result-card buyback-result-highlight buyback-term-card" id="bbTerm12Card" onclick="selectBuybackTerm(12)">
             <span>Buy back after 12 months <em>(35%)</em></span>
             <b id="bb12">₦1,350,000</b>
           </div>
         </div>
+        <p style="font-size:11px;color:var(--ink-soft);margin:8px 0 0;">Click a term above to select it — highlighted term is what you'll invest under.</p>
         <div class="form-row" style="margin-top:18px;">
           <div class="field"><label>Full name</label><input type="text" id="bbName" placeholder="Your name"></div>
           <div class="field"><label>Email or phone</label><input type="text" id="bbContact" placeholder="you@email.com or +234..."></div>
         </div>
-        <button class="btn btn-primary btn-block" onclick="submitBuyback()">Register Interest in This Investment</button>
-        <p style="font-size:11px;color:var(--ink-soft);margin-top:12px;">Deliverables: a Post Dated Cheque and a Deed of Buy Back are issued as part of the transaction. Full eligibility rules, onboarding requirements and any additional terms are pending final confirmation from Sunrise Africa Properties and are not represented here.</p>
+        <button class="btn btn-primary btn-block" onclick="openBuybackFlow()">Proceed to Invest</button>
+        <p style="font-size:11px;color:var(--ink-soft);margin-top:12px;">Deliverables: a Post Dated Cheque and a Deed of Buy Back are issued as part of the transaction. Offered on the basis of Sunrise Africa Properties' SCUML certificate, REDAN registration and LASRERA licence in connection with its real estate developments.</p>
       </div>
       <div class="buyback-side">
         <div class="side-card">
@@ -969,6 +973,13 @@ tr:last-child td{border-bottom:none;}
       </div>
       <h2 id="loginTitle">Welcome back</h2>
       <p class="sub" id="loginSub">Sign in to view your portfolio and payment schedule.</p>
+      <div class="field hidden" id="adminProfileWrap" style="margin-bottom:14px;">
+        <label>Signing in as</label>
+        <select id="adminProfileSelect">
+          <option value="full">Full Access — Imeh Etuk / Pearl Edodi (Super Admin)</option>
+          <option value="restricted">Mayowa Lawal — Super Admin, excl. Finance &amp; Command Centre</option>
+        </select>
+      </div>
       <div class="demo-hint" id="loginDemoHint">Demo mode — credentials are pre-filled. Just press sign in.</div>
 
       <!-- Sign-in fields -->
@@ -1203,6 +1214,7 @@ tr:last-child td{border-bottom:none;}
         <button class="active" data-pane="dev-overview" onclick="setDeveloperPane('dev-overview', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Overview</button>
         <button data-pane="dev-projects" onclick="setDeveloperPane('dev-projects', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> Projects</button>
         <button data-pane="dev-pipeline" onclick="setDeveloperPane('dev-pipeline', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18l-7 9v6l-4 2v-8L3 4Z"/></svg> Sales Pipeline</button>
+        <button data-pane="dev-buyback" data-finance="true" onclick="setDeveloperPane('dev-buyback', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5a2.5 2.5 0 0 1 3-2.5c1.5 0 3 .8 3 2.3S13.5 12 12 12s-3 .7-3 2.3 1.5 2.7 3 2.3a2.5 2.5 0 0 0 3-2.4"/></svg> Buy Back Ledger</button>
       </nav>
       <div class="portal-user">
         <div class="avatar" style="background:var(--ink);">MD</div>
@@ -1261,6 +1273,18 @@ tr:last-child td{border-bottom:none;}
           <table>
             <thead><tr><th>Stage</th><th>Count</th><th>Conversion from previous</th></tr></thead>
             <tbody id="pipelineTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dev-pane hidden" id="dev-buyback">
+        <div class="portal-topbar"><div><h1>Buy Back Investment Ledger</h1><p>Funds raised and outstanding payout obligations — Finance-restricted.</p></div></div>
+        <div class="stat-grid" id="bbLedgerStats"></div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Active investments</h3><p>Scheduled buy-back date and amount per investor</p></div></div>
+          <table>
+            <thead><tr><th>Investor</th><th>Principal</th><th>Term</th><th>Buy-back Due</th><th>Payout Date</th></tr></thead>
+            <tbody id="bbLedgerTable"></tbody>
           </table>
         </div>
       </div>
@@ -1348,54 +1372,6 @@ const PROPERTIES = [
       {stage:'Physical Allocation (0–6 months, subject to review)', docs:['Allocation Letter']},
       {stage:'Development Stage', docs:['Survey Plan','Deed of Assignment','Estate Restrictive Covenant']},
     ]
-  },
-  {
-    id:'p3', name:'Capital Gardens Estate', location:'Abuja', type:'Residential', status:'Units Available', live:false,
-    priceFrom:95000000, unitLabel:'5-Bed Terrace', totalUnits:20, seed:2, tall:false,
-    desc:'A landscaped terrace-home estate in Guzape, Abuja, close to the diplomatic zone with full estate management services.',
-    amenities:['Estate Management','Landscaped Gardens','Gym','Water Treatment','Fibre Internet'],
-    specs:[['Land Size','350 sqm'],['Bedrooms','5'],['Bathrooms','6'],['Status','Ready-to-Build']],
-    fp:'duplex',
-    completionPct:35,
-    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',40],['Foundation',20],['Structural Works',0],['Roofing',0],['Finishing',0],['Handover','scheduled']],
-    lastUpdate:{date:'2 September 2026', pm:'Ibrahim Sule', photos:9, videos:1, gps:true},
-    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',false],['Deed Documentation',false]]
-  },
-  {
-    id:'p4', name:'Ikorodu Trade Court', location:'Ikorodu', type:'Commercial', status:'Units Available', live:false,
-    priceFrom:45000000, unitLabel:'Retail & Office Units', totalUnits:30, seed:3, tall:false,
-    desc:'A mixed-use commercial court along the Ikorodu corridor, purpose-built for retail, showroom and small office tenants.',
-    amenities:['Ample Parking','Loading Bay','24/7 Power','Fire Safety','Signage Frontage'],
-    specs:[['Unit Size','60-180 sqm'],['Floors','3'],['Parking','40 bays'],['Status','Ready-to-Build']],
-    fp:'commercial',
-    completionPct:95,
-    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',100],['Foundation',100],['Structural Works',100],['Roofing',100],['Finishing',85],['Handover','scheduled']],
-    lastUpdate:{date:'9 September 2026', pm:'Ngozi Eze', photos:22, videos:4, gps:true},
-    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',true],['Deed Documentation',true]]
-  },
-  {
-    id:'p5', name:'Lekki Business Atrium', location:'Ibeju-Lekki', type:'Commercial', status:'Limited Units', live:false,
-    priceFrom:150000000, unitLabel:'Office Suites', totalUnits:16, seed:4, tall:true,
-    desc:'A Grade-A office atrium serving the industrial and logistics growth around the Lekki Free Trade Zone.',
-    amenities:['Backup Power','Fibre Ready','Conference Facility','Elevator Access','Reception Services'],
-    specs:[['Unit Size','120-400 sqm'],['Floors','6'],['Parking','60 bays'],['Status','Off-plan']],
-    fp:'commercial',
-    completionPct:22,
-    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',25],['Foundation',0],['Structural Works',0],['Roofing',0],['Finishing',0],['Handover','scheduled']],
-    lastUpdate:{date:'30 August 2026', pm:'Tunde Balogun', photos:6, videos:1, gps:true},
-    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',false],['Deed Documentation',false]]
-  },
-  {
-    id:'p6', name:'Abuja Heights Residences', location:'Abuja', type:'Residential', status:'Fully Reserved', live:false,
-    priceFrom:110000000, unitLabel:'3-Bed Apartments', totalUnits:22, seed:5, tall:true,
-    desc:'A mid-rise apartment complex in Katampe Extension, popular with diplomatic and NGO tenants seeking serviced living.',
-    amenities:['Serviced Apartments','Rooftop Lounge','Gym','Concierge','Standby Generator'],
-    specs:[['Unit Size','180 sqm'],['Bedrooms','3'],['Bathrooms','3'],['Status','Under Construction']],
-    fp:'3bed',
-    completionPct:67,
-    milestones:[['Land Acquisition','done'],['Planning Approval','done'],['Infrastructure',88],['Foundation',100],['Structural Works',70],['Roofing',40],['Finishing',15],['Handover','scheduled']],
-    lastUpdate:{date:'6 September 2026', pm:'Grace Nwosu', photos:16, videos:2, gps:true},
-    legalItems:[['Title Documentation',true],['Survey Plan',true],['Development Approval',true],['Building Approval',true],['Deed Documentation',true]]
   },
 ];
 
@@ -1489,6 +1465,7 @@ function setLoginTab(role){
   document.getElementById('tabInvestor').classList.toggle('active', role==='investor');
   document.getElementById('tabAgent').classList.toggle('active', role==='agent');
   document.getElementById('tabDeveloper').classList.toggle('active', role==='developer');
+  document.getElementById('adminProfileWrap').classList.toggle('hidden', role!=='developer');
   const hint = document.getElementById('loginDemoHint');
   const authSwitch = document.getElementById('authSwitch');
   if(role==='investor'){
@@ -1593,9 +1570,36 @@ function doLogin(){
     setActiveView('view-investor');
   }
   else if(loginRole==='agent'){ setActiveView('view-agent'); }
-  else { setActiveView('view-developer'); }
+  else {
+    adminAccessProfile = document.getElementById('adminProfileSelect').value;
+    if(adminAccessProfile==='restricted'){
+      showRestrictedAdminNotice();
+      return;
+    }
+    setActiveView('view-developer');
+    applyAdminAccessProfile();
+  }
   toast('Verified — demo session started.');
 }
+function showRestrictedAdminNotice(){
+  document.getElementById('paymentRoot').innerHTML = `
+  <div class="modal-overlay" onclick="if(event.target===this)closeRestrictedNotice()">
+    <div class="modal" style="max-width:440px;">
+      <div class="modal-head">
+        <div><h2 style="font-size:19px;">Command Centre — Access Restricted</h2></div>
+        <button class="modal-close" onclick="closeRestrictedNotice()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-pane active" style="padding:28px;text-align:center;">
+        <div class="side-card" style="border-left:3px solid var(--warn);text-align:left;">
+          <h4>Mayowa Lawal's admin profile</h4>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.7;">This profile has Super Admin write/edit access to property and content management, but the Finance module and the Developer Command Centre — including the Buy Back Investment ledger — are outside its permissions. This mirrors the access-control instruction on file for this account.</p>
+        </div>
+        <button class="btn btn-dark btn-block" onclick="closeRestrictedNotice();showPublic();">Back to website</button>
+      </div>
+    </div>
+  </div>`;
+}
+function closeRestrictedNotice(){ document.getElementById('paymentRoot').innerHTML=''; }
 
 function openRealtorApplication(){
   document.getElementById('paymentRoot').innerHTML = `
@@ -1723,11 +1727,102 @@ function updateBuybackResults(amount){
   document.getElementById('bb6').textContent = fmtN(Math.round(amount * 1.15));
   document.getElementById('bb12').textContent = fmtN(Math.round(amount * 1.35));
 }
-function submitBuyback(){
-  const nameEl = document.getElementById('bbName');
-  const name = nameEl && nameEl.value.trim() ? nameEl.value.trim() : 'there';
-  toast(`Thanks, ${name.split(' ')[0]} — our advisory team will contact you to confirm eligibility and next steps for your ${fmtN(selectedBuybackAmount)} Buy Back Investment.`);
+let selectedBuybackTerm = 6;
+function selectBuybackTerm(term){
+  selectedBuybackTerm = term;
+  document.getElementById('bbTerm6Card').classList.toggle('selected', term===6);
+  document.getElementById('bbTerm12Card').classList.toggle('selected', term===12);
 }
+let bbOtpVerified = false;
+function openBuybackFlow(){
+  bbOtpVerified = false;
+  const name = (document.getElementById('bbName').value || '').trim();
+  const contact = (document.getElementById('bbContact').value || '').trim();
+  const payout = selectedBuybackTerm===6 ? Math.round(selectedBuybackAmount*1.15) : Math.round(selectedBuybackAmount*1.35);
+  document.getElementById('paymentRoot').innerHTML = `
+  <div class="modal-overlay" onclick="if(event.target===this)closeBuybackFlow()">
+    <div class="modal" style="max-width:480px;">
+      <div class="modal-head">
+        <div><h2 style="font-size:19px;">Buy Back Investment — Onboarding</h2><p class="prop-meta" style="margin:4px 0 0;">${fmtN(selectedBuybackAmount)} · ${selectedBuybackTerm}-month term</p></div>
+        <button class="modal-close" onclick="closeBuybackFlow()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-pane active" style="padding:26px;" id="bbFlowStep">
+        <div class="form-row">
+          <div class="field"><label>Full name</label><input type="text" id="bbFullName" value="${name}" placeholder="Your name"></div>
+          <div class="field"><label>Phone</label><input type="text" id="bbPhone" placeholder="+234 800 000 0000"></div>
+        </div>
+        <div class="field" style="margin-bottom:10px;"><label>Email address</label><input type="text" id="bbEmail" value="${contact.includes('@')?contact:''}" placeholder="you@email.com"></div>
+        <div class="form-row">
+          <div class="field"><label>NIN</label><input type="text" id="bbNin" placeholder="11-digit NIN"></div>
+          <div class="field"><label>Valid ID type</label><select id="bbIdType"><option>International Passport</option><option>Driver's Licence</option><option>Voter's Card</option></select></div>
+        </div>
+        <div class="field" style="margin-bottom:14px;"><label>Payout bank account (for buy-back settlement)</label><input type="text" id="bbBankAcct" placeholder="Account number — Bank name"></div>
+        <p style="font-size:11px;color:var(--ink-soft);margin:0 0 16px;">This creates your Buy Back Investment record and payout schedule. A Post Dated Cheque and Deed of Buy Back are issued once payment is confirmed.</p>
+        <button class="btn btn-primary btn-block" onclick="sendBbOtp()">Send OTP to Verify Phone</button>
+      </div>
+    </div>
+  </div>`;
+}
+function sendBbOtp(){
+  const name = document.getElementById('bbFullName').value.trim();
+  const phone = document.getElementById('bbPhone').value.trim();
+  const email = document.getElementById('bbEmail').value.trim();
+  if(!name || !phone || !email){ toast('Please fill in your name, phone and email first.'); return; }
+  toast(`OTP sent to ${phone} (demo code: ${DEMO_OTP})`);
+  document.getElementById('bbFlowStep').innerHTML += `
+    <div class="field" style="margin:14px 0 8px;"><label>Enter 6-digit OTP</label><input type="text" id="bbOtp" maxlength="6" value="123456"></div>
+    <button class="btn btn-primary btn-block" onclick="verifyBbOtp()">Verify &amp; Continue to Payment</button>
+  `;
+}
+function verifyBbOtp(){
+  const otp = document.getElementById('bbOtp').value.trim();
+  if(otp !== DEMO_OTP){ toast(`That code didn't match. Demo code is ${DEMO_OTP}.`); return; }
+  bbOtpVerified = true;
+  authedName = document.getElementById('bbFullName').value.trim();
+  authedEmail = document.getElementById('bbEmail').value.trim();
+  isAuthed = true;
+  renderBbPaymentStep();
+}
+function renderBbPaymentStep(){
+  const payout = selectedBuybackTerm===6 ? Math.round(selectedBuybackAmount*1.15) : Math.round(selectedBuybackAmount*1.35);
+  const payoutDate = selectedBuybackTerm===6 ? '20 March 2027' : '20 September 2027';
+  document.getElementById('bbFlowStep').innerHTML = `
+    <div class="pay-step" id="bbPayStep">
+      <span style="font-size:12.5px;color:var(--ink-soft);font-weight:700;">INVESTMENT AMOUNT</span>
+      <div class="amt">${fmtN(selectedBuybackAmount)}</div>
+      <span style="font-size:12px;color:var(--ink-soft);">${selectedBuybackTerm}-month term · Buy-back of ${fmtN(payout)} on ${payoutDate}</span>
+      <div class="pay-methods">
+        <div class="pay-method selected">Flutterwave</div>
+      </div>
+      <button class="btn btn-primary btn-block" onclick="processBbPayment()">Pay ${fmtN(selectedBuybackAmount)} via Flutterwave (Demo)</button>
+      <p style="font-size:11.5px;color:var(--ink-soft);margin-top:14px;">Powered by Flutterwave · simulated for this demo</p>
+    </div>
+  `;
+}
+function processBbPayment(){
+  document.getElementById('bbPayStep').innerHTML = `<div class="spinner"></div><p style="font-size:13.5px;color:var(--ink-soft);">Processing payment securely via Flutterwave…</p>`;
+  setTimeout(()=>{
+    const payout = selectedBuybackTerm===6 ? Math.round(selectedBuybackAmount*1.15) : Math.round(selectedBuybackAmount*1.35);
+    const payoutDate = selectedBuybackTerm===6 ? '20 March 2027' : '20 September 2027';
+    BUYBACK_LEDGER.push({name:authedName, amount:selectedBuybackAmount, term:selectedBuybackTerm, payout, payoutDate});
+    document.getElementById('bbPayStep').innerHTML = `
+      <div class="success-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3 style="margin:0 0 6px;font-family:var(--serif);">Investment Confirmed</h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin:0 0 14px;">${fmtN(selectedBuybackAmount)} received. Your Deed of Buy Back has been generated, and buy-back of ${fmtN(payout)} is scheduled for ${payoutDate}. A Post Dated Cheque will be arranged separately with your advisory contact.</p>
+      <div class="side-card" style="text-align:left;margin-bottom:14px;">
+        <h4 style="margin:0 0 8px;">Deed of Buy Back — Summary</h4>
+        <div class="update-row"><b style="font-weight:700;">Investor:</b>&nbsp;${authedName}</div>
+        <div class="update-row"><b style="font-weight:700;">Principal:</b>&nbsp;${fmtN(selectedBuybackAmount)}</div>
+        <div class="update-row"><b style="font-weight:700;">Term:</b>&nbsp;${selectedBuybackTerm} months</div>
+        <div class="update-row"><b style="font-weight:700;">Buy-back due:</b>&nbsp;${fmtN(payout)} on ${payoutDate}</div>
+      </div>
+      <button class="btn btn-dark btn-block" onclick="closeBuybackFlow();openLogin('investor');">View in Investor Portal</button>
+      <button class="btn btn-ghost btn-block" style="margin-top:10px;" onclick="closeBuybackFlow()">Close</button>
+    `;
+    renderDeveloperCommandCentre();
+  }, 1600);
+}
+function closeBuybackFlow(){ document.getElementById('paymentRoot').innerHTML=''; }
 
 /* =====================================================
    FLOOR PLAN SVGs
@@ -1779,6 +1874,11 @@ let authedName = '';
 let authedEmail = '';
 let payOtpSent = false;
 let payOtpVerified = false;
+const BUYBACK_LEDGER = [
+  {name:'Chinedu Obi', amount:5000000, term:12, payout:6750000, payoutDate:'14 August 2027'},
+  {name:'Aisha Bello', amount:2000000, term:6, payout:2300000, payoutDate:'2 March 2027'},
+  {name:'Emeka Umeh', amount:10000000, term:12, payout:13500000, payoutDate:'30 June 2027'},
+];
 
 function openProperty(id){
   currentProp = PROPERTIES.find(p=>p.id===id);
@@ -2468,14 +2568,37 @@ function setAgentPane(id, btn){
 /* =====================================================
    DEVELOPER COMMAND CENTRE
 ===================================================== */
+let adminAccessProfile = 'full';
 function setDeveloperPane(id, btn){
+  if(id==='dev-buyback' && adminAccessProfile==='restricted'){
+    toast('Access restricted — the Buy Back Ledger is Finance-restricted and not available to your admin profile.');
+    return;
+  }
   document.querySelectorAll('#view-developer .portal-nav button').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
   document.querySelectorAll('.dev-pane').forEach(p=>p.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
 }
+function applyAdminAccessProfile(){
+  const restricted = adminAccessProfile==='restricted';
+  document.querySelectorAll('#view-developer .portal-nav button[data-finance]').forEach(b=>{
+    b.classList.toggle('nav-restricted', restricted);
+  });
+  document.querySelectorAll('#view-developer .stat-card[data-finance]').forEach(c=>{
+    c.classList.toggle('stat-restricted', restricted);
+  });
+}
 
 function renderDeveloperCommandCentre(){
+  document.getElementById('bbLedgerStats').innerHTML = `
+    <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div></div><b>${fmtN(BUYBACK_LEDGER.reduce((s,r)=>s+r.amount,0))}</b><span>Total funds raised</span></div>
+    <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div></div><b>${fmtN(BUYBACK_LEDGER.reduce((s,r)=>s+r.payout,0))}</b><span>Total outstanding payout obligation</span></div>
+    <div class="stat-card"><div class="stat-top"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg></div></div><b>${BUYBACK_LEDGER.length}</b><span>Active investors</span></div>
+  `;
+  document.getElementById('bbLedgerTable').innerHTML = BUYBACK_LEDGER.map(r=>`
+    <tr><td><b>${r.name}</b></td><td>${fmtN(r.amount)}</td><td>${r.term} months</td><td><b>${fmtN(r.payout)}</b></td><td>${r.payoutDate}</td></tr>
+  `).join('');
+
   const miniRows = PROPERTIES.map(p=>`
     <div class="cc-project-row">
       <div class="cc-name"><b>${p.name}</b><span>${p.location} · ${p.live?'Live':'Upcoming'}</span></div>
